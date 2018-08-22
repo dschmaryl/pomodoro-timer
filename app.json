@@ -1,0 +1,7 @@
+{
+  "name": "pomodoro",
+  "displayName": "Pomodoro Timer",
+  "icon": {
+    "default": "icons/icon.png"
+  }
+}
