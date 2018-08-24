@@ -14,14 +14,14 @@ export class Timer extends React.Component {
   }
 
   componentDidMount() {
+    console.log('mounted');
+
     if (this.props.timeLeft === null) {
       this.setTimer();
     } else if (this.props.isFinished) {
       this.props.finishSession();
     }
-    this.setState({
-      interval: setInterval(this.props.timerTick, 200)
-    });
+    this.handleInterval(this.props);
     //Notifications.cancelAllScheduledNotificationsAsync();
   }
 
@@ -31,6 +31,7 @@ export class Timer extends React.Component {
     } else if (newProps.isFinished) {
       this.props.finishSession();
     }
+    this.handleInterval(newProps);
   }
 
   setTimer() {
@@ -43,7 +44,17 @@ export class Timer extends React.Component {
     }
   }
 
+  handleInterval(props) {
+    if (!props.isPaused) {
+      this.setState({ interval: setInterval(this.props.timerTick, 10) });
+    } else {
+      this.setState({ interval: clearInterval(this.state.interval) });
+    }
+  }
+
   componentWillUnmount() {
+    console.log('unmounted');
+
     if (!this.props.isPaused) {
       // Notifications.scheduleLocalNotificationAsync(
       //   {

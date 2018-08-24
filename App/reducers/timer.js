@@ -26,16 +26,18 @@ export const timer = (state = initialState, action) => {
 
     case 'TOGGLE_PAUSED':
       if (state.isPaused) {
+        const endTime = Date.now() + state.timeLeft;
         return {
           ...state,
           isPaused: false,
-          endTime: new Date().getTime() + state.timeLeft
+          endTime: endTime,
+          offSet: endTime % 1000
         };
       } else {
         return {
           ...state,
           isPaused: true,
-          timeLeft: state.endTime - new Date().getTime()
+          timeLeft: state.endTime - Date.now()
         };
       }
 
@@ -43,16 +45,18 @@ export const timer = (state = initialState, action) => {
       if (state.isPaused) {
         return state;
       } else {
-        const timeLeft = state.endTime - new Date().getTime();
-        if (timeLeft < 1000) {
+        const timeLeft = state.endTime - Date.now();
+        if (timeLeft < 10) {
           return {
             ...state,
             isFinished: true,
             isPaused: true,
-            timeLeft: timeLeft
+            timeLeft: null
           };
-        } else {
+        } else if (Math.abs((timeLeft % 1000) - state.offSet) <= 10) {
           return { ...state, timeLeft: timeLeft };
+        } else {
+          return state;
         }
       }
 

@@ -1,6 +1,6 @@
 const darkTheme = {
   backgroundColor: { backgroundColor: '#3c2f2f' },
-  borderColor: { borderColor: '#4b3832' },
+  borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
   textColor: { color: '#fff4e6' },
   iconButtonColor: { color: '#be9b7b' },
   buttonTextActive: { color: '#be9b7b' },
@@ -8,7 +8,7 @@ const darkTheme = {
 };
 const lightTheme = {
   backgroundColor: { backgroundColor: '#fff4e6' },
-  borderColor: { borderColor: '#4b3832' },
+  borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
   textColor: { color: '#3c2f2f' },
   iconButtonColor: { color: '#be9b7b' },
   buttonTextActive: { color: '#be9b7b' },

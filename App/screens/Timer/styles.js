@@ -19,8 +19,8 @@ export const styles = StyleSheet.create({
   timerHeaderView: {
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: -deviceHeight * 0.05,
-    marginBottom: deviceHeight * 0.02
+    // marginTop: -deviceHeight * 0.05,
+    marginBottom: deviceHeight * 0.025
   },
   timerHeaderText: {
     fontSize: deviceWidth * 0.1
@@ -32,7 +32,11 @@ export const styles = StyleSheet.create({
     fontSize: deviceWidth * 0.25
   },
   playIconView: {
-    marginTop: deviceHeight * 0.05
+    alignItems: 'center',
+    justifyContent: 'center',
+    // marginTop: deviceHeight * 0.05,
+    height: deviceHeight * 0.2,
+    width: deviceWidth * 0.3
   },
   playIconStyle: {
     fontSize: deviceWidth * 0.15

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   headerView: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: deviceHeight * 0.06,
+    paddingTop: deviceHeight * 0.03,
     paddingBottom: deviceHeight * 0.03,
     borderBottomWidth: StyleSheet.hairlineWidth
   },
