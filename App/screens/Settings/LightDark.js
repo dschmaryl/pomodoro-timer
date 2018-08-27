@@ -3,35 +3,39 @@ import { Text, TouchableNativeFeedback, View } from 'react-native';
 
 import { styles } from './styles';
 
-export const Theme = ({ theme, setTheme, colors }) => (
+export const LightDark = ({ lightDark, toggleLightDark, colors }) => (
   <View style={[styles.rowView, colors.borderColor]}>
     <Text style={[styles.rowText, colors.textColor]}>Theme:</Text>
     <View style={styles.themeButtonContainer}>
-      <TouchableNativeFeedback onPress={() => setTheme('coffee')}>
+      <TouchableNativeFeedback
+        onPress={() => (lightDark === 'light' ? null : toggleLightDark())}
+      >
         <View style={styles.buttonView}>
           <Text
             style={[
               styles.rowText,
-              theme === 'coffee'
+              lightDark === 'light'
                 ? colors.buttonTextActive
                 : colors.buttonTextInactive
             ]}
           >
-            Coffee
+            Light
           </Text>
         </View>
       </TouchableNativeFeedback>
-      <TouchableNativeFeedback onPress={() => setTheme('solarized')}>
+      <TouchableNativeFeedback
+        onPress={() => (lightDark === 'dark' ? null : toggleLightDark())}
+      >
         <View style={styles.buttonView}>
           <Text
             style={[
               styles.rowText,
-              theme === 'solarized'
+              lightDark === 'dark'
                 ? colors.buttonTextActive
                 : colors.buttonTextInactive
             ]}
           >
-            Solarized
+            Dark
           </Text>
         </View>
       </TouchableNativeFeedback>

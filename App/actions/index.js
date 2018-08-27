@@ -28,4 +28,5 @@ export const decreaseVolume = () => ({ type: 'DECREASE_VOLUME' });
 export const increaseVolume = () => ({ type: 'INCREASE_VOLUME' });
 export const toggleSound = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
 
-export const toggleTheme = () => ({ type: 'TOGGLE_THEME' });
+export const setTheme = theme => ({ type: 'SET_THEME', theme });
+export const toggleLightDark = () => ({ type: 'TOGGLE_LIGHT_DARK' });

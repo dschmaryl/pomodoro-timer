@@ -16,7 +16,8 @@ import {
   decreaseVolume,
   increaseVolume,
   toggleSound,
-  toggleTheme
+  setTheme,
+  toggleLightDark
 } from '../../actions';
 
 import { Settings } from './Settings';
@@ -36,6 +37,7 @@ const mapStateToProps = state => ({
   volume: state.sound.volume,
   soundIsPlaying: state.sound.soundIsPlaying,
   theme: state.colors.theme,
+  lightDark: state.colors.lightDark,
   colors: state.colors.colors
 });
 
@@ -55,7 +57,8 @@ mapDispatchToProps = dispatch => ({
   decreaseVolume: () => dispatch(decreaseVolume()),
   increaseVolume: () => dispatch(increaseVolume()),
   toggleSound: () => dispatch(toggleSound()),
-  toggleTheme: () => dispatch(toggleTheme())
+  setTheme: theme => dispatch(setTheme(theme)),
+  toggleLightDark: () => dispatch(toggleLightDark())
 });
 
 export default connect(

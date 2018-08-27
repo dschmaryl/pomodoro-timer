@@ -5,6 +5,7 @@ import { Timer } from './Timer';
 import { Session } from './Session';
 import { Adjuster } from './Adjuster';
 import { Theme } from './Theme';
+import { LightDark } from './LightDark';
 
 import { styles } from './styles';
 
@@ -72,7 +73,13 @@ export const Settings = props => (
 
     <Theme
       theme={props.theme}
-      toggleTheme={props.toggleTheme}
+      setTheme={props.setTheme}
+      colors={props.colors}
+    />
+
+    <LightDark
+      lightDark={props.lightDark}
+      toggleLightDark={props.toggleLightDark}
       colors={props.colors}
     />
   </ScrollView>
