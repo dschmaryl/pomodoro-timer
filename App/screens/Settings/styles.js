@@ -58,8 +58,14 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: deviceWidth * 0.36,
+    width: deviceWidth * 0.5,
     marginRight: deviceWidth * 0.02
+  },
+  themeButtonView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: deviceHeight * 0.08,
+    width: deviceWidth * 0.22
   },
   footerView: {
     justifyContent: 'center',

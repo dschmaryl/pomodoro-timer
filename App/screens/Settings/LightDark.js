@@ -5,12 +5,12 @@ import { styles } from './styles';
 
 export const LightDark = ({ lightDark, toggleLightDark, colors }) => (
   <View style={[styles.rowView, colors.borderColor]}>
-    <Text style={[styles.rowText, colors.textColor]}>Theme:</Text>
+    <Text style={[styles.rowText, colors.textColor]}>Light/Dark:</Text>
     <View style={styles.themeButtonContainer}>
       <TouchableNativeFeedback
         onPress={() => (lightDark === 'light' ? null : toggleLightDark())}
       >
-        <View style={styles.buttonView}>
+        <View style={styles.themeButtonView}>
           <Text
             style={[
               styles.rowText,
@@ -26,7 +26,7 @@ export const LightDark = ({ lightDark, toggleLightDark, colors }) => (
       <TouchableNativeFeedback
         onPress={() => (lightDark === 'dark' ? null : toggleLightDark())}
       >
-        <View style={styles.buttonView}>
+        <View style={styles.themeButtonView}>
           <Text
             style={[
               styles.rowText,

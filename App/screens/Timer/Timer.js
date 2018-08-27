@@ -14,8 +14,6 @@ export class Timer extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mounted');
-
     if (this.props.timeLeft === null) {
       this.setTimer();
     } else if (this.props.isFinished) {

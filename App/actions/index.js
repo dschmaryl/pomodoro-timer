@@ -20,8 +20,6 @@ export const timerTick = () => ({ type: 'TIMER_TICK' });
 
 export const finishSession = () => ({ type: 'FINISH_SESSION' });
 export const backOneSession = () => ({ type: 'BACK_ONE_SESSION' });
-// export const resetPomodoro = () => ({ type: 'RESET_POMODORO' });
-// export const resetEverything = () => ({ type: 'RESET_EVERYTHING' });
 
 export const toggleSoundEnabled = () => ({ type: 'TOGGLE_SOUND_ENABLED' });
 export const decreaseVolume = () => ({ type: 'DECREASE_VOLUME' });

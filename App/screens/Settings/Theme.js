@@ -8,7 +8,7 @@ export const Theme = ({ theme, setTheme, colors }) => (
     <Text style={[styles.rowText, colors.textColor]}>Theme:</Text>
     <View style={styles.themeButtonContainer}>
       <TouchableNativeFeedback onPress={() => setTheme('coffee')}>
-        <View style={styles.buttonView}>
+        <View style={styles.themeButtonView}>
           <Text
             style={[
               styles.rowText,
@@ -22,7 +22,7 @@ export const Theme = ({ theme, setTheme, colors }) => (
         </View>
       </TouchableNativeFeedback>
       <TouchableNativeFeedback onPress={() => setTheme('solarized')}>
-        <View style={styles.buttonView}>
+        <View style={styles.themeButtonView}>
           <Text
             style={[
               styles.rowText,
@@ -32,6 +32,20 @@ export const Theme = ({ theme, setTheme, colors }) => (
             ]}
           >
             Solarized
+          </Text>
+        </View>
+      </TouchableNativeFeedback>
+      <TouchableNativeFeedback onPress={() => setTheme('mono')}>
+        <View style={styles.themeButtonView}>
+          <Text
+            style={[
+              styles.rowText,
+              theme === 'mono'
+                ? colors.buttonTextActive
+                : colors.buttonTextInactive
+            ]}
+          >
+            Mono
           </Text>
         </View>
       </TouchableNativeFeedback>

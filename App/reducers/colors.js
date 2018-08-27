@@ -21,18 +21,36 @@ const themes = {
     dark: {
       backgroundColor: { backgroundColor: '#002b36' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
-      textColor: { color: '#839496' },
-      iconButtonColor: { color: '#be9b7b' },
-      buttonTextActive: { color: '#be9b7b' },
-      buttonTextInactive: { color: '#fff4e6' }
+      textColor: { color: '#93a1a1' },
+      iconButtonColor: { color: '#2aa198' },
+      buttonTextActive: { color: '#268bd2' },
+      buttonTextInactive: { color: '#586e75' }
     },
     light: {
       backgroundColor: { backgroundColor: '#fdf6e3' },
       borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
       textColor: { color: '#657b83' },
-      iconButtonColor: { color: '#be9b7b' },
-      buttonTextActive: { color: '#be9b7b' },
-      buttonTextInactive: { color: '#3c2f2f' }
+      iconButtonColor: { color: '#2aa198' },
+      buttonTextActive: { color: '#268bd2' },
+      buttonTextInactive: { color: '#93a1a1' }
+    }
+  },
+  mono: {
+    dark: {
+      backgroundColor: { backgroundColor: '#000' },
+      borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
+      textColor: { color: '#ccc' },
+      iconButtonColor: { color: '#eee' },
+      buttonTextActive: { color: '#eee' },
+      buttonTextInactive: { color: '#aaa' }
+    },
+    light: {
+      backgroundColor: { backgroundColor: '#eee' },
+      borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
+      textColor: { color: '#444' },
+      iconButtonColor: { color: '#333' },
+      buttonTextActive: { color: '#222' },
+      buttonTextInactive: { color: '#666' }
     }
   }
 };
