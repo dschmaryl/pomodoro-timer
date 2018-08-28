@@ -33,7 +33,7 @@ const mapStateToProps = state => ({
   workTime: state.times.workTime,
   shortBreakTime: state.times.shortBreakTime,
   longBreakTime: state.times.longBreakTime,
-  soundEnabled: state.sound.soundEnabled,
+  soundIsEnabled: state.sound.soundIsEnabled,
   volume: state.sound.volume,
   soundIsPlaying: state.sound.soundIsPlaying,
   theme: state.colors.theme,

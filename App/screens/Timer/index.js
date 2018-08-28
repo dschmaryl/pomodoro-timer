@@ -5,7 +5,7 @@ import {
   togglePaused,
   timerTick,
   finishSession,
-  toggleSound
+  toggleSoundPlaying
 } from '../../actions';
 
 import { Timer } from './Timer';
@@ -20,6 +20,9 @@ const mapStateToProps = state => ({
   timeLeft: state.timer.timeLeft,
   isPaused: state.timer.isPaused,
   isFinished: state.timer.isFinished,
+  volume: state.sound.volume,
+  soundIsEnabled: state.sound.soundIsEnabled,
+  soundIsPlaying: state.sound.soundIsPlaying,
   colors: state.colors.colors
 });
 
@@ -28,7 +31,7 @@ mapDispatchToProps = dispatch => ({
   togglePaused: () => dispatch(togglePaused()),
   timerTick: () => dispatch(timerTick()),
   finishSession: () => dispatch(finishSession()),
-  toggleSound: () => dispatch(toggleSound())
+  toggleSoundPlaying: () => dispatch(toggleSoundPlaying())
 });
 
 export default connect(

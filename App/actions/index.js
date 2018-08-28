@@ -24,7 +24,7 @@ export const backOneSession = () => ({ type: 'BACK_ONE_SESSION' });
 export const toggleSoundEnabled = () => ({ type: 'TOGGLE_SOUND_ENABLED' });
 export const decreaseVolume = () => ({ type: 'DECREASE_VOLUME' });
 export const increaseVolume = () => ({ type: 'INCREASE_VOLUME' });
-export const toggleSound = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
+export const toggleSoundPlaying = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
 
 export const setTheme = theme => ({ type: 'SET_THEME', theme });
 export const toggleLightDark = () => ({ type: 'TOGGLE_LIGHT_DARK' });

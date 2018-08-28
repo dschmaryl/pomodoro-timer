@@ -52,13 +52,6 @@ export const session = (state = initialState, action) => {
         };
       }
 
-    // case 'RESET_POMODORO':
-    //   return {
-    //     ...state,
-    //     session: 'work',
-    //     sessionString: 'Work'
-    //   };
-
     case 'RESET_EVERYTHING':
       return initialState;
 

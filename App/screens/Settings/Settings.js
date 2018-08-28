@@ -57,7 +57,7 @@ export const Settings = props => (
       <View style={styles.switchView}>
         <Switch
           onValueChange={props.toggleSoundEnabled}
-          value={props.soundEnabled}
+          value={props.soundIsEnabled}
           style={styles.switch}
         />
       </View>

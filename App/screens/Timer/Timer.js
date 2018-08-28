@@ -2,6 +2,8 @@ import React from 'react';
 import { Text, TouchableNativeFeedback, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { Alarm } from './Alarm';
+
 import { styles } from './styles';
 
 export class Timer extends React.Component {
@@ -9,27 +11,44 @@ export class Timer extends React.Component {
     super(props);
     this.state = {
       interval: null,
+      paused: true,
       currentSession: props.session
     };
   }
 
   componentDidMount() {
-    if (this.props.timeLeft === null) {
-      this.setTimer();
-    } else if (this.props.isFinished) {
-      this.props.finishSession();
-    }
-    this.handleInterval(this.props);
+    this.checkTimer(this.props);
     //Notifications.cancelAllScheduledNotificationsAsync();
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.session !== this.state.currentSession) {
-      this.setState({ currentSession: newProps.session }, this.setTimer);
-    } else if (newProps.isFinished) {
+    this.checkTimer(newProps);
+  }
+
+  checkTimer(props) {
+    if (this.props.timeLeft === null) {
+      this.setTimer();
+    } else if (props.session !== this.state.currentSession) {
+      this.setState({ currentSession: props.session }, this.setTimer);
+    } else if (props.isFinished) {
       this.props.finishSession();
+      this.props.toggleSoundPlaying();
     }
-    this.handleInterval(newProps);
+
+    if (!props.isPaused && this.state.paused) {
+      this.setState({
+        interval: setInterval(this.props.timerTick, 10),
+        paused: false
+      });
+    } else if (props.isPaused && !this.state.paused) {
+      this.setState({
+        interval: clearInterval(this.state.interval),
+        paused: true
+      });
+    }
+
+    if (!props.isPaused && props.soundIsPlaying)
+      this.props.toggleSoundPlaying();
   }
 
   setTimer() {
@@ -42,28 +61,19 @@ export class Timer extends React.Component {
     }
   }
 
-  handleInterval(props) {
-    if (!props.isPaused) {
-      this.setState({ interval: setInterval(this.props.timerTick, 10) });
-    } else {
-      this.setState({ interval: clearInterval(this.state.interval) });
-    }
-  }
-
   componentWillUnmount() {
-    console.log('unmounted');
-
-    if (!this.props.isPaused) {
-      // Notifications.scheduleLocalNotificationAsync(
-      //   {
-      //     title: 'Pomodoro Timer',
-      //     body: this.props.sessionString + ' time is up!',
-      //     android: { channelId: 'pomodoro' }
-      //   },
-      //   { time: new Date(this.props.endTime) }
-      // );
-    }
+    // if (!this.props.isPaused) {
+    //   Notifications.scheduleLocalNotificationAsync(
+    //     {
+    //       title: 'Pomodoro Timer',
+    //       body: this.props.sessionString + ' time is up!',
+    //       android: { channelId: 'pomodoro' }
+    //     },
+    //     { time: new Date(this.props.endTime) }
+    //   );
+    // }
     this.setState({ interval: clearInterval(this.state.interval) });
+    if (this.props.soundIsPlaying) this.props.toggleSoundPlaying();
   }
 
   render() {
@@ -116,6 +126,11 @@ export class Timer extends React.Component {
             )}
           </View>
         </TouchableNativeFeedback>
+        {/* <Alarm
+          volume={this.props.volume}
+          soundIsEnabled={this.props.soundIsEnabled}
+          soundIsPlaying={this.props.soundIsPlaying}
+        /> */}
       </View>
     );
     // }
