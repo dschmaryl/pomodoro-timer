@@ -3,6 +3,7 @@ package com.pomodoro;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.corbt.keepawake.KCKeepAwakePackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new KCKeepAwakePackage(),
             new RNSoundPackage(),
             new ReactNativePushNotificationPackage(),
             new VectorIconsPackage()

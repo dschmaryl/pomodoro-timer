@@ -23,7 +23,8 @@ const mapStateToProps = state => ({
   volume: state.sound.volume,
   soundIsEnabled: state.sound.soundIsEnabled,
   soundIsPlaying: state.sound.soundIsPlaying,
-  colors: state.colors.colors
+  colors: state.colors.colors,
+  keepScreenAwake: state.screen.keepScreenAwake
 });
 
 mapDispatchToProps = dispatch => ({

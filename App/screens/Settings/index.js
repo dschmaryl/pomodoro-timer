@@ -17,7 +17,8 @@ import {
   increaseVolume,
   toggleSound,
   setTheme,
-  toggleLightDark
+  toggleLightDark,
+  toggleKeepScreenAwake
 } from '../../actions';
 
 import { Settings } from './Settings';
@@ -38,7 +39,8 @@ const mapStateToProps = state => ({
   soundIsPlaying: state.sound.soundIsPlaying,
   theme: state.colors.theme,
   lightDark: state.colors.lightDark,
-  colors: state.colors.colors
+  colors: state.colors.colors,
+  keepScreenAwake: state.screen.keepScreenAwake
 });
 
 mapDispatchToProps = dispatch => ({
@@ -58,7 +60,8 @@ mapDispatchToProps = dispatch => ({
   increaseVolume: () => dispatch(increaseVolume()),
   toggleSound: () => dispatch(toggleSound()),
   setTheme: theme => dispatch(setTheme(theme)),
-  toggleLightDark: () => dispatch(toggleLightDark())
+  toggleLightDark: () => dispatch(toggleLightDark()),
+  toggleKeepScreenAwake: () => dispatch(toggleKeepScreenAwake())
 });
 
 export default connect(

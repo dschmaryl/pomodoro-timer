@@ -4,7 +4,7 @@ import Sound from 'react-native-sound';
 export class Alarm extends React.Component {
   constructor(props) {
     super(props);
-    this.sound = new Sound('alarm.mp3', Sound.MAIN_BUNDLE, error => {
+    this.sound = new Sound('alarm.mp3', null, error => {
       if (error) {
         console.log('sound error: ', error);
         return;
@@ -14,11 +14,9 @@ export class Alarm extends React.Component {
   }
 
   componentDidMount() {
-    console.log('alarm component mounted');
-
     this.sound.setVolume(this.props.volume / 100).setNumberOfLoops(-1);
 
-    if (this.props.soundIsEnabled && this.props.soundIsPlaying) {
+    if (this.props.soundIsPlaying) {
       this.sound.play();
     } else {
       this.sound.stop();
@@ -26,12 +24,10 @@ export class Alarm extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('alarm component received props');
-
     if (newProps.volume !== this.sound.getVolume() / 100)
       this.sound.setVolume(newProps.volume / 100);
 
-    if (newProps.soundIsEnabled && newProps.soundIsPlaying) {
+    if (newProps.soundIsPlaying) {
       this.sound.play();
     } else {
       this.sound.stop();
@@ -39,8 +35,6 @@ export class Alarm extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('alarm component will unmount');
-
     this.sound.stop();
   }
 

@@ -82,5 +82,18 @@ export const Settings = props => (
       toggleLightDark={props.toggleLightDark}
       colors={props.colors}
     />
+
+    <View style={[styles.rowView, props.colors.borderColor]}>
+      <Text style={[styles.rowText, props.colors.textColor]}>
+        Keep screen awake:
+      </Text>
+      <View style={styles.switchView}>
+        <Switch
+          onValueChange={props.toggleKeepScreenAwake}
+          value={props.keepScreenAwake}
+          style={styles.switch}
+        />
+      </View>
+    </View>
   </ScrollView>
 );

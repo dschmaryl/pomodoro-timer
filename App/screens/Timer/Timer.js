@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableNativeFeedback, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import KeepAwake from 'react-native-keep-awake';
 
 import { Alarm } from './Alarm';
 
@@ -11,7 +12,7 @@ export class Timer extends React.Component {
     super(props);
     this.state = {
       interval: null,
-      paused: true,
+      isPaused: true,
       currentSession: props.session
     };
   }
@@ -35,15 +36,15 @@ export class Timer extends React.Component {
       this.props.toggleSoundPlaying();
     }
 
-    if (!props.isPaused && this.state.paused) {
+    if (!props.isPaused && this.state.isPaused) {
       this.setState({
         interval: setInterval(this.props.timerTick, 10),
-        paused: false
+        isPaused: false
       });
-    } else if (props.isPaused && !this.state.paused) {
+    } else if (props.isPaused && !this.state.isPaused) {
       this.setState({
         interval: clearInterval(this.state.interval),
-        paused: true
+        isPaused: true
       });
     }
 
@@ -126,11 +127,16 @@ export class Timer extends React.Component {
             )}
           </View>
         </TouchableNativeFeedback>
-        {/* <Alarm
-          volume={this.props.volume}
-          soundIsEnabled={this.props.soundIsEnabled}
-          soundIsPlaying={this.props.soundIsPlaying}
-        /> */}
+        {this.props.soundIsEnabled ? (
+          <Alarm
+            volume={this.props.volume}
+            soundIsPlaying={this.props.soundIsPlaying}
+          />
+        ) : null}
+        {this.props.keepScreenAwake &&
+        (!this.state.isPaused || this.props.soundIsPlaying) ? (
+          <KeepAwake />
+        ) : null}
       </View>
     );
     // }

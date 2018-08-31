@@ -28,3 +28,7 @@ export const toggleSoundPlaying = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
 
 export const setTheme = theme => ({ type: 'SET_THEME', theme });
 export const toggleLightDark = () => ({ type: 'TOGGLE_LIGHT_DARK' });
+
+export const toggleKeepScreenAwake = () => ({
+  type: 'TOGGLE_KEEP_SCREEN_AWAKE'
+});
