@@ -3,7 +3,7 @@ import { Text, TouchableNativeFeedback, View } from 'react-native';
 
 import { styles } from './styles';
 
-export const Theme = ({ theme, setTheme, colors }) => (
+export const Theme = ({ theme, colors, setTheme }) => (
   <View style={[styles.rowView, colors.borderColor]}>
     <Text style={[styles.rowText, colors.textColor]}>Theme:</Text>
     <View style={styles.themeButtonContainer}>

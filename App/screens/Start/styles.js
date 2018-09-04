@@ -18,14 +18,4 @@ export const styles = StyleSheet.create({
     fontSize: deviceWidth * 0.25,
     marginBottom: -deviceHeight * 0.05
   }
-  // startButtonContainer: {
-  //   alignItems: 'center'
-  // },
-  // startButtonView: {
-  //   marginTop: deviceHeight * 0.01,
-  //   marginBottom: deviceHeight * 0.01
-  // },
-  // startButtonText: {
-  //   fontSize: deviceWidth * 0.1
-  // }
 });

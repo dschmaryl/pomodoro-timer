@@ -9,18 +9,8 @@ export class Alarm extends React.Component {
         console.log('sound error: ', error);
         return;
       }
-      console.log('loaded sound');
+      this.sound.setNumberOfLoops(-1)
     });
-  }
-
-  componentDidMount() {
-    this.sound.setVolume(this.props.volume / 100).setNumberOfLoops(-1);
-
-    if (this.props.soundIsPlaying) {
-      this.sound.play();
-    } else {
-      this.sound.stop();
-    }
   }
 
   componentWillReceiveProps(newProps) {

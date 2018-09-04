@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import rootReducer from './reducers';
 
 import Start from './screens/Start';
-import Settings from './screens/Settings';
+import Menu from './screens/Menu';
 import Timer from './screens/Timer';
 
 const store = createStore(
@@ -23,8 +23,8 @@ const RootStack = createStackNavigator(
     Start: {
       screen: Start
     },
-    Settings: {
-      screen: Settings
+    Menu: {
+      screen: Menu
     },
     Timer: {
       screen: Timer

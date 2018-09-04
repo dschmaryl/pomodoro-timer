@@ -84,7 +84,7 @@ export class Timer extends React.Component {
     return (
       <View style={[styles.timerContainer, this.props.colors.backgroundColor]}>
         <TouchableNativeFeedback
-          onPress={() => this.props.navigation.navigate('Settings')}
+          onPress={() => this.props.navigation.navigate('Menu')}
         >
           <View style={styles.settingsIconView}>
             <Icon

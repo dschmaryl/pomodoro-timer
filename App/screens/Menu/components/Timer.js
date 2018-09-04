@@ -4,24 +4,36 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { styles } from './styles';
 
-export const Timer = props => {
+export const Timer = ({
+  session,
+  timeLeft,
+  isPaused,
+  workTime,
+  shortBreakTime,
+  longBreakTime,
+  soundIsPlaying,
+  colors,
+  setTimer,
+  togglePaused,
+  toggleSoundPlaying
+}) => {
   const onResetPress = () => {
-    if (!props.isPaused) props.togglePaused();
+    if (!isPaused) togglePaused();
+    if (soundIsPlaying) toggleSoundPlaying();
     const getMinutes = () => {
-      if (props.session === 'work') {
-        return props.workTime;
-      } else if (props.session === 'shortBreak') {
-        return props.shortBreakTime;
+      if (session === 'work') {
+        return workTime;
+      } else if (session === 'shortBreak') {
+        return shortBreakTime;
       } else {
-        return props.longBreakTime;
+        return longBreakTime;
       }
     };
-    props.setTimer(getMinutes());
+    setTimer(getMinutes());
   };
 
-  const { colors } = props;
-  const minutes = Math.floor(props.timeLeft / 60000);
-  const seconds = Math.floor((props.timeLeft % 60000) / 1000);
+  const minutes = Math.floor(timeLeft / 60000);
+  const seconds = Math.floor((timeLeft % 60000) / 1000);
 
   return (
     <View style={[styles.rowView, colors.borderColor]}>
@@ -38,9 +50,9 @@ export const Timer = props => {
           {minutes}:{seconds < 10 ? '0' + seconds : seconds}
         </Text>
       </View>
-      <TouchableNativeFeedback onPress={props.togglePaused}>
+      <TouchableNativeFeedback onPress={togglePaused}>
         <View style={styles.buttonView}>
-          {props.isPaused ? (
+          {isPaused ? (
             <Icon
               name="md-play"
               style={[styles.iconStyle, colors.iconButtonColor]}

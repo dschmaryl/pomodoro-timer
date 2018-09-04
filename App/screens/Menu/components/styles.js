@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { deviceWidth, deviceHeight } from '../device';
+import { deviceWidth, deviceHeight } from '../../device';
 
 export const styles = StyleSheet.create({
   scrollView: {
@@ -14,7 +14,8 @@ export const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   headerText: {
-    fontSize: deviceWidth * 0.06
+    fontSize: deviceWidth * 0.14,
+    fontFamily: 'Cookie-Regular'
   },
   rowView: {
     flexDirection: 'row',
