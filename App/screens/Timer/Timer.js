@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableNativeFeedback, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import PushNotification from 'react-native-push-notification';
 import KeepAwake from 'react-native-keep-awake';
 
 import { Alarm } from './Alarm';
@@ -19,7 +20,7 @@ export class Timer extends React.Component {
 
   componentDidMount() {
     this.checkTimer(this.props);
-    //Notifications.cancelAllScheduledNotificationsAsync();
+    PushNotification.cancelLocalNotifications({id: '31415'})
   }
 
   componentWillReceiveProps(newProps) {
@@ -63,16 +64,15 @@ export class Timer extends React.Component {
   }
 
   componentWillUnmount() {
-    // if (!this.props.isPaused) {
-    //   Notifications.scheduleLocalNotificationAsync(
-    //     {
-    //       title: 'Pomodoro Timer',
-    //       body: this.props.sessionString + ' time is up!',
-    //       android: { channelId: 'pomodoro' }
-    //     },
-    //     { time: new Date(this.props.endTime) }
-    //   );
-    // }
+    if (!this.props.isPaused) {
+      PushNotification.localNotificationSchedule({
+        id: '31415',
+        title: 'Pomodoro Timer',
+        message: this.props.sessionString + ' time is up!',
+        date: new Date(this.props.endTime)
+      });
+    }
+
     this.setState({ interval: clearInterval(this.state.interval) });
     if (this.props.soundIsPlaying) this.props.toggleSoundPlaying();
   }
