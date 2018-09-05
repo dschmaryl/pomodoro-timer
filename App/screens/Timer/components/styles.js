@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { deviceWidth, deviceHeight } from '../device';
+import { deviceWidth, deviceHeight } from '../../device';
 
 export const styles = StyleSheet.create({
   timerContainer: {
@@ -19,7 +19,6 @@ export const styles = StyleSheet.create({
   timerHeaderView: {
     alignItems: 'center',
     justifyContent: 'center',
-    // marginTop: -deviceHeight * 0.05,
     marginBottom: deviceHeight * 0.025
   },
   timerHeaderText: {
@@ -34,7 +33,6 @@ export const styles = StyleSheet.create({
   playIconView: {
     alignItems: 'center',
     justifyContent: 'center',
-    // marginTop: deviceHeight * 0.05,
     height: deviceHeight * 0.2,
     width: deviceWidth * 0.3
   },

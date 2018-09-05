@@ -20,15 +20,9 @@ persistor.purge();
 
 const RootStack = createStackNavigator(
   {
-    Start: {
-      screen: Start
-    },
-    Menu: {
-      screen: Menu
-    },
-    Timer: {
-      screen: Timer
-    }
+    Start: { screen: Start },
+    Menu: { screen: Menu },
+    Timer: { screen: Timer }
   },
   {
     initialRouteName: 'Start',
@@ -37,45 +31,12 @@ const RootStack = createStackNavigator(
   }
 );
 
-export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = { isReady: true };
-  }
+const App = () => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <RootStack />
+    </PersistGate>
+  </Provider>
+);
 
-  // componentDidMount() {
-  //   // Notifications.createChannelAndroidAsync('pomodoro', {
-  //   //   name: 'pomodoro',
-  //   //   sound: true,
-  //   //   priority: 'max'
-  //   // });
-  //   this._loadResources();
-  // }
-
-  // async _loadResources() {
-  //   await Font.loadAsync({
-  //     Cookie: require('../assets/fonts/Cookie-Regular.ttf')
-  //   });
-  // }
-
-  render() {
-    if (this.state.isReady) {
-      return (
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <RootStack />
-          </PersistGate>
-        </Provider>
-      );
-    } else {
-      return (
-        // <AppLoading
-        //   startAsync={this._loadResources}
-        //   onFinish={() => this.setState({ isReady: true })}
-        //   onError={console.warn}
-        // />
-        null
-      );
-    }
-  }
-}
+export default App;

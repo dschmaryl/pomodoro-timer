@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, TouchableNativeFeedback, View } from 'react-native';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 import { styles } from './styles';
 
@@ -12,20 +13,27 @@ export class Start extends React.Component {
 
   componentDidMount() {
     this.setState({
-      time: new Date().getTime(),
+      time: Date.now(),
       interval: setInterval(() => {
-        if (new Date().getTime() - this.state.time > 2000) {
-          this.setState({ interval: clearInterval(this.state.interval) }, () =>
-            this.props.navigation.navigate('Timer')
-          );
+        if (Date.now() - this.state.time > 1600) {
+          this.navigateToTimer();
         }
       }, 200)
     });
   }
 
   onStartScreenPress() {
+    this.navigateToTimer();
+  }
+
+  navigateToTimer() {
     this.setState({ interval: clearInterval(this.state.interval) }, () =>
-      this.props.navigation.navigate('Timer')
+      this.props.navigation.dispatch(
+        StackActions.reset({
+          index: 0,
+          actions: [NavigationActions.navigate({ routeName: 'Timer' })]
+        })
+      )
     );
   }
 
