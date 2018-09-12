@@ -27,14 +27,15 @@ export class Start extends React.Component {
   }
 
   navigateToTimer() {
-    this.setState({ interval: clearInterval(this.state.interval) }, () =>
+    this.setState({ interval: clearInterval(this.state.interval) }, () => {
+      if (this.props.firstBoot) this.props.toggleFirstBoot();
       this.props.navigation.dispatch(
         StackActions.reset({
           index: 0,
           actions: [NavigationActions.navigate({ routeName: 'Timer' })]
         })
-      )
-    );
+      );
+    });
   }
 
   render() {

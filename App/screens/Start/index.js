@@ -1,7 +1,19 @@
 import { connect } from 'react-redux';
 
+import { toggleFirstBoot } from '../../actions';
+
 import { Start } from './Start';
 
-const mapStateToProps = state => ({ colors: state.colors.colors });
+const mapStateToProps = state => ({
+  firstBoot: state.start.firstBoot,
+  colors: state.colors.colors
+});
 
-export default connect(mapStateToProps)(Start);
+mapDispatchToProps = dispatch => ({
+  toggleFirstBoot: () => dispatch(toggleFirstBoot())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Start);

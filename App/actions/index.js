@@ -1,5 +1,7 @@
 export const decreaseWorkTime = () => ({ type: 'DECREASE_WORK_TIME' });
 export const increaseWorkTime = () => ({ type: 'INCREASE_WORK_TIME' });
+export const setWorkTime = time => ({ type: 'SET_WORK_TIME', time });
+
 export const decreaseShortBreakTime = () => ({
   type: 'DECREASE_SHORT_BREAK_TIME'
 });
@@ -27,8 +29,15 @@ export const increaseVolume = () => ({ type: 'INCREASE_VOLUME' });
 export const toggleSoundPlaying = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
 
 export const setTheme = theme => ({ type: 'SET_THEME', theme });
+// export const setThemeIndex = themeIndex => ({
+//   type: 'SET_THEME_INDEX',
+//   themeIndex
+// });
 export const toggleLightDark = () => ({ type: 'TOGGLE_LIGHT_DARK' });
 
 export const toggleKeepScreenAwake = () => ({
   type: 'TOGGLE_KEEP_SCREEN_AWAKE'
 });
+
+export const toggleShowStart = () => ({ type: 'TOGGLE_SHOW_START' });
+export const toggleFirstRun = () => ({ type: 'TOGGLE_FIRST_RUN' });
