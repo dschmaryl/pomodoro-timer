@@ -3,15 +3,15 @@ import { View } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import MenuButton from '../containers/MenuButton';
-import { Session } from './Session';
-import { Time } from './Time';
+import Session from '../containers/Session';
+import Time from '../containers/Time';
 import StartButton from '../containers/StartButton';
 import Alarm from '../containers/Alarm';
 import ScreenAwake from '../containers/ScreenAwake';
 
 import { styles } from './styles';
 
-export class Timer extends React.Component {
+export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -85,11 +85,8 @@ export class Timer extends React.Component {
     return (
       <View style={[styles.timerContainer, this.props.colors.backgroundColor]}>
         <MenuButton />
-        <Session
-          sessionString={this.props.sessionString}
-          colors={this.props.colors}
-        />
-        <Time timeLeft={this.props.timeLeft} colors={this.props.colors} />
+        <Session />
+        <Time />
         <StartButton />
         <Alarm />
         <ScreenAwake />

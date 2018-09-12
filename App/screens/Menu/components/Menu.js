@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 
-import Header from '../containers/Header';
+import { Header } from './Header';
 import Timer from '../containers/Timer';
 import Session from '../containers/Session';
 import WorkTime from '../containers/WorkTime';
@@ -12,12 +12,13 @@ import Volume from '../containers/Volume'
 import Theme from '../containers/Theme';
 import LightDark from '../containers/LightDark';
 import KeepAwake from '../containers/KeepAwake';
+import { Footer } from './Footer';
 
 import { styles } from './styles';
 
 export const Menu = ({ colors }) => (
   <ScrollView style={[styles.scrollView, colors.backgroundColor]}>
-    <Header />
+    <Header colors={colors} />
     <Timer />
     <Session/>
     <WorkTime />
@@ -28,5 +29,6 @@ export const Menu = ({ colors }) => (
     <Theme />
     <LightDark />
     <KeepAwake />
+    <Footer colors={colors} />
   </ScrollView>
 );

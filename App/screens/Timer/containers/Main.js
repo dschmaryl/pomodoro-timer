@@ -7,7 +7,7 @@ import {
   toggleSoundPlaying
 } from '../../../actions';
 
-import { Timer } from '../components/Timer';
+import { Main } from '../components/Main';
 
 const mapStateToProps = state => ({
   workTime: state.times.workTime,
@@ -33,4 +33,4 @@ mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Timer);
+)(Main);

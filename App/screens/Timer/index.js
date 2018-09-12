@@ -1,3 +1,3 @@
-import Timer from './containers/Timer';
+import Main from './containers/Main';
 
-export default Timer;
+export default Main;

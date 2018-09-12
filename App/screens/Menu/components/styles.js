@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   },
   themeButtonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     width: deviceWidth * 0.5,
     marginRight: deviceWidth * 0.02
@@ -68,11 +68,27 @@ export const styles = StyleSheet.create({
     height: deviceHeight * 0.08,
     width: deviceWidth * 0.22
   },
+  themePicker: {
+    width: deviceWidth * 0.4,
+    transform: [
+      { scaleX: deviceWidth * 0.003 },
+      { scaleY: deviceWidth * 0.003 }
+    ]
+  },
   footerView: {
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: deviceHeight * 0.1,
+    paddingTop: deviceHeight * 0.03,
+    paddingBottom: deviceHeight * 0.03
   },
   footerText: {
-    fontSize: deviceWidth * 0.05
+    fontSize: deviceWidth * 0.06,
+    fontFamily: 'Cookie-Regular'
+  },
+  footerLinkView: {
+    justifyContent: 'center',
+    height: deviceHeight * 0.08
   }
 });
