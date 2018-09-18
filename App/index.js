@@ -16,7 +16,7 @@ const store = createStore(
   persistReducer({ key: 'root', storage }, rootReducer)
 );
 const persistor = persistStore(store);
-persistor.purge();
+// persistor.purge();
 
 const { firstBoot, showStart } = store.getState().start;
 
