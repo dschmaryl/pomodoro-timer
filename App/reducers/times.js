@@ -10,7 +10,7 @@ export const times = (
     case 'DECREASE_WORK_TIME':
       return { ...state, workTime: Math.max(1, state.workTime - 1) };
     case 'INCREASE_WORK_TIME':
-      return { ...state, workTime: Math.min(state.workTime + 1, 120) };
+      return { ...state, workTime: Math.min(state.workTime + 1, 99) };
 
     case 'DECREASE_SHORT_BREAK_TIME':
       return {
@@ -20,7 +20,7 @@ export const times = (
     case 'INCREASE_SHORT_BREAK_TIME':
       return {
         ...state,
-        shortBreakTime: Math.min(state.shortBreakTime + 1, 120)
+        shortBreakTime: Math.min(state.shortBreakTime + 1, 99)
       };
 
     case 'DECREASE_LONG_BREAK_TIME':
@@ -32,7 +32,7 @@ export const times = (
     case 'INCREASE_LONG_BREAK_TIME':
       return {
         ...state,
-        longBreakTime: Math.min(state.longBreakTime + 1, 120)
+        longBreakTime: Math.min(state.longBreakTime + 1, 99)
       };
 
     default:

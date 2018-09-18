@@ -44,16 +44,29 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: deviceWidth * 0.4
+    width: deviceWidth * 0.5
+  },
+  adjusterValueView: {
+    alignItems: 'flex-end',
+    width: deviceWidth * 0.20,
+    paddingRight: deviceWidth * 0.04
   },
   switchView: {
-    marginRight: deviceWidth * 0.05
+    marginRight: deviceWidth * 0.07
   },
   switch: {
     transform: [
       { scaleX: deviceWidth * 0.004 },
       { scaleY: deviceWidth * 0.004 }
     ]
+    // borderRadius: 100,
+    // height: deviceHeight * 0.05,
+    // width: deviceWidth * 0.15
+  },
+  switchCircleStyle: {
+    // borderRadius: 100,
+    // height: deviceHeight * 0.046,
+    // width: deviceHeight * 0.046
   },
   themeButtonContainer: {
     flexDirection: 'row',

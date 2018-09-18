@@ -33,7 +33,8 @@ export const setTheme = theme => ({ type: 'SET_THEME', theme });
 //   type: 'SET_THEME_INDEX',
 //   themeIndex
 // });
-export const toggleLightDark = () => ({ type: 'TOGGLE_LIGHT_DARK' });
+// export const toggleLightDark = () => ({ type: 'TOGGLE_LIGHT_DARK' });
+export const toggleDarkMode = () => ({ type: 'TOGGLE_DARK_MODE' });
 
 export const toggleKeepScreenAwake = () => ({
   type: 'TOGGLE_KEEP_SCREEN_AWAKE'

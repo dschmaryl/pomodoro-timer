@@ -1,19 +1,20 @@
 import { connect } from 'react-redux';
 
-import { toggleLightDark } from '../../../actions';
+import { toggleDarkMode } from '../../../actions';
 
-import { LightDark } from '../components/LightDark';
+import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({
-  lightDark: state.colors.lightDark,
+  label: 'Dark mode',
+  isOn: state.colors.darkMode,
   colors: state.colors.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  toggleLightDark: () => dispatch(toggleLightDark())
+  onToggle: () => dispatch(toggleDarkMode())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(LightDark);
+)(Switcher);
