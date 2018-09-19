@@ -9,7 +9,7 @@ export const MenuButton = ({ navigation, colors }) => (
     <View style={styles.settingsIconView}>
       <Icon
         name="md-menu"
-        style={[styles.settingsIconStyle, colors.iconButtonColor]}
+        style={[styles.settingsIconStyle, colors.buttonColor]}
       />
     </View>
   </TouchableNativeFeedback>

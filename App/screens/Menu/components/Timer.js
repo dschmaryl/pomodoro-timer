@@ -41,7 +41,7 @@ export const Timer = ({
         <View style={styles.buttonView}>
           <Icon
             name="md-refresh"
-            style={[styles.iconStyle, colors.iconButtonColor]}
+            style={[styles.iconStyle, colors.buttonColor]}
           />
         </View>
       </TouchableNativeFeedback>
@@ -55,12 +55,12 @@ export const Timer = ({
           {isPaused ? (
             <Icon
               name="md-play"
-              style={[styles.iconStyle, colors.iconButtonColor]}
+              style={[styles.iconStyle, colors.buttonColor]}
             />
           ) : (
             <Icon
               name="md-pause"
-              style={[styles.iconStyle, colors.iconButtonColor]}
+              style={[styles.iconStyle, colors.buttonColor]}
             />
           )}
         </View>

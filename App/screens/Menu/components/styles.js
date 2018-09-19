@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
   },
   adjusterValueView: {
     alignItems: 'flex-end',
-    width: deviceWidth * 0.20,
+    width: deviceWidth * 0.2,
     paddingRight: deviceWidth * 0.04
   },
   switchView: {
@@ -56,8 +56,8 @@ export const styles = StyleSheet.create({
   },
   switch: {
     transform: [
-      { scaleX: deviceWidth * 0.004 },
-      { scaleY: deviceWidth * 0.004 }
+      { scaleX: deviceWidth * 0.0036 },
+      { scaleY: deviceWidth * 0.0036 }
     ]
     // borderRadius: 100,
     // height: deviceHeight * 0.05,

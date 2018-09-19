@@ -22,7 +22,7 @@ export const Session = ({
       <View style={styles.buttonView}>
         <Icon
           name="md-skip-backward"
-          style={[styles.iconStyle, colors.iconButtonColor]}
+          style={[styles.iconStyle, colors.buttonColor]}
         />
       </View>
     </TouchableNativeFeedback>
@@ -40,7 +40,7 @@ export const Session = ({
       <View style={styles.buttonView}>
         <Icon
           name="md-skip-forward"
-          style={[styles.iconStyle, colors.iconButtonColor]}
+          style={[styles.iconStyle, colors.buttonColor]}
         />
       </View>
     </TouchableNativeFeedback>

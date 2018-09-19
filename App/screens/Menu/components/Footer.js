@@ -15,7 +15,7 @@ export const Footer = ({ colors }) => (
       onPress={() => Linking.openURL('https://dschmaryl.github.io')}
     >
       <View style={styles.footerLinkView}>
-        <Text style={[styles.footerText, colors.iconButtonColor]}>Contact</Text>
+        <Text style={[styles.footerText, colors.buttonColor]}>Contact</Text>
       </View>
     </TouchableWithoutFeedback>
   </View>

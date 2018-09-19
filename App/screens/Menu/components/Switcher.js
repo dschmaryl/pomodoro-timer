@@ -15,7 +15,7 @@ export const Switcher = ({ label, isOn, colors, onToggle }) => (
         circleStyle={styles.switchCircleStyle}
         circleColorActive={colors.backgroundColor.backgroundColor}
         circleColorInactive={colors.backgroundColor.backgroundColor}
-        backgroundActive={colors.buttonTextActive.color}
+        backgroundActive={colors.buttonColor.color}
         backgroundInactive={colors.borderColor.borderColor}
       />
     </View>

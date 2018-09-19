@@ -10,12 +10,12 @@ export const StartButton = ({ isPaused, colors, togglePaused }) => (
       {isPaused ? (
         <Icon
           name="md-play"
-          style={[styles.playIconStyle, colors.iconButtonColor]}
+          style={[styles.playIconStyle, colors.buttonColor]}
         />
       ) : (
         <Icon
           name="md-pause"
-          style={[styles.playIconStyle, colors.iconButtonColor]}
+          style={[styles.playIconStyle, colors.buttonColor]}
         />
       )}
     </View>

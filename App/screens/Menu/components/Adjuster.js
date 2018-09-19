@@ -24,7 +24,7 @@ export const Adjuster = ({
         <View style={styles.buttonView}>
           <Icon
             name="md-arrow-down"
-            style={[styles.iconStyle, colors.iconButtonColor]}
+            style={[styles.iconStyle, colors.buttonColor]}
           />
         </View>
       </TouchableNativeFeedback>
@@ -32,7 +32,7 @@ export const Adjuster = ({
         <View style={styles.buttonView}>
           <Icon
             name="md-arrow-up"
-            style={[styles.iconStyle, colors.iconButtonColor]}
+            style={[styles.iconStyle, colors.buttonColor]}
           />
         </View>
       </TouchableNativeFeedback>

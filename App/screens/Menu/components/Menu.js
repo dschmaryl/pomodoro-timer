@@ -10,7 +10,7 @@ import LongBreak from '../containers/LongBreak'
 import SoundEnable from '../containers/SoundEnable'
 import Volume from '../containers/Volume'
 import Theme from '../containers/Theme';
-import LightDark from '../containers/LightDark';
+import DarkMode from '../containers/DarkMode';
 import KeepAwake from '../containers/KeepAwake';
 import { Footer } from './Footer';
 
@@ -24,11 +24,11 @@ export const Menu = ({ colors }) => (
     <WorkTime />
     <ShortBreak />
     <LongBreak />
-    <SoundEnable />
     <Volume />
-    <Theme />
-    <LightDark />
+    <SoundEnable />
     <KeepAwake />
+    <DarkMode />
+    <Theme />
     <Footer colors={colors} />
   </ScrollView>
 );
