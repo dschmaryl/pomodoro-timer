@@ -1,5 +1,6 @@
-const themes = {
-  coffee: {
+const themes = [
+  {
+    name: 'Cappuccino',
     dark: {
       backgroundColor: { backgroundColor: '#3c2f2f' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
@@ -13,7 +14,8 @@ const themes = {
       buttonColor: { color: '#be9b7b' }
     }
   },
-  solarized: {
+  {
+    name: 'Solarized',
     dark: {
       backgroundColor: { backgroundColor: '#002b36' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
@@ -27,7 +29,8 @@ const themes = {
       buttonColor: { color: '#2aa198' }
     }
   },
-  mono: {
+  {
+    name: 'Monochrome',
     dark: {
       backgroundColor: { backgroundColor: '#000' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
@@ -41,29 +44,44 @@ const themes = {
       buttonColor: { color: '#333' }
     }
   }
-};
+];
 
 export const colors = (
-  state = { theme: 'coffee', darkMode: true, colors: themes.coffee.dark },
+  state = {
+    theme: themes[0].name,
+    themeIndex: 0,
+    darkMode: true,
+    colors: themes[0].dark
+  },
   action
 ) => {
   switch (action.type) {
     case 'SET_THEME': {
-      const mode = state.darkMode ? 'dark' : 'light';
       return {
         ...state,
-        theme: action.theme,
-        colors: themes[action.theme][mode]
+        theme: themes[action.themeIndex].name,
+        themeIndex: action.themeIndex,
+        colors: themes[action.themeIndex][state.darkMode ? 'dark' : 'light']
+      };
+    }
+
+    case 'NEXT_THEME': {
+      const index =
+        state.themeIndex === themes.length - 1 ? 0 : state.themeIndex + 1;
+      return {
+        ...state,
+        theme: themes[index].name,
+        themeIndex: index,
+        colors: themes[index][state.darkMode ? 'dark' : 'light']
       };
     }
 
     case 'TOGGLE_DARK_MODE': {
       const darkMode = !state.darkMode;
-      const mode = darkMode ? 'dark' : 'light';
       return {
         ...state,
         darkMode: darkMode,
-        colors: themes[state.theme][mode]
+        colors: themes[state.themeIndex][darkMode ? 'dark' : 'light']
       };
     }
 

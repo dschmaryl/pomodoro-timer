@@ -28,12 +28,8 @@ export const decreaseVolume = () => ({ type: 'DECREASE_VOLUME' });
 export const increaseVolume = () => ({ type: 'INCREASE_VOLUME' });
 export const toggleSoundPlaying = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
 
-export const setTheme = theme => ({ type: 'SET_THEME', theme });
-// export const setThemeIndex = themeIndex => ({
-//   type: 'SET_THEME_INDEX',
-//   themeIndex
-// });
-// export const toggleLightDark = () => ({ type: 'TOGGLE_LIGHT_DARK' });
+export const setTheme = themeIndex => ({ type: 'SET_THEME', themeIndex });
+export const nextTheme = () => ({ type: 'NEXT_THEME' });
 export const toggleDarkMode = () => ({ type: 'TOGGLE_DARK_MODE' });
 
 export const toggleKeepScreenAwake = () => ({

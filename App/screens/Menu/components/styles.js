@@ -68,6 +68,11 @@ export const styles = StyleSheet.create({
     // height: deviceHeight * 0.046,
     // width: deviceHeight * 0.046
   },
+  themeLabelView: {
+    alignItems: 'center',
+    width: deviceWidth * 0.3,
+    paddingRight: deviceWidth * 0.04
+  },
   themeButtonContainer: {
     flexDirection: 'row',
     justifyContent: 'flex-end',

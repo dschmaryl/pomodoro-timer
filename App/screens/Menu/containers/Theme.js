@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setTheme } from '../../../actions';
+import { nextTheme, setTheme } from '../../../actions';
 
 import { Theme } from '../components/Theme';
 
@@ -10,7 +10,8 @@ const mapStateToProps = state => ({
 });
 
 mapDispatchToProps = dispatch => ({
-  setTheme: theme => dispatch(setTheme(theme))
+  nextTheme: () => dispatch(nextTheme()),
+  setTheme: themeIndex => dispatch(setTheme(themeIndex))
 });
 
 export default connect(
