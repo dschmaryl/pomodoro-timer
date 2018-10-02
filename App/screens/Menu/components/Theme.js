@@ -4,7 +4,7 @@ import { Text, TouchableNativeFeedback, View, Picker } from 'react-native';
 
 import { styles } from './styles';
 
-export const Theme = ({ theme, colors, nextTheme, setTheme }) => (
+export const Theme = ({ theme, themeIndex, setTheme, colors }) => (
   <View style={[styles.rowView, colors.borderColor]}>
     <Text style={[styles.rowText, colors.textColor]}>Color theme:</Text>
     <View style={styles.themeButtonContainer}>
@@ -21,7 +21,7 @@ export const Theme = ({ theme, colors, nextTheme, setTheme }) => (
           </View>
         </TouchableNativeFeedback> */}
         <Picker
-          selectedValue={theme}
+          selectedValue={themeIndex}
           style={[styles.themePicker, colors.textColor]}
           textStyle={styles.rowText}
           onValueChange={itemValue => {

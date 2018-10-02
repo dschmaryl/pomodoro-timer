@@ -8,17 +8,18 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  settingsIconView: {
+  menuTouchable: {
     position: 'absolute',
-    top: deviceHeight * 0.03,
-    right: deviceWidth * 0.05
-  },
-  settingsIconStyle: {
-    fontSize: deviceWidth * 0.15
+    top: 0,
+    right: 0,
+    height: deviceWidth * 0.25,
+    width: deviceWidth * 0.25,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   timerHeaderView: {
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: deviceHeight * 0.025
   },
   timerHeaderText: {
@@ -30,13 +31,13 @@ export const styles = StyleSheet.create({
   timerTimeText: {
     fontSize: deviceWidth * 0.25
   },
-  playIconView: {
-    alignItems: 'center',
-    justifyContent: 'center',
+  playTouchable: {
     height: deviceHeight * 0.2,
-    width: deviceWidth * 0.3
+    width: deviceWidth * 0.3,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  playIconStyle: {
+  icon: {
     fontSize: deviceWidth * 0.15
   }
 });

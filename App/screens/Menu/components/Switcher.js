@@ -12,7 +12,6 @@ export const Switcher = ({ label, isOn, colors, onToggle }) => (
         onSyncPress={onToggle}
         value={isOn}
         style={styles.switch}
-        circleStyle={styles.switchCircleStyle}
         circleColorActive={colors.backgroundColor.backgroundColor}
         circleColorInactive={colors.backgroundColor.backgroundColor}
         backgroundActive={colors.buttonColor.color}

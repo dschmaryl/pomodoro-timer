@@ -28,7 +28,9 @@ export const styles = StyleSheet.create({
   rowText: {
     fontSize: deviceWidth * 0.05
   },
-  buttonView: {
+
+  // buttons
+  touchable: {
     justifyContent: 'center',
     alignItems: 'center',
     height: deviceHeight * 0.08,
@@ -51,6 +53,8 @@ export const styles = StyleSheet.create({
     width: deviceWidth * 0.2,
     paddingRight: deviceWidth * 0.04
   },
+
+  // switches
   switchView: {
     marginRight: deviceWidth * 0.07
   },
@@ -59,15 +63,9 @@ export const styles = StyleSheet.create({
       { scaleX: deviceWidth * 0.0036 },
       { scaleY: deviceWidth * 0.0036 }
     ]
-    // borderRadius: 100,
-    // height: deviceHeight * 0.05,
-    // width: deviceWidth * 0.15
   },
-  switchCircleStyle: {
-    // borderRadius: 100,
-    // height: deviceHeight * 0.046,
-    // width: deviceHeight * 0.046
-  },
+
+  // themes
   themeLabelView: {
     alignItems: 'center',
     width: deviceWidth * 0.3,
@@ -93,6 +91,8 @@ export const styles = StyleSheet.create({
       { scaleY: deviceWidth * 0.003 }
     ]
   },
+
+  // footer
   footerView: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -105,7 +105,7 @@ export const styles = StyleSheet.create({
     fontSize: deviceWidth * 0.06,
     fontFamily: 'Cookie-Regular'
   },
-  footerLinkView: {
+  footerTouchable: {
     justifyContent: 'center',
     height: deviceHeight * 0.08
   }

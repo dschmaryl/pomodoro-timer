@@ -1,22 +1,19 @@
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback, Linking } from 'react-native';
+import { View, Text, TouchableOpacity, Linking } from 'react-native';
 
 import { styles } from './styles';
 
 export const Footer = ({ colors }) => (
   <View style={styles.footerView}>
-    <View>
-      <Text style={[styles.footerText, colors.textColor]}>
-        Created by Daryl
-        {' ~ '}
-      </Text>
-    </View>
-    <TouchableWithoutFeedback
+    <Text style={[styles.footerText, colors.textColor]}>
+      Created by daryl
+      {'  ~  '}
+    </Text>
+    <TouchableOpacity
       onPress={() => Linking.openURL('https://dschmaryl.github.io')}
+      style={styles.footerTouchable}
     >
-      <View style={styles.footerLinkView}>
-        <Text style={[styles.footerText, colors.buttonColor]}>Contact</Text>
-      </View>
-    </TouchableWithoutFeedback>
+      <Text style={[styles.footerText, colors.buttonColor]}>Contact</Text>
+    </TouchableOpacity>
   </View>
 );

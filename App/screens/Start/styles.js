@@ -5,12 +5,13 @@ import { deviceWidth, deviceHeight } from '../device';
 export const styles = StyleSheet.create({
   startContainer: {
     flex: 1,
+    width: deviceWidth,
     justifyContent: 'center',
     alignItems: 'center'
   },
   startHeaderView: {
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: deviceHeight * 0.1
   },
   startHeaderText: {

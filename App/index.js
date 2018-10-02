@@ -16,6 +16,8 @@ const store = createStore(
   persistReducer({ key: 'root', storage }, rootReducer)
 );
 const persistor = persistStore(store);
+
+// don't forget to set 'workTime' and 'showStart' in reducers
 persistor.purge();
 
 const { firstBoot, showStart } = store.getState().start;

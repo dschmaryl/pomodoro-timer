@@ -1,6 +1,8 @@
 import React from 'react';
-import { Text, TouchableNativeFeedback, View } from 'react-native';
+import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+
+import { Button } from './Button';
 
 import { styles } from './styles';
 
@@ -20,22 +22,18 @@ export const Adjuster = ({
           {value + ' ' + valueLabel}
         </Text>
       </View>
-      <TouchableNativeFeedback onPress={() => onDecrease()}>
-        <View style={styles.buttonView}>
-          <Icon
-            name="md-arrow-down"
-            style={[styles.iconStyle, colors.buttonColor]}
-          />
-        </View>
-      </TouchableNativeFeedback>
-      <TouchableNativeFeedback onPress={() => onIncrease()}>
-        <View style={styles.buttonView}>
-          <Icon
-            name="md-arrow-up"
-            style={[styles.iconStyle, colors.buttonColor]}
-          />
-        </View>
-      </TouchableNativeFeedback>
+      <Button onPress={() => onDecrease()}>
+        <Icon
+          name="md-arrow-down"
+          style={[styles.iconStyle, colors.buttonColor]}
+        />
+      </Button>
+      <Button onPress={() => onIncrease()}>
+        <Icon
+          name="md-arrow-up"
+          style={[styles.iconStyle, colors.buttonColor]}
+        />
+      </Button>
     </View>
   </View>
 );
