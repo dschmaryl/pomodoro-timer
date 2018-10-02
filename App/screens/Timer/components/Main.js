@@ -17,17 +17,28 @@ export class Main extends React.Component {
     this.state = {
       interval: null,
       isPaused: true,
-      currentSession: props.session
+      currentSession: props.session,
+      notificationScheduled: false
     };
   }
 
   componentDidMount() {
     this.checkTimer(this.props);
-    PushNotification.cancelLocalNotifications({ id: '31415' });
+    this.props.navigation.addListener('didFocus', () =>
+      this.cancelNotification()
+    );
+    this.props.navigation.addListener('didBlur', () =>
+      this.scheduleNotification()
+    );
   }
 
   componentWillReceiveProps(newProps) {
     this.checkTimer(newProps);
+  }
+
+  componentWillUnmount() {
+    this.setState({ interval: clearInterval(this.state.interval) });
+    // if (this.props.soundIsPlaying) this.props.toggleSoundPlaying();
   }
 
   checkTimer(props) {
@@ -66,8 +77,8 @@ export class Main extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    if (!this.props.isPaused) {
+  scheduleNotification() {
+    if (!this.state.notificationScheduled && !this.props.isPaused) {
       PushNotification.localNotificationSchedule({
         id: '31415',
         title: 'Pomodoro Timer',
@@ -75,10 +86,15 @@ export class Main extends React.Component {
         date: new Date(this.props.endTime),
         color: 'red'
       });
+      this.setState({ notificationScheduled: true });
     }
+  }
 
-    this.setState({ interval: clearInterval(this.state.interval) });
-    // if (this.props.soundIsPlaying) this.props.toggleSoundPlaying();
+  cancelNotification() {
+    if (this.state.notificationScheduled) {
+      PushNotification.cancelLocalNotifications({ id: '31415' });
+      this.setState({ notificationScheduled: false });
+    }
   }
 
   render() {
