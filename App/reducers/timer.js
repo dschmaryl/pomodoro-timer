@@ -1,9 +1,10 @@
 const initialState = {
-  minutes: null,
+  startMinutes: null,
   endTime: null,
   timeLeft: null,
-  isPaused: true,
-  isFinished: false
+  minutes: null,
+  seconds: null,
+  isPaused: true
 };
 
 export const timer = (state = initialState, action) => {
@@ -11,17 +12,19 @@ export const timer = (state = initialState, action) => {
     case 'SET_TIMER':
       return {
         ...state,
-        isFinished: false,
+        startMinutes: action.minutes,
+        timeLeft: action.minutes * 60000,
         minutes: action.minutes,
-        timeLeft: action.minutes * 60000
+        seconds: 0
       };
 
     case 'RESET_TIMER':
       return {
         ...state,
-        isFinished: false,
-        isPaused: true,
-        timeLeft: state.minutes * 60000
+        timeLeft: state.startMinutes * 60000,
+        minutes: state.startMinutes,
+        seconds: 0,
+        isPaused: true
       };
 
     case 'TOGGLE_PAUSED':
@@ -30,8 +33,8 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           isPaused: false,
+          timeLeft: null,
           endTime: endTime,
-          offSet: endTime % 1000
         };
       } else {
         return {
@@ -41,24 +44,12 @@ export const timer = (state = initialState, action) => {
         };
       }
 
-    case 'TIMER_TICK':
-      if (state.isPaused) {
-        return state;
-      } else {
-        const timeLeft = state.endTime - Date.now();
-        if (timeLeft < 10) {
-          return {
-            ...state,
-            isFinished: true,
-            isPaused: true,
-            // timeLeft: null
-          };
-        } else if (Math.abs((timeLeft % 1000) - state.offSet) <= 10) {
-          return { ...state, timeLeft: timeLeft };
-        } else {
-          return state;
-        }
-      }
+    case 'UPDATE_TIME':
+      return {
+        ...state,
+        minutes: action.minutes,
+        seconds: action.seconds
+      };
 
     default:
       return state;

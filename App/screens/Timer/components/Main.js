@@ -42,18 +42,15 @@ export class Main extends React.Component {
       this.setTimer();
     } else if (props.session !== this.state.currentSession) {
       this.setState({ currentSession: props.session }, this.setTimer);
-    } else if (props.isFinished) {
-      // if (this.state.appState === 'active') this.props.toggleSoundPlaying();
-      this.props.finishSession();
     }
 
     if (!props.isPaused && this.state.isPaused) {
       this.setState({
-        interval: setInterval(this.props.timerTick, 10),
+        interval: setInterval(() => this.timerTick(), 10),
         isPaused: false
       });
     } else if (props.isPaused && !this.state.isPaused) {
-      if (this.appState === 'active') this.props.toggleSoundPlaying();
+      // if (this.appState === 'active') this.props.toggleSoundPlaying();
       this.setState({
         interval: clearInterval(this.state.interval),
         isPaused: true
@@ -71,6 +68,20 @@ export class Main extends React.Component {
       this.props.setTimer(this.props.shortBreakTime);
     } else {
       this.props.setTimer(this.props.longBreakTime);
+    }
+  }
+
+  timerTick() {
+    const time = this.props.endTime - Date.now();
+    if (time <= 999) {
+      this.props.togglePaused();
+      this.props.finishSession();
+    } else {
+      const minutes = Math.floor(time / 60000);
+      const seconds = Math.floor((time % 60000) / 1000);
+      if ( seconds != this.props.seconds ) {
+        this.props.updateTime(minutes, seconds);
+      }
     }
   }
 

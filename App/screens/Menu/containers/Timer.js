@@ -6,7 +6,8 @@ import { Timer } from '../components/Timer';
 
 const mapStateToProps = state => ({
   session: state.session.session,
-  timeLeft: state.timer.timeLeft,
+  minutes: state.timer.minutes,
+  seconds: state.timer.seconds,
   isPaused: state.timer.isPaused,
   workTime: state.times.workTime,
   shortBreakTime: state.times.shortBreakTime,

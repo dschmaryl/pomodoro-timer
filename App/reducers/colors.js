@@ -65,16 +65,16 @@ export const colors = (
       };
     }
 
-    case 'NEXT_THEME': {
-      const index =
-        state.themeIndex === themes.length - 1 ? 0 : state.themeIndex + 1;
-      return {
-        ...state,
-        theme: themes[index].name,
-        themeIndex: index,
-        colors: themes[index][state.darkMode ? 'dark' : 'light']
-      };
-    }
+    // case 'NEXT_THEME': {
+    //   const index =
+    //     state.themeIndex === themes.length - 1 ? 0 : state.themeIndex + 1;
+    //   return {
+    //     ...state,
+    //     theme: themes[index].name,
+    //     themeIndex: index,
+    //     colors: themes[index][state.darkMode ? 'dark' : 'light']
+    //   };
+    // }
 
     case 'TOGGLE_DARK_MODE': {
       const darkMode = !state.darkMode;

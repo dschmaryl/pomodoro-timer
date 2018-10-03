@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Time } from '../components/Time';
 
 const mapStateToProps = state => ({
-  timeLeft: state.timer.timeLeft,
+  minutes: state.timer.minutes,
+  seconds: state.timer.seconds,
   colors: state.colors.colors
 });
 

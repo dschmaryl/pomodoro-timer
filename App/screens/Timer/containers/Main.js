@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 
 import {
   setTimer,
-  timerTick,
+  togglePaused,
+  updateTime,
   finishSession,
   toggleSoundPlaying
 } from '../../../actions';
@@ -17,15 +18,17 @@ const mapStateToProps = state => ({
   sessionString: state.session.sessionString,
   endTime: state.timer.endTime,
   timeLeft: state.timer.timeLeft,
+  minutes: state.timer.minutes,
+  seconds: state.timer.seconds,
   isPaused: state.timer.isPaused,
-  isFinished: state.timer.isFinished,
   soundIsPlaying: state.sound.soundIsPlaying,
   colors: state.colors.colors
 });
 
 mapDispatchToProps = dispatch => ({
   setTimer: minutes => dispatch(setTimer(minutes)),
-  timerTick: () => dispatch(timerTick()),
+  togglePaused: () => dispatch(togglePaused()),
+  updateTime: (minutes, seconds) => dispatch(updateTime(minutes, seconds)),
   finishSession: () => dispatch(finishSession()),
   toggleSoundPlaying: () => dispatch(toggleSoundPlaying())
 });
