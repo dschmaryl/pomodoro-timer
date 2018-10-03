@@ -51,7 +51,7 @@ export const timer = (state = initialState, action) => {
             ...state,
             isFinished: true,
             isPaused: true,
-            timeLeft: null
+            // timeLeft: null
           };
         } else if (Math.abs((timeLeft % 1000) - state.offSet) <= 10) {
           return { ...state, timeLeft: timeLeft };

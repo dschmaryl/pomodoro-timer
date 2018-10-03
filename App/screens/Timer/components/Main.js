@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { AppState, View } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 import MenuButton from '../containers/MenuButton';
@@ -18,18 +18,14 @@ export class Main extends React.Component {
       interval: null,
       isPaused: true,
       currentSession: props.session,
+      appState: AppState.currentState,
       notificationScheduled: false
     };
   }
 
   componentDidMount() {
     this.checkTimer(this.props);
-    this.props.navigation.addListener('didFocus', () =>
-      this.cancelNotification()
-    );
-    this.props.navigation.addListener('didBlur', () =>
-      this.scheduleNotification()
-    );
+    AppState.addEventListener('change', this.handleAppStateChange);
   }
 
   componentWillReceiveProps(newProps) {
@@ -38,17 +34,17 @@ export class Main extends React.Component {
 
   componentWillUnmount() {
     this.setState({ interval: clearInterval(this.state.interval) });
-    // if (this.props.soundIsPlaying) this.props.toggleSoundPlaying();
+    AppState.removeEventListener('change', this.handleAppStateChange);
   }
 
   checkTimer(props) {
-    if (this.props.timeLeft === null) {
+    if (props.timeLeft === null) {
       this.setTimer();
     } else if (props.session !== this.state.currentSession) {
       this.setState({ currentSession: props.session }, this.setTimer);
     } else if (props.isFinished) {
+      // if (this.state.appState === 'active') this.props.toggleSoundPlaying();
       this.props.finishSession();
-      this.props.toggleSoundPlaying();
     }
 
     if (!props.isPaused && this.state.isPaused) {
@@ -57,6 +53,7 @@ export class Main extends React.Component {
         isPaused: false
       });
     } else if (props.isPaused && !this.state.isPaused) {
+      if (this.appState === 'active') this.props.toggleSoundPlaying();
       this.setState({
         interval: clearInterval(this.state.interval),
         isPaused: true
@@ -77,25 +74,28 @@ export class Main extends React.Component {
     }
   }
 
-  scheduleNotification() {
-    if (!this.state.notificationScheduled && !this.props.isPaused) {
-      PushNotification.localNotificationSchedule({
-        id: '31415',
-        title: 'Pomodoro Timer',
-        message: this.props.sessionString + ' time is up!',
-        date: new Date(this.props.endTime),
-        color: 'red'
-      });
-      this.setState({ notificationScheduled: true });
-    }
-  }
-
-  cancelNotification() {
-    if (this.state.notificationScheduled) {
+  handleAppStateChange = nextAppState => {
+    if (nextAppState === 'active' && this.state.notificationScheduled) {
+      console.log('canceling push notification');
       PushNotification.cancelLocalNotifications({ id: '31415' });
-      this.setState({ notificationScheduled: false });
+      this.setState({ notificationScheduled: false, appState: nextAppState });
+    } else if (
+      nextAppState === 'background' &&
+      !this.state.notificationScheduled
+    ) {
+      if (!this.props.isPaused) {
+        console.log('scheduling push notification');
+        PushNotification.localNotificationSchedule({
+          id: '31415',
+          title: 'Pomodoro Timer',
+          message: this.props.sessionString + ' time is up!',
+          date: new Date(this.props.endTime),
+          color: 'red'
+        });
+        this.setState({ notificationScheduled: true, appState: nextAppState });
+      }
     }
-  }
+  };
 
   render() {
     return (

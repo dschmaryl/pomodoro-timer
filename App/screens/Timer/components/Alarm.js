@@ -9,7 +9,7 @@ export class Alarm extends React.Component {
         console.log('sound error: ', error);
         return;
       }
-      this.sound.setNumberOfLoops(-1);
+      // this.sound.setNumberOfLoops(-1);
     });
   }
 
