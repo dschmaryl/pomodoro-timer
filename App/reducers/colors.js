@@ -32,16 +32,16 @@ const themes = [
   {
     name: 'Monochrome',
     dark: {
-      backgroundColor: { backgroundColor: '#000' },
+      backgroundColor: { backgroundColor: '#000000' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
-      textColor: { color: '#aaa' },
-      buttonColor: { color: '#eee' }
+      textColor: { color: '#aaaaaa' },
+      buttonColor: { color: '#eeeeee' }
     },
     light: {
-      backgroundColor: { backgroundColor: '#eee' },
+      backgroundColor: { backgroundColor: '#eeeeee' },
       borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
-      textColor: { color: '#777' },
-      buttonColor: { color: '#333' }
+      textColor: { color: '#777777' },
+      buttonColor: { color: '#333333' }
     }
   }
 ];

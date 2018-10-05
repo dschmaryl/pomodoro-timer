@@ -10,7 +10,7 @@ import rootReducer from './reducers';
 
 import Start from './screens/Start';
 import Menu from './screens/Menu';
-import Timer from './screens/Timer';
+import Main from './screens/Main';
 
 const store = createStore(
   persistReducer({ key: 'root', storage }, rootReducer)
@@ -26,10 +26,10 @@ const RootStack = createStackNavigator(
   {
     Start: { screen: Start },
     Menu: { screen: Menu },
-    Timer: { screen: Timer }
+    Main: { screen: Main }
   },
   {
-    initialRouteName: firstBoot || showStart ? 'Start' : 'Timer',
+    initialRouteName: firstBoot || showStart ? 'Start' : 'Main',
     navigationOptions: { header: null },
     cardStyle: { backgroundColor: 'transparent' }
   }

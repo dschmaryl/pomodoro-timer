@@ -3,6 +3,7 @@ package com.pomodoro;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.wheelpicker.WheelPickerPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
 import com.zmxv.RNSound.RNSoundPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new WheelPickerPackage(),
             new KCKeepAwakePackage(),
             new RNSoundPackage(),
             new ReactNativePushNotificationPackage(),
