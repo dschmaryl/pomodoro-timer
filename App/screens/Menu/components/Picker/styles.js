@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 
-import { deviceWidth, deviceHeight } from '../../../device';
+import { deviceWidth } from '../../../device';
+
+const pickerViewWidth = deviceWidth * 0.6;
 
 export const styles = StyleSheet.create({
   pickerContainer: {
@@ -26,53 +28,44 @@ export const styles = StyleSheet.create({
   },
 
   pickerView: {
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 2,
-    height: deviceWidth * 0.6,
-    width: deviceWidth * 0.6
+    height: pickerViewWidth,
+    width: pickerViewWidth
   },
 
   closeButtonContainer: {
-    alignItems: 'flex-end',
-    width: deviceWidth * 0.6
+    position: 'absolute',
+    top: 0,
+    right: 0
   },
 
   closeButtonTouchable: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: deviceHeight * 0.08,
-    width: deviceWidth * 0.12
+    height: pickerViewWidth * 0.2,
+    width: pickerViewWidth * 0.2
   },
 
   closeButtonIcon: {
     fontSize: deviceWidth * 0.07
   },
 
-  wheelPickerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: deviceHeight * 0.08
-  },
-
   wheelPicker: {
-    width: deviceWidth * 0.8,
-    height: deviceHeight * 0.25
-  },
-
-  themePickerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: deviceHeight * 0.08
+    width: pickerViewWidth,
+    height: pickerViewWidth * 0.9
   },
 
   themeButtonTouchable: {
-    padding: deviceHeight * 0.02
+    justifyContent: 'center',
+    width: pickerViewWidth,
+    height: pickerViewWidth * 0.26,
+    paddingTop: pickerViewWidth * 0.05,
+    paddingLeft: pickerViewWidth * 0.18
   },
 
   themeButtonText: {
-    fontSize: deviceWidth * 0.05
+    fontSize: deviceWidth * 0.046
   }
 });

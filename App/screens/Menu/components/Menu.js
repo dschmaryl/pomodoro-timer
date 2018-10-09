@@ -33,8 +33,8 @@ export const Menu = ({ colors }) => (
       <Volume />
       <SoundEnable />
       <KeepAwake />
-      <DarkMode />
       <Theme />
+      <DarkMode />
       <Footer colors={colors} />
     </ScrollView>
     <TimePicker />

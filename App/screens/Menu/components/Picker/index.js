@@ -25,6 +25,7 @@ const Wrapper = ({ pickerVisible, hidePicker, colors, children }) => {
           />
         </TouchableWithoutFeedback>
         <View style={[styles.pickerView, colors.backgroundColor]}>
+          {children}
           <View style={styles.closeButtonContainer}>
             <TouchableOpacity
               onPress={hidePicker}
@@ -32,11 +33,10 @@ const Wrapper = ({ pickerVisible, hidePicker, colors, children }) => {
             >
               <Icon
                 name="md-close"
-                style={[styles.closeButtonIcon, colors.textColor]}
+                style={[styles.closeButtonIcon, colors.buttonColor]}
               />
             </TouchableOpacity>
           </View>
-          {children}
         </View>
       </View>
     );
@@ -58,20 +58,18 @@ export const Picker = ({
     hidePicker={hidePicker}
     colors={colors}
   >
-    <View style={styles.wheelPickerContainer}>
-      <WheelPicker
-        data={data}
-        isCurved
-        isAtmospheric
-        visibleItemCount={9}
-        selectedItemPosition={oldValue - 1}
-        style={styles.wheelPicker}
-        itemTextSize={deviceWidth * 0.12}
-        itemTextColor={colors.textColor.color}
-        selectedItemTextColor={colors.buttonColor.color}
-        onItemSelected={itemValue => setValue(itemValue.position + 1)}
-      />
-    </View>
+    <WheelPicker
+      data={data}
+      isCurved
+      isAtmospheric
+      visibleItemCount={9}
+      selectedItemPosition={oldValue - 1}
+      style={styles.wheelPicker}
+      itemTextSize={deviceWidth * 0.12}
+      itemTextColor={colors.textColor.color}
+      selectedItemTextColor={colors.buttonColor.color}
+      onItemSelected={itemValue => setValue(itemValue.position + 1)}
+    />
   </Wrapper>
 );
 
@@ -87,46 +85,44 @@ export const ThemePicker = ({
     hidePicker={hideThemePicker}
     colors={colors}
   >
-    <View style={[styles.themePickerContainer, colors.backgroundColor]}>
-      <TouchableOpacity
-        onPress={() => setTheme(0)}
-        style={styles.themeButtonTouchable}
+    <TouchableOpacity
+      onPress={() => setTheme(0)}
+      style={styles.themeButtonTouchable}
+    >
+      <Text
+        style={[
+          styles.themeButtonText,
+          themeIndex === 0 ? colors.buttonColor : colors.textColor
+        ]}
       >
-        <Text
-          style={[
-            styles.themeButtonText,
-            themeIndex === 0 ? colors.buttonColor : colors.textColor
-          ]}
-        >
-          Cappuccino
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => setTheme(1)}
-        style={styles.themeButtonTouchable}
+        Cappuccino
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => setTheme(1)}
+      style={styles.themeButtonTouchable}
+    >
+      <Text
+        style={[
+          styles.themeButtonText,
+          themeIndex === 1 ? colors.buttonColor : colors.textColor
+        ]}
       >
-        <Text
-          style={[
-            styles.themeButtonText,
-            themeIndex === 1 ? colors.buttonColor : colors.textColor
-          ]}
-        >
-          Solarized
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => setTheme(2)}
-        style={styles.themeButtonTouchable}
+        Solarized
+      </Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => setTheme(2)}
+      style={styles.themeButtonTouchable}
+    >
+      <Text
+        style={[
+          styles.themeButtonText,
+          themeIndex === 2 ? colors.buttonColor : colors.textColor
+        ]}
       >
-        <Text
-          style={[
-            styles.themeButtonText,
-            themeIndex === 2 ? colors.buttonColor : colors.textColor
-          ]}
-        >
-          Monochrome
-        </Text>
-      </TouchableOpacity>
-    </View>
+        Monochrome
+      </Text>
+    </TouchableOpacity>
   </Wrapper>
 );

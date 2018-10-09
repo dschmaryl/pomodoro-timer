@@ -19,7 +19,7 @@ export const Adjuster = ({ label, value, valueLabel, onPress, colors }) => {
 
           <View style={styles.touchable}>
             <Icon
-              name="md-arrow-dropdown"
+              name="md-arrow-dropup"
               style={[styles.iconStyle, colors.buttonColor]}
             />
           </View>

@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: deviceHeight * 0.1,
-    // paddingHorizontal: deviceWidth * 0.04,
     paddingHorizontal: deviceWidth * 0.04,
     borderBottomWidth: StyleSheet.hairlineWidth
   },
@@ -40,7 +39,6 @@ export const styles = StyleSheet.create({
   },
   adjusterValueView: {
     alignItems: 'flex-end',
-    // width: deviceWidth * 0.2,
     paddingRight: deviceWidth * 0.04
   },
 
