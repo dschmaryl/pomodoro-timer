@@ -6,7 +6,7 @@ import { StartButton } from '../components/StartButton';
 
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({

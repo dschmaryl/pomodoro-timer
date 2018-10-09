@@ -10,8 +10,6 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    // height: deviceHeight,
-    // width: deviceWidth,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -22,16 +20,59 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    // height: deviceHeight,
-    // width: deviceWidth,
     opacity: 0.7,
     justifyContent: 'center',
     alignItems: 'center'
   },
+
+  pickerView: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 2,
+    height: deviceWidth * 0.6,
+    width: deviceWidth * 0.6
+  },
+
+  closeButtonContainer: {
+    alignItems: 'flex-end',
+    width: deviceWidth * 0.6
+  },
+
+  closeButtonTouchable: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: deviceHeight * 0.08,
+    width: deviceWidth * 0.12
+  },
+
+  closeButtonIcon: {
+    fontSize: deviceWidth * 0.07
+  },
+
+  wheelPickerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: deviceHeight * 0.08
+  },
+
   wheelPicker: {
-    // position: 'absolute',
-    // bottom: 0,
-    height: deviceHeight * 0.1,
-    width: deviceWidth * 0.4
+    width: deviceWidth * 0.8,
+    height: deviceHeight * 0.25
+  },
+
+  themePickerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: deviceHeight * 0.08
+  },
+
+  themeButtonTouchable: {
+    padding: deviceHeight * 0.02
+  },
+
+  themeButtonText: {
+    fontSize: deviceWidth * 0.05
   }
 });

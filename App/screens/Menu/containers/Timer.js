@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
   shortBreakTime: state.times.shortBreakTime,
   longBreakTime: state.times.longBreakTime,
   soundIsPlaying: state.sound.soundIsPlaying,
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({

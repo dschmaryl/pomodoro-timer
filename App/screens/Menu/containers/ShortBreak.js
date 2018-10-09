@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 
-import {
-  decreaseShortBreakTime,
-  increaseShortBreakTime
-} from '../../../actions';
+import { showTimePicker } from '../../../actions';
 
 import { Adjuster } from '../components/Adjuster';
 
@@ -11,12 +8,11 @@ const mapStateToProps = state => ({
   label: 'Short break',
   value: state.times.shortBreakTime,
   valueLabel: 'min',
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  onDecrease: () => dispatch(decreaseShortBreakTime()),
-  onIncrease: () => dispatch(increaseShortBreakTime())
+  onPress: oldTime => dispatch(showTimePicker('shortBreak', oldTime))
 });
 
 export default connect(

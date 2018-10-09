@@ -11,7 +11,7 @@ import { Session } from '../components/Session';
 const mapStateToProps = state => ({
   pomodoro: state.session.pomodoro,
   sessionString: state.session.sessionString,
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({

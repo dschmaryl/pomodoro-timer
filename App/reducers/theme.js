@@ -1,4 +1,4 @@
-const themes = [
+const colors = [
   {
     name: 'Cappuccino',
     dark: {
@@ -46,42 +46,38 @@ const themes = [
   }
 ];
 
-export const colors = (
+export const theme = (
   state = {
-    theme: themes[0].name,
+    themeName: colors[0].name,
     themeIndex: 0,
     darkMode: true,
-    colors: themes[0].dark
+    themePickerVisible: false,
+    colors: colors[0].dark
   },
   action
 ) => {
   switch (action.type) {
+    case 'SHOW_THEME_PICKER':
+      return { ...state, themePickerVisible: true };
+
+    case 'HIDE_THEME_PICKER':
+      return { ...state, themePickerVisible: false };
+
     case 'SET_THEME': {
       return {
         ...state,
-        theme: themes[action.themeIndex].name,
+        themeName: colors[action.themeIndex].name,
         themeIndex: action.themeIndex,
-        colors: themes[action.themeIndex][state.darkMode ? 'dark' : 'light']
+        colors: colors[action.themeIndex][state.darkMode ? 'dark' : 'light']
       };
     }
-
-    // case 'NEXT_THEME': {
-    //   const index =
-    //     state.themeIndex === themes.length - 1 ? 0 : state.themeIndex + 1;
-    //   return {
-    //     ...state,
-    //     theme: themes[index].name,
-    //     themeIndex: index,
-    //     colors: themes[index][state.darkMode ? 'dark' : 'light']
-    //   };
-    // }
 
     case 'TOGGLE_DARK_MODE': {
       const darkMode = !state.darkMode;
       return {
         ...state,
         darkMode: darkMode,
-        colors: themes[state.themeIndex][darkMode ? 'dark' : 'light']
+        colors: colors[state.themeIndex][darkMode ? 'dark' : 'light']
       };
     }
 

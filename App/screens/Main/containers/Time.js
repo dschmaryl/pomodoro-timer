@@ -5,7 +5,7 @@ import { Time } from '../components/Time';
 const mapStateToProps = state => ({
   minutes: state.timer.minutes,
   seconds: state.timer.seconds,
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 export default connect(mapStateToProps)(Time);

@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 
-import {
-  decreaseWorkTime,
-  increaseWorkTime
-} from '../../../actions';
+import { showTimePicker } from '../../../actions';
 
 import { Adjuster } from '../components/Adjuster';
 
@@ -11,12 +8,11 @@ const mapStateToProps = state => ({
   label: 'Work time',
   value: state.times.workTime,
   valueLabel: 'min',
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  onDecrease: () => dispatch(decreaseWorkTime()),
-  onIncrease: () => dispatch(increaseWorkTime())
+  onPress: oldTime => dispatch(showTimePicker('work', oldTime))
 });
 
 export default connect(

@@ -1,22 +1,20 @@
 import { connect } from 'react-redux';
 
-// import { nextTheme, setTheme } from '../../../actions';
-import { setTheme } from '../../../actions';
+import { showThemePicker } from '../../../actions';
 
-import { Theme } from '../components/Theme';
+import { Adjuster } from '../components/Adjuster'
 
 const mapStateToProps = state => ({
-  theme: state.colors.theme,
-  themeIndex: state.colors.themeIndex,
-  colors: state.colors.colors
+  label: 'Color theme',
+  value: state.theme.themeName,
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  // nextTheme: () => dispatch(nextTheme()),
-  setTheme: themeIndex => dispatch(setTheme(themeIndex))
+  onPress: () => dispatch(showThemePicker())
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Theme);
+)(Adjuster);

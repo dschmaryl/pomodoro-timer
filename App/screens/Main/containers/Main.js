@@ -21,8 +21,9 @@ const mapStateToProps = state => ({
   minutes: state.timer.minutes,
   seconds: state.timer.seconds,
   isPaused: state.timer.isPaused,
+  pauseAtSessionEnd: state.session.pauseAtSessionEnd,
   soundIsPlaying: state.sound.soundIsPlaying,
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({

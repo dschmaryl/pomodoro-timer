@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 
-import { toggleSoundEnabled } from '../../../actions';
+import { togglePauseAtSessionEnd } from '../../../actions';
 
 import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({
-  label: 'Sound enabled',
-  isOn: state.sound.soundIsEnabled,
+  label: 'Pause at session end',
+  isOn: state.session.pauseAtSessionEnd,
   colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  onToggle: () => dispatch(toggleSoundEnabled())
+  onToggle: () => dispatch(togglePauseAtSessionEnd())
 });
 
 export default connect(

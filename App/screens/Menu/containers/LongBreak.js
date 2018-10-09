@@ -1,9 +1,6 @@
 import { connect } from 'react-redux';
 
-import {
-  decreaseLongBreakTime,
-  increaseLongBreakTime
-} from '../../../actions';
+import { showTimePicker } from '../../../actions';
 
 import { Adjuster } from '../components/Adjuster';
 
@@ -11,12 +8,11 @@ const mapStateToProps = state => ({
   label: 'Long break',
   value: state.times.longBreakTime,
   valueLabel: 'min',
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  onDecrease: () => dispatch(decreaseLongBreakTime()),
-  onIncrease: () => dispatch(increaseLongBreakTime())
+  onPress: oldTime => dispatch(showTimePicker('longBreak', oldTime))
 });
 
 export default connect(

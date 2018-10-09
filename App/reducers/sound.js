@@ -1,5 +1,10 @@
 export const sound = (
-  state = { soundIsEnabled: true, volume: 50, soundIsPlaying: false },
+  state = {
+    soundIsEnabled: true,
+    soundIsPlaying: false,
+    volumePickerVisible: false,
+    volume: 50
+  },
   action
 ) => {
   switch (action.type) {
@@ -9,11 +14,14 @@ export const sound = (
     case 'TOGGLE_SOUND_PLAYING':
       return { ...state, soundIsPlaying: !state.soundIsPlaying };
 
-    case 'INCREASE_VOLUME':
-      return { ...state, volume: Math.min(100, state.volume + 5) };
+    case 'SHOW_VOLUME_PICKER':
+      return { ...state, volumePickerVisible: true };
 
-    case 'DECREASE_VOLUME':
-      return { ...state, volume: Math.max(0, state.volume - 5) };
+    case 'HIDE_VOLUME_PICKER':
+      return { ...state, volumePickerVisible: false };
+
+    case 'SET_VOLUME':
+      return { ...state, volume: action.volume };
 
     default:
       return state;

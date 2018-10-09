@@ -1,7 +1,8 @@
 const initialState = {
   session: 'work',
   sessionString: 'Work',
-  pomodoro: 1
+  pomodoro: 1,
+  pauseAtSessionEnd: true
 };
 
 export const session = (state = initialState, action) => {
@@ -54,6 +55,10 @@ export const session = (state = initialState, action) => {
 
     case 'RESET_EVERYTHING':
       return initialState;
+
+    case 'TOGGLE_PAUSE_AT_SESSION_END':
+      console.log(!state.pauseAtSessionEnd)
+      return { ...state, pauseAtSessionEnd: !state.pauseAtSessionEnd };
 
     default:
       return state;

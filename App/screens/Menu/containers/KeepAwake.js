@@ -7,7 +7,7 @@ import { Switcher } from '../components/Switcher';
 const mapStateToProps = state => ({
   label: 'Keep screen awake',
   isOn: state.screen.keepScreenAwake,
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({

@@ -7,12 +7,15 @@ import Session from '../containers/Session';
 import WorkTime from '../containers/WorkTime';
 import ShortBreak from '../containers/ShortBreak';
 import LongBreak from '../containers/LongBreak';
+import PauseEnable from '../containers/PauseEnable'
 import SoundEnable from '../containers/SoundEnable';
 import Volume from '../containers/Volume';
 import Theme from '../containers/Theme';
 import DarkMode from '../containers/DarkMode';
 import KeepAwake from '../containers/KeepAwake';
-import { Picker } from './Picker';
+import TimePicker from '../containers/TimePicker';
+import VolumePicker from '../containers/VolumePicker';
+import ThemePicker from '../containers/ThemePicker';
 import { Footer } from './Footer';
 
 import { styles } from './styles';
@@ -26,6 +29,7 @@ export const Menu = ({ colors }) => (
       <WorkTime />
       <ShortBreak />
       <LongBreak />
+      <PauseEnable />
       <Volume />
       <SoundEnable />
       <KeepAwake />
@@ -33,12 +37,8 @@ export const Menu = ({ colors }) => (
       <Theme />
       <Footer colors={colors} />
     </ScrollView>
-    {/* <Picker
-      showPicker={true}
-      data={[1, 2, 3, 4, 5, 6]}
-      selectedIndex={3}
-      onSelect={() => null}
-      colors={colors}
-    /> */}
+    <TimePicker />
+    <VolumePicker />
+    <ThemePicker />
   </View>
 );

@@ -2,38 +2,36 @@ export const times = (
   state = {
     workTime: 1,
     shortBreakTime: 5,
-    longBreakTime: 15
+    longBreakTime: 15,
+    timePickerVisible: false,
+    session: null,
+    oldTime: null
   },
   action
 ) => {
   switch (action.type) {
-    case 'DECREASE_WORK_TIME':
-      return { ...state, workTime: Math.max(1, state.workTime - 1) };
-    case 'INCREASE_WORK_TIME':
-      return { ...state, workTime: Math.min(state.workTime + 1, 99) };
-
-    case 'DECREASE_SHORT_BREAK_TIME':
+    case 'SHOW_TIME_PICKER':
       return {
         ...state,
-        shortBreakTime: Math.max(1, state.shortBreakTime - 1)
-      };
-    case 'INCREASE_SHORT_BREAK_TIME':
-      return {
-        ...state,
-        shortBreakTime: Math.min(state.shortBreakTime + 1, 99)
+        timePickerVisible: true,
+        session: action.session,
+        oldTime: action.oldTime
       };
 
-    case 'DECREASE_LONG_BREAK_TIME':
-      return {
-        ...state,
-        longBreakTime: Math.max(1, state.longBreakTime - 1)
-      };
+    case 'HIDE_TIME_PICKER':
+      return { ...state, timePickerVisible: false };
 
-    case 'INCREASE_LONG_BREAK_TIME':
-      return {
-        ...state,
-        longBreakTime: Math.min(state.longBreakTime + 1, 99)
-      };
+    case 'SET_TIME':
+      switch (state.session) {
+        case 'work':
+          return { ...state, workTime: action.newTime };
+        case 'shortBreak':
+          return { ...state, shortBreakTime: action.newTime };
+        case 'longBreak':
+          return { ...state, longBreakTime: action.newTime };
+        default:
+          return state;
+      }
 
     default:
       return state;

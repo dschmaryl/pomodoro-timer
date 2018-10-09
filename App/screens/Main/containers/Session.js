@@ -4,7 +4,7 @@ import { Session } from '../components/Session';
 
 const mapStateToProps = state => ({
   sessionString: state.session.sessionString,
-  colors: state.colors.colors
+  colors: state.theme.colors
 });
 
 export default connect(mapStateToProps)(Session);

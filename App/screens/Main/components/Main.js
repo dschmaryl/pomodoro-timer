@@ -38,12 +38,6 @@ export class Main extends React.Component {
   }
 
   checkTimer(props) {
-    if (props.timeLeft === null) {
-      this.setTimer();
-    } else if (props.session !== this.state.currentSession) {
-      this.setState({ currentSession: props.session }, this.setTimer);
-    }
-
     if (!props.isPaused && this.state.isPaused) {
       this.setState({
         interval: setInterval(() => this.timerTick(), 10),
@@ -55,6 +49,12 @@ export class Main extends React.Component {
         interval: clearInterval(this.state.interval),
         isPaused: true
       });
+    }
+
+    if (props.timeLeft === null) {
+      this.setTimer();
+    } else if (props.session !== this.state.currentSession) {
+      this.setState({ currentSession: props.session }, this.setTimer);
     }
 
     if (!props.isPaused && props.soundIsPlaying)
@@ -79,7 +79,7 @@ export class Main extends React.Component {
     } else {
       const minutes = Math.floor(time / 60000);
       const seconds = Math.floor((time % 60000) / 1000);
-      if ( seconds != this.props.seconds ) {
+      if (seconds != this.props.seconds) {
         this.props.updateTime(minutes, seconds);
       }
     }

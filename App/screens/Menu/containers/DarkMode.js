@@ -6,8 +6,8 @@ import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({
   label: 'Dark mode',
-  isOn: state.colors.darkMode,
-  colors: state.colors.colors
+  isOn: state.theme.darkMode,
+  colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
