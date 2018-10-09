@@ -52,6 +52,14 @@ export const styles = StyleSheet.create({
     fontSize: deviceWidth * 0.07
   },
 
+  wheelButtonView: {
+    position: 'absolute',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: pickerViewWidth * 0.2,
+    width: pickerViewWidth * 0.2
+  },
+
   wheelPicker: {
     width: pickerViewWidth,
     height: pickerViewWidth * 0.9

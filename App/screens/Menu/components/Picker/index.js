@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   TouchableWithoutFeedback,
+  TouchableNativeFeedback,
   TouchableOpacity,
   View,
   Text
@@ -70,6 +71,9 @@ export const Picker = ({
       selectedItemTextColor={colors.buttonColor.color}
       onItemSelected={itemValue => setValue(itemValue.position + 1)}
     />
+    <TouchableNativeFeedback onPress={hidePicker}>
+      <View style={styles.wheelButtonView}></View>
+    </TouchableNativeFeedback>
   </Wrapper>
 );
 

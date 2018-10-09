@@ -68,7 +68,8 @@ export const theme = (
         ...state,
         themeName: colors[action.themeIndex].name,
         themeIndex: action.themeIndex,
-        colors: colors[action.themeIndex][state.darkMode ? 'dark' : 'light']
+        colors: colors[action.themeIndex][state.darkMode ? 'dark' : 'light'],
+        themePickerVisible: false
       };
     }
 
