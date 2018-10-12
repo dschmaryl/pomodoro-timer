@@ -1,6 +1,5 @@
 import React from 'react';
-import { AppState, View } from 'react-native';
-import PushNotification from 'react-native-push-notification';
+import { View } from 'react-native';
 
 import MenuButton from '../containers/MenuButton';
 import Session from '../containers/Session';
@@ -8,6 +7,7 @@ import Time from '../containers/Time';
 import StartButton from '../containers/StartButton';
 import Alarm from '../containers/Alarm';
 import ScreenAwake from '../containers/ScreenAwake';
+import Notification from '../containers/Notification';
 
 import { styles } from './styles';
 
@@ -17,15 +17,12 @@ export class Main extends React.Component {
     this.state = {
       interval: null,
       isPaused: true,
-      currentSession: props.session,
-      appState: AppState.currentState,
-      notificationScheduled: false
+      currentSession: props.session
     };
   }
 
   componentDidMount() {
     this.checkTimer(this.props);
-    AppState.addEventListener('change', this.handleAppStateChange);
   }
 
   componentWillReceiveProps(newProps) {
@@ -34,7 +31,6 @@ export class Main extends React.Component {
 
   componentWillUnmount() {
     this.setState({ interval: clearInterval(this.state.interval) });
-    AppState.removeEventListener('change', this.handleAppStateChange);
   }
 
   checkTimer(props) {
@@ -44,7 +40,6 @@ export class Main extends React.Component {
         isPaused: false
       });
     } else if (props.isPaused && !this.state.isPaused) {
-      // if (this.appState === 'active') this.props.toggleSoundPlaying();
       this.setState({
         interval: clearInterval(this.state.interval),
         isPaused: true
@@ -62,20 +57,28 @@ export class Main extends React.Component {
   }
 
   setTimer() {
+    const seconds =
+      !this.props.pauseAtSessionEnd && !this.props.isPaused ? 0.8 : 0;
+
     if (this.props.session === 'work') {
-      this.props.setTimer(this.props.workTime);
+      this.props.setTimer(this.props.workTime, seconds);
     } else if (this.props.session === 'shortBreak') {
-      this.props.setTimer(this.props.shortBreakTime);
+      this.props.setTimer(this.props.shortBreakTime, seconds);
     } else {
-      this.props.setTimer(this.props.longBreakTime);
+      this.props.setTimer(this.props.longBreakTime, seconds);
     }
+  }
+
+  finishTimer() {
+    if (this.props.pauseAtSessionEnd) this.props.togglePaused();
+    // this.props.toggleSoundPlaying();
+    this.props.finishSession();
   }
 
   timerTick() {
     const time = this.props.endTime - Date.now();
-    if (time <= 999) {
-      this.props.togglePaused();
-      this.props.finishSession();
+    if (time < 1000) {
+      this.finishTimer();
     } else {
       const minutes = Math.floor(time / 60000);
       const seconds = Math.floor((time % 60000) / 1000);
@@ -84,29 +87,6 @@ export class Main extends React.Component {
       }
     }
   }
-
-  handleAppStateChange = nextAppState => {
-    if (nextAppState === 'active' && this.state.notificationScheduled) {
-      console.log('canceling push notification');
-      PushNotification.cancelLocalNotifications({ id: '31415' });
-      this.setState({ notificationScheduled: false, appState: nextAppState });
-    } else if (
-      nextAppState === 'background' &&
-      !this.state.notificationScheduled
-    ) {
-      if (!this.props.isPaused) {
-        console.log('scheduling push notification');
-        PushNotification.localNotificationSchedule({
-          id: '31415',
-          title: 'Pomodoro Timer',
-          message: this.props.sessionString + ' time is up!',
-          date: new Date(this.props.endTime),
-          color: 'red'
-        });
-        this.setState({ notificationScheduled: true, appState: nextAppState });
-      }
-    }
-  };
 
   render() {
     return (
@@ -117,6 +97,7 @@ export class Main extends React.Component {
         <StartButton />
         <Alarm />
         <ScreenAwake />
+        <Notification />
       </View>
     );
     // }

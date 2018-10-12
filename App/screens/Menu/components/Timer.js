@@ -32,7 +32,7 @@ export const Timer = ({
         return longBreakTime;
       }
     };
-    setTimer(getMinutes());
+    setTimer(getMinutes(), 0);
   };
 
   return (

@@ -30,8 +30,8 @@ export const Menu = ({ colors }) => (
       <ShortBreak />
       <LongBreak />
       <PauseEnable />
-      <Volume />
       <SoundEnable />
+      <Volume />
       <KeepAwake />
       <Theme />
       <DarkMode />

@@ -4,14 +4,27 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { styles } from './styles';
 
-export const Adjuster = ({ label, value, valueLabel, onPress, colors }) => {
+export const Adjuster = ({
+  label,
+  value,
+  valueLabel,
+  onPress,
+  disabled,
+  colors
+}) => {
+  const textColor = disabled ? colors.disabledColor : colors.textColor;
+  const buttonColor = disabled ? colors.disabledColor : colors.buttonColor;
+
   return (
-    <TouchableNativeFeedback onPress={() => onPress(value)}>
+    <TouchableNativeFeedback
+      disabled={disabled}
+      onPress={() => (disabled ? null : onPress(value))}
+    >
       <View style={[styles.rowView, colors.borderColor]}>
-        <Text style={[styles.rowText, colors.textColor]}>{label}:</Text>
+        <Text style={[styles.rowText, textColor]}>{label}:</Text>
         <View style={styles.adjusterView}>
           <View style={styles.adjusterValueView}>
-            <Text style={[styles.rowText, colors.textColor]}>
+            <Text style={[styles.rowText, textColor]}>
               {value}
               {valueLabel ? ' ' + valueLabel : ''}
             </Text>
@@ -20,7 +33,7 @@ export const Adjuster = ({ label, value, valueLabel, onPress, colors }) => {
           <View style={styles.touchable}>
             <Icon
               name="md-arrow-dropup"
-              style={[styles.iconStyle, colors.buttonColor]}
+              style={[styles.iconStyle, buttonColor]}
             />
           </View>
         </View>

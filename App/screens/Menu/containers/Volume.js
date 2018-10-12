@@ -8,6 +8,7 @@ const mapStateToProps = state => ({
   label: 'Volume',
   value: state.sound.volume,
   valueLabel: ' %',
+  disabled: !state.sound.soundIsEnabled,
   colors: state.theme.colors
 });
 

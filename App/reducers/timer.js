@@ -13,8 +13,8 @@ export const timer = (state = initialState, action) => {
       return {
         ...state,
         startMinutes: action.minutes,
-        timeLeft: action.minutes * 60000,
-        endTime: action.minutes * 60000,
+        timeLeft: action.minutes * 60000 + action.seconds * 1000,
+        endTime: Date.now() + action.minutes * 60000 + action.seconds * 1000,
         minutes: action.minutes,
         seconds: 0
       };
@@ -34,7 +34,6 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           isPaused: false,
-          // timeLeft: null,
           endTime: endTime
         };
       } else {

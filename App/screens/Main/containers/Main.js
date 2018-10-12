@@ -27,7 +27,7 @@ const mapStateToProps = state => ({
 });
 
 mapDispatchToProps = dispatch => ({
-  setTimer: minutes => dispatch(setTimer(minutes)),
+  setTimer: (minutes, seconds) => dispatch(setTimer(minutes, seconds)),
   togglePaused: () => dispatch(togglePaused()),
   updateTime: (minutes, seconds) => dispatch(updateTime(minutes, seconds)),
   finishSession: () => dispatch(finishSession()),

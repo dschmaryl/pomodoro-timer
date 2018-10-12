@@ -6,7 +6,11 @@ export const showTimePicker = (session, oldTime) => ({
 export const setTime = newTime => ({ type: 'SET_TIME', newTime });
 export const hideTimePicker = () => ({ type: 'HIDE_TIME_PICKER' });
 
-export const setTimer = minutes => ({ type: 'SET_TIMER', minutes });
+export const setTimer = (minutes, seconds) => ({
+  type: 'SET_TIMER',
+  minutes,
+  seconds
+});
 export const resetTimer = () => ({ type: 'RESET_TIMER' });
 export const togglePaused = () => ({ type: 'TOGGLE_PAUSED' });
 export const updateTime = (minutes, seconds) => ({

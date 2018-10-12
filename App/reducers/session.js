@@ -46,18 +46,13 @@ export const session = (state = initialState, action) => {
           };
         }
       } else {
-        return {
-          ...state,
-          session: 'work',
-          sessionString: 'Work'
-        };
+        return { ...state, session: 'work', sessionString: 'Work' };
       }
 
     case 'RESET_EVERYTHING':
-      return initialState;
+      return { ...state, session: 'work', sessionString: 'Work', pomodoro: 1 };
 
     case 'TOGGLE_PAUSE_AT_SESSION_END':
-      console.log(!state.pauseAtSessionEnd)
       return { ...state, pauseAtSessionEnd: !state.pauseAtSessionEnd };
 
     default:
