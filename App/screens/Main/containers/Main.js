@@ -5,7 +5,8 @@ import {
   togglePaused,
   updateTime,
   finishSession,
-  toggleSoundPlaying
+  toggleSoundPlaying,
+  toggleNotificationClicked
 } from '../../../actions';
 
 import { Main } from '../components/Main';
@@ -24,6 +25,7 @@ const mapStateToProps = state => ({
   pauseAtSessionEnd: state.session.pauseAtSessionEnd,
   soundIsEnabled: state.sound.soundIsEnabled,
   soundIsPlaying: state.sound.soundIsPlaying,
+  notificationClicked: state.notification.notificationClicked,
   colors: state.theme.colors
 });
 
@@ -32,7 +34,8 @@ mapDispatchToProps = dispatch => ({
   togglePaused: () => dispatch(togglePaused()),
   updateTime: (minutes, seconds) => dispatch(updateTime(minutes, seconds)),
   finishSession: () => dispatch(finishSession()),
-  toggleSoundPlaying: () => dispatch(toggleSoundPlaying())
+  toggleSoundPlaying: () => dispatch(toggleSoundPlaying()),
+  toggleNotificationClicked: () => dispatch(toggleNotificationClicked())
 });
 
 export default connect(

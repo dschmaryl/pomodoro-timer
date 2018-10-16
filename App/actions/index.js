@@ -25,6 +25,16 @@ export const togglePauseAtSessionEnd = () => ({
   type: 'TOGGLE_PAUSE_AT_SESSION_END'
 });
 
+export const toggleNotificationEnabled = () => ({
+  type: 'TOGGLE_NOTIFICATION_ENABLED'
+});
+export const toggleNotificationScheduled = () => ({
+  type: 'TOGGLE_NOTIFICATION_SCHEDULED'
+});
+export const toggleNotificationClicked = () => ({
+  type: 'TOGGLE_NOTIFICATION_CLICKED'
+});
+
 export const toggleSoundEnabled = () => ({ type: 'TOGGLE_SOUND_ENABLED' });
 export const toggleSoundPlaying = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
 export const showVolumePicker = () => ({ type: 'SHOW_VOLUME_PICKER' });

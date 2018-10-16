@@ -69,7 +69,10 @@ export class Main extends React.Component {
 
   finishTimer() {
     if (this.props.pauseAtSessionEnd) this.props.togglePaused();
-    if (this.props.soundIsEnabled) this.props.toggleSoundPlaying();
+    if (this.props.notificationClicked) {
+      this.props.toggleNotificationClicked()
+    } else if (this.props.soundIsEnabled)
+      this.props.toggleSoundPlaying();
     this.props.finishSession();
   }
 

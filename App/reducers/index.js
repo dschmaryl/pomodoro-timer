@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import { notification } from './notification';
 import { screen } from './screen';
 import { session } from './session';
 import { sound } from './sound';
@@ -9,6 +10,7 @@ import { timer } from './timer';
 import { times } from './times';
 
 export default combineReducers({
+  notification,
   screen,
   session,
   sound,

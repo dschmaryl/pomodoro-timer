@@ -5,13 +5,13 @@ import PushNotification from 'react-native-push-notification';
 export class Notification extends React.Component {
   constructor() {
     super();
-    this.state = {
-      appState: AppState.currentState,
-      notificationScheduled: false
-    };
+    this.state = { appState: AppState.currentState };
   }
 
   componentDidMount() {
+    PushNotification.configure({
+      onNotification: () => this.props.toggleNotificationClicked()
+    });
     AppState.addEventListener('change', this.handleAppStateChange);
   }
 
@@ -20,29 +20,31 @@ export class Notification extends React.Component {
   }
 
   handleAppStateChange = nextAppState => {
-    if (nextAppState === 'active' && this.state.notificationScheduled) {
+    if (nextAppState === 'active' && this.props.notificationIsScheduled) {
       console.log('canceling push notification');
       PushNotification.cancelLocalNotifications({ id: '31415' });
-      this.setState({ notificationScheduled: false, appState: nextAppState });
+      this.props.toggleNotificationScheduled();
     } else if (
       nextAppState === 'background' &&
-      !this.state.notificationScheduled
+      !this.props.isPaused &&
+      this.props.notificationIsEnabled &&
+      !this.props.notificationIsScheduled
     ) {
-      if (!this.props.isPaused) {
-        console.log('scheduling push notification');
-        PushNotification.localNotificationSchedule({
-          id: '31415',
-          title: 'Pomodoro Timer',
-          message: this.props.sessionString + ' time is up!',
-          date: new Date(this.props.endTime),
-          color: 'red'
-        });
-        this.setState({ notificationScheduled: true, appState: nextAppState });
-      }
+      console.log('scheduling push notification');
+      PushNotification.localNotificationSchedule({
+        id: '31415',
+        title: 'Pomodoro Timer',
+        message: this.props.sessionString + ' time is up!',
+        date: new Date(this.props.endTime),
+        // soundName: alarm.mp3,
+        color: 'red'
+      });
+      this.props.toggleNotificationScheduled();
     }
+    this.setState({ appState: nextAppState });
   };
 
   render() {
-    return null
+    return null;
   }
 }
