@@ -10,6 +10,7 @@ export const session = (state = initialState, action) => {
     case 'FINISH_SESSION':
       if (state.session !== 'work') {
         return {
+          ...state,
           session: 'work',
           sessionString: 'Work',
           pomodoro: state.pomodoro === 4 ? 1 : state.pomodoro + 1
@@ -34,12 +35,14 @@ export const session = (state = initialState, action) => {
       if (state.session === 'work') {
         if (state.pomodoro === 1) {
           return {
+            ...state,
             session: 'longBreak',
             sessionString: 'Long break',
             pomodoro: 4
           };
         } else {
           return {
+            ...state,
             session: 'shortBreak',
             sessionString: 'Short break',
             pomodoro: state.pomodoro - 1

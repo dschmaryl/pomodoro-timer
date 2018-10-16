@@ -45,9 +45,18 @@ export const Timer = ({
       </Button>
       <View>
         <Text style={[styles.timerText, colors.textColor]}>
-          {minutes}:{seconds < 10 ? '0' + seconds : seconds}
+          {minutes < 10 ? ' ' + minutes : minutes}:
+          {seconds < 10 ? '0' + seconds : seconds}
         </Text>
       </View>
+      <Button onPress={toggleSoundPlaying} disabled={!soundIsPlaying}>
+        {soundIsPlaying ? (
+          <Icon
+            name="md-volume-off"
+            style={[styles.iconStyle, colors.buttonColor]}
+          />
+        ) : null}
+      </Button>
       <Button onPress={togglePaused}>
         {isPaused ? (
           <Icon name="md-play" style={[styles.iconStyle, colors.buttonColor]} />

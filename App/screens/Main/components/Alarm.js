@@ -2,14 +2,13 @@ import React from 'react';
 import Sound from 'react-native-sound';
 
 export class Alarm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.sound = new Sound('alarm.mp3', null, error => {
       if (error) {
         console.log('sound error: ', error);
         return;
       }
-      // this.sound.setNumberOfLoops(-1);
     });
   }
 
@@ -17,9 +16,11 @@ export class Alarm extends React.Component {
     if (newProps.volume !== this.sound.getVolume() / 100)
       this.sound.setVolume(newProps.volume / 100);
 
-    if (newProps.soundIsEnabled && newProps.soundIsPlaying) {
+    if (newProps.soundIsPlaying) {
+      console.log('playing sound');
       this.sound.play();
     } else {
+      console.log('stopping sound');
       this.sound.stop();
     }
   }

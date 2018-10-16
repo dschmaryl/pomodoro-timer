@@ -18,6 +18,7 @@ export const styles = StyleSheet.create({
     fontSize: deviceWidth * 0.05
   },
   timerText: {
+    paddingLeft: deviceWidth * 0.18,
     fontSize: deviceWidth * 0.075
   },
 

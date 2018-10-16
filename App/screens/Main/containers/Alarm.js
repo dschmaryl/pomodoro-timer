@@ -4,7 +4,6 @@ import { Alarm } from '../components/Alarm';
 
 const mapStateToProps = state => ({
   volume: state.sound.volume,
-  soundIsEnabled: state.sound.soundIsEnabled,
   soundIsPlaying: state.sound.soundIsPlaying
 });
 

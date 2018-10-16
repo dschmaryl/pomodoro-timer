@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import MenuButton from '../containers/MenuButton';
 import Session from '../containers/Session';
 import Time from '../containers/Time';
-import StartButton from '../containers/StartButton';
+import MainButton from '../containers/MainButton';
 import Alarm from '../containers/Alarm';
 import ScreenAwake from '../containers/ScreenAwake';
 import Notification from '../containers/Notification';
@@ -39,6 +39,7 @@ export class Main extends React.Component {
         interval: setInterval(() => this.timerTick(), 10),
         isPaused: false
       });
+      if (props.soundIsPlaying) this.props.toggleSoundPlaying();
     } else if (props.isPaused && !this.state.isPaused) {
       this.setState({
         interval: clearInterval(this.state.interval),
@@ -51,9 +52,6 @@ export class Main extends React.Component {
     } else if (props.session !== this.state.currentSession) {
       this.setState({ currentSession: props.session }, this.setTimer);
     }
-
-    if (!props.isPaused && props.soundIsPlaying)
-      this.props.toggleSoundPlaying();
   }
 
   setTimer() {
@@ -71,7 +69,7 @@ export class Main extends React.Component {
 
   finishTimer() {
     if (this.props.pauseAtSessionEnd) this.props.togglePaused();
-    // this.props.toggleSoundPlaying();
+    if (this.props.soundIsEnabled) this.props.toggleSoundPlaying();
     this.props.finishSession();
   }
 
@@ -90,11 +88,11 @@ export class Main extends React.Component {
 
   render() {
     return (
-      <View style={[styles.timerContainer, this.props.colors.backgroundColor]}>
+      <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
         <MenuButton />
         <Session />
         <Time />
-        <StartButton />
+        <MainButton />
         <Alarm />
         <ScreenAwake />
         <Notification />

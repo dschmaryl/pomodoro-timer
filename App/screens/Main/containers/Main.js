@@ -22,6 +22,7 @@ const mapStateToProps = state => ({
   seconds: state.timer.seconds,
   isPaused: state.timer.isPaused,
   pauseAtSessionEnd: state.session.pauseAtSessionEnd,
+  soundIsEnabled: state.sound.soundIsEnabled,
   soundIsPlaying: state.sound.soundIsPlaying,
   colors: state.theme.colors
 });
