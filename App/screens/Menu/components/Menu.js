@@ -4,7 +4,7 @@ import { ScrollView, View } from 'react-native';
 import { Header } from './Header';
 import Timer from '../containers/Timer';
 import Session from '../containers/Session';
-import WorkTime from '../containers/WorkTime';
+import FocusTime from '../containers/FocusTime';
 import ShortBreak from '../containers/ShortBreak';
 import LongBreak from '../containers/LongBreak';
 import PauseEnable from '../containers/PauseEnable'
@@ -26,7 +26,7 @@ export const Menu = ({ colors }) => (
       <Header colors={colors} />
       <Timer />
       <Session />
-      <WorkTime />
+      <FocusTime />
       <ShortBreak />
       <LongBreak />
       <PauseEnable />

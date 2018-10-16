@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   minutes: state.timer.minutes,
   seconds: state.timer.seconds,
   isPaused: state.timer.isPaused,
-  workTime: state.times.workTime,
+  focusTime: state.times.focusTime,
   shortBreakTime: state.times.shortBreakTime,
   longBreakTime: state.times.longBreakTime,
   soundIsPlaying: state.sound.soundIsPlaying,

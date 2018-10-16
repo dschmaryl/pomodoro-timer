@@ -11,7 +11,7 @@ import {
 import { Main } from '../components/Main';
 
 const mapStateToProps = state => ({
-  workTime: state.times.workTime,
+  focusTime: state.times.focusTime,
   shortBreakTime: state.times.shortBreakTime,
   longBreakTime: state.times.longBreakTime,
   session: state.session.session,

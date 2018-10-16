@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableWithoutFeedback, View } from 'react-native';
 
 import MenuButton from '../containers/MenuButton';
 import Session from '../containers/Session';
@@ -58,8 +58,8 @@ export class Main extends React.Component {
     const seconds =
       !this.props.pauseAtSessionEnd && !this.props.isPaused ? 0.8 : 0;
 
-    if (this.props.session === 'work') {
-      this.props.setTimer(this.props.workTime, seconds);
+    if (this.props.session === 'focus') {
+      this.props.setTimer(this.props.focusTime, seconds);
     } else if (this.props.session === 'shortBreak') {
       this.props.setTimer(this.props.shortBreakTime, seconds);
     } else {
@@ -88,15 +88,17 @@ export class Main extends React.Component {
 
   render() {
     return (
-      <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
-        <MenuButton />
-        <Session />
-        <Time />
-        <MainButton />
-        <Alarm />
-        <ScreenAwake />
-        <Notification />
-      </View>
+      <TouchableWithoutFeedback onPress={this.props.togglePaused}>
+        <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
+          <MenuButton />
+          <Session />
+          <Time />
+          <MainButton />
+          <Alarm />
+          <ScreenAwake />
+          <Notification />
+        </View>
+      </TouchableWithoutFeedback>
     );
     // }
   }

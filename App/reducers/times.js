@@ -1,6 +1,6 @@
 export const times = (
   state = {
-    workTime: 1,
+    focusTime: 1,
     shortBreakTime: 5,
     longBreakTime: 15,
     timePickerVisible: false,
@@ -23,8 +23,8 @@ export const times = (
 
     case 'SET_TIME':
       switch (state.session) {
-        case 'work':
-          return { ...state, workTime: action.newTime };
+        case 'focus':
+          return { ...state, focusTime: action.newTime };
         case 'shortBreak':
           return { ...state, shortBreakTime: action.newTime };
         case 'longBreak':

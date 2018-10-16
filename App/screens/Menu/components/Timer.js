@@ -11,7 +11,7 @@ export const Timer = ({
   minutes,
   seconds,
   isPaused,
-  workTime,
+  focusTime,
   shortBreakTime,
   longBreakTime,
   soundIsPlaying,
@@ -24,8 +24,8 @@ export const Timer = ({
     if (!isPaused) togglePaused();
     if (soundIsPlaying) toggleSoundPlaying();
     const getMinutes = () => {
-      if (session === 'work') {
-        return workTime;
+      if (session === 'focus') {
+        return focusTime;
       } else if (session === 'shortBreak') {
         return shortBreakTime;
       } else {

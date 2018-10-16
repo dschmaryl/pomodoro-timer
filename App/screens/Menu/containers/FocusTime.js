@@ -5,14 +5,14 @@ import { showTimePicker } from '../../../actions';
 import { Adjuster } from '../components/Adjuster';
 
 const mapStateToProps = state => ({
-  label: 'Work time',
-  value: state.times.workTime,
+  label: 'Focus time',
+  value: state.times.focusTime,
   valueLabel: 'min',
   colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  onPress: oldTime => dispatch(showTimePicker('work', oldTime))
+  onPress: oldTime => dispatch(showTimePicker('focus', oldTime))
 });
 
 export default connect(
