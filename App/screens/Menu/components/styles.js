@@ -10,12 +10,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: deviceHeight * 0.1,
+    height: deviceHeight * 0.09,
     paddingHorizontal: deviceWidth * 0.04,
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   rowText: {
-    fontSize: deviceWidth * 0.05
+    fontSize: deviceWidth * 0.046
   },
   timerText: {
     paddingLeft: deviceWidth * 0.18,
@@ -49,8 +49,8 @@ export const styles = StyleSheet.create({
   },
   switch: {
     transform: [
-      { scaleX: deviceWidth * 0.0035 },
-      { scaleY: deviceWidth * 0.0035 }
+      { scaleX: deviceWidth * 0.0034 },
+      { scaleY: deviceWidth * 0.0034 }
     ]
   }
 });

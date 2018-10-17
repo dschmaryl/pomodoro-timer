@@ -49,6 +49,9 @@ export const toggleDarkMode = () => ({ type: 'TOGGLE_DARK_MODE' });
 export const toggleKeepScreenAwake = () => ({
   type: 'TOGGLE_KEEP_SCREEN_AWAKE'
 });
+export const toggleShowPauseButton = () => ({
+  type: 'TOGGLE_SHOW_PAUSE_BUTTON'
+});
 
 export const toggleShowStart = () => ({ type: 'TOGGLE_SHOW_START' });
 export const toggleFirstRun = () => ({ type: 'TOGGLE_FIRST_RUN' });

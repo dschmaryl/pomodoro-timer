@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  menuTouchable: {
+  menuButtonTouchable: {
     position: 'absolute',
     top: 0,
     right: 0,
@@ -17,27 +17,27 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  timerHeaderView: {
+  menuButtonIcon: {
+    fontSize: deviceWidth * 0.12
+  },
+  sessionView: {
     alignItems: 'center',
     marginTop: deviceHeight * 0.06,
     marginBottom: deviceHeight * 0.025
   },
-  timerHeaderText: {
+  sessionText: {
     fontSize: deviceWidth * 0.1
   },
-  timerTimeView: {
-    alignItems: 'center'
-  },
-  timerTimeText: {
+  timerText: {
     fontSize: deviceWidth * 0.25
   },
-  playTouchable: {
+  mainButtonTouchable: {
     height: deviceWidth * 0.3,
     width: deviceWidth * 0.3,
     justifyContent: 'center',
     alignItems: 'center'
   },
-  icon: {
-    fontSize: deviceWidth * 0.15
+  mainButtonIcon: {
+    fontSize: deviceWidth * 0.16
   }
 });

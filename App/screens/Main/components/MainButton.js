@@ -9,6 +9,7 @@ export const MainButton = ({
   togglePaused,
   soundIsPlaying,
   toggleSoundPlaying,
+  showPauseButton,
   colors
 }) =>
   isPaused ? (
@@ -17,14 +18,30 @@ export const MainButton = ({
         togglePaused();
         if (soundIsPlaying) toggleSoundPlaying();
       }}
-      style={styles.playTouchable}
+      style={styles.mainButtonTouchable}
     >
-      <Icon name="md-play" style={[styles.icon, colors.buttonColor]} />
+      <Icon
+        name="md-play"
+        style={[styles.mainButtonIcon, colors.buttonColor]}
+      />
     </TouchableOpacity>
   ) : soundIsPlaying ? (
-    <TouchableOpacity onPress={toggleSoundPlaying} style={styles.playTouchable}>
-      <Icon name="md-volume-off" style={[styles.icon, colors.buttonColor]} />
+    <TouchableOpacity
+      onPress={toggleSoundPlaying}
+      style={styles.mainButtonTouchable}
+    >
+      <Icon
+        name="md-volume-off"
+        style={[styles.mainButtonIcon, colors.buttonColor]}
+      />
+    </TouchableOpacity>
+  ) : showPauseButton ? (
+    <TouchableOpacity onPress={togglePaused} style={styles.mainButtonTouchable}>
+      <Icon
+        name="md-pause"
+        style={[styles.mainButtonIcon, colors.buttonColor]}
+      />
     </TouchableOpacity>
   ) : (
-    <View style={styles.playTouchable} />
+    <View style={styles.mainButtonTouchable} />
   );

@@ -37,6 +37,7 @@ export class Notification extends React.Component {
         message: this.props.sessionString + ' time is up!',
         date: new Date(this.props.endTime),
         // soundName: alarm.mp3,
+        // smallIcon: 'ic_launcher',
         color: 'red'
       });
       this.props.toggleNotificationScheduled();

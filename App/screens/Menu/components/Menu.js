@@ -7,7 +7,8 @@ import Session from '../containers/Session';
 import FocusTime from '../containers/FocusTime';
 import ShortBreak from '../containers/ShortBreak';
 import LongBreak from '../containers/LongBreak';
-import PauseEnable from '../containers/PauseEnable'
+import PauseEnable from '../containers/PauseEnable';
+import PauseButton from '../containers/PauseButton';
 import SoundEnable from '../containers/SoundEnable';
 import Volume from '../containers/Volume';
 import Theme from '../containers/Theme';
@@ -30,6 +31,7 @@ export const Menu = ({ colors }) => (
       <ShortBreak />
       <LongBreak />
       <PauseEnable />
+      <PauseButton />
       <SoundEnable />
       <Volume />
       <KeepAwake />

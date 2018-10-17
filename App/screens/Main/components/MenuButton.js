@@ -7,8 +7,8 @@ import { styles } from './styles';
 export const MenuButton = ({ navigation, colors }) => (
   <TouchableOpacity
     onPress={() => navigation.navigate('Menu')}
-    style={styles.menuTouchable}
+    style={styles.menuButtonTouchable}
   >
-    <Icon name="md-menu" style={[styles.icon, colors.buttonColor]} />
+    <Icon name="md-menu" style={[styles.menuButtonIcon, colors.buttonColor]} />
   </TouchableOpacity>
 );

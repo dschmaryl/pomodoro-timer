@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: deviceHeight * 0.1,
+    height: deviceHeight * 0.09,
     paddingTop: deviceHeight * 0.03,
     paddingBottom: deviceHeight * 0.03
   },
