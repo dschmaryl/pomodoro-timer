@@ -9,6 +9,7 @@ import ShortBreak from '../containers/ShortBreak';
 import LongBreak from '../containers/LongBreak';
 import PauseEnable from '../containers/PauseEnable';
 import PauseButton from '../containers/PauseButton';
+import Notification from '../containers/Notification';
 import SoundEnable from '../containers/SoundEnable';
 import Volume from '../containers/Volume';
 import Theme from '../containers/Theme';
@@ -32,6 +33,7 @@ export const Menu = ({ colors }) => (
       <LongBreak />
       <PauseEnable />
       <PauseButton />
+      <Notification />
       <SoundEnable />
       <Volume />
       <KeepAwake />
