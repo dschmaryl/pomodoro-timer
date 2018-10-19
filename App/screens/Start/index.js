@@ -5,7 +5,7 @@ import { toggleFirstBoot } from '../../actions';
 import { Start } from './Start';
 
 const mapStateToProps = state => ({
-  firstBoot: state.start.firstBoot,
+  firstBoot: state.settings.firstBoot,
   colors: state.theme.colors
 });
 

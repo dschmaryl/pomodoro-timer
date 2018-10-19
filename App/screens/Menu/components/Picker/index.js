@@ -49,6 +49,7 @@ const Wrapper = ({ pickerVisible, hidePicker, colors, children }) => {
 export const Picker = ({
   pickerVisible,
   data,
+  session,
   oldValue,
   setValue,
   hidePicker,
@@ -69,10 +70,10 @@ export const Picker = ({
       itemTextSize={deviceWidth * 0.12}
       itemTextColor={colors.textColor.color}
       selectedItemTextColor={colors.buttonColor.color}
-      onItemSelected={itemValue => setValue(itemValue.position + 1)}
+      onItemSelected={itemValue => setValue(itemValue.position + 1, session)}
     />
     <TouchableNativeFeedback onPress={hidePicker}>
-      <View style={styles.wheelButtonView}></View>
+      <View style={styles.wheelButtonView} />
     </TouchableNativeFeedback>
   </Wrapper>
 );
@@ -90,7 +91,9 @@ export const ThemePicker = ({
     colors={colors}
   >
     <TouchableOpacity
-      onPress={() => setTheme(0)}
+      onPress={() => {
+        setTheme(0), hideThemePicker();
+      }}
       style={styles.themeButtonTouchable}
     >
       <Text
@@ -103,7 +106,9 @@ export const ThemePicker = ({
       </Text>
     </TouchableOpacity>
     <TouchableOpacity
-      onPress={() => setTheme(1)}
+      onPress={() => {
+        setTheme(1), hideThemePicker();
+      }}
       style={styles.themeButtonTouchable}
     >
       <Text
@@ -116,7 +121,9 @@ export const ThemePicker = ({
       </Text>
     </TouchableOpacity>
     <TouchableOpacity
-      onPress={() => setTheme(2)}
+      onPress={() => {
+        setTheme(2), hideThemePicker();
+      }}
       style={styles.themeButtonTouchable}
     >
       <Text

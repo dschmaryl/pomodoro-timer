@@ -18,7 +18,7 @@ export const Adjuster = ({
   return (
     <TouchableNativeFeedback
       disabled={disabled}
-      onPress={() => (disabled ? null : onPress(value))}
+      onPress={() => onPress(value)}
     >
       <View style={[styles.rowView, colors.borderColor]}>
         <Text style={[styles.rowText, textColor]}>{label}:</Text>

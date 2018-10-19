@@ -6,9 +6,9 @@ import { Adjuster } from '../components/Adjuster';
 
 const mapStateToProps = state => ({
   label: 'Volume',
-  value: state.sound.volume,
+  value: state.settings.volume,
   valueLabel: ' %',
-  disabled: !state.sound.soundIsEnabled,
+  disabled: !state.settings.soundIsEnabled,
   colors: state.theme.colors
 });
 

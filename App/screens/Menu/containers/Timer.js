@@ -9,9 +9,9 @@ const mapStateToProps = state => ({
   minutes: state.timer.minutes,
   seconds: state.timer.seconds,
   isPaused: state.timer.isPaused,
-  focusTime: state.times.focusTime,
-  shortBreakTime: state.times.shortBreakTime,
-  longBreakTime: state.times.longBreakTime,
+  focusTime: state.session.focusTime,
+  shortBreakTime: state.session.shortBreakTime,
+  longBreakTime: state.session.longBreakTime,
   soundIsPlaying: state.sound.soundIsPlaying,
   colors: state.theme.colors
 });

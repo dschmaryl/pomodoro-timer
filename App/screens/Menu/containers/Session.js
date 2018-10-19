@@ -1,10 +1,6 @@
 import { connect } from 'react-redux';
 
-import {
-  resetTimer,
-  finishSession,
-  backOneSession
-} from '../../../actions';
+import { finishSession, backOneSession } from '../../../actions';
 
 import { Session } from '../components/Session';
 
@@ -15,9 +11,8 @@ const mapStateToProps = state => ({
 });
 
 mapDispatchToProps = dispatch => ({
-  resetTimer: () => dispatch(resetTimer()),
-  finishSession: () => dispatch(finishSession()),
-  backOneSession: () => dispatch(backOneSession())
+  nextSession: () => dispatch(finishSession()),
+  previousSession: () => dispatch(backOneSession())
 });
 
 export default connect(

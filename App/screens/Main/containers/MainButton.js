@@ -7,7 +7,7 @@ import { MainButton } from '../components/MainButton';
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
   soundIsPlaying: state.sound.soundIsPlaying,
-  showPauseButton: state.screen.showPauseButton,
+  showPauseButton: state.settings.showPauseButton,
   colors: state.theme.colors
 });
 

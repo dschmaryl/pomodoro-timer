@@ -3,7 +3,11 @@ export const showTimePicker = (session, oldTime) => ({
   session,
   oldTime
 });
-export const setTime = newTime => ({ type: 'SET_TIME', newTime });
+export const setTime = (newTime, session) => ({
+  type: 'SET_TIME',
+  session,
+  newTime
+});
 export const hideTimePicker = () => ({ type: 'HIDE_TIME_PICKER' });
 
 export const setTimer = (minutes, seconds) => ({
@@ -37,7 +41,10 @@ export const toggleNotificationClicked = () => ({
 
 export const toggleSoundEnabled = () => ({ type: 'TOGGLE_SOUND_ENABLED' });
 export const toggleSoundPlaying = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
-export const showVolumePicker = () => ({ type: 'SHOW_VOLUME_PICKER' });
+export const showVolumePicker = oldVolume => ({
+  type: 'SHOW_VOLUME_PICKER',
+  oldVolume
+});
 export const setVolume = volume => ({ type: 'SET_VOLUME', volume });
 export const hideVolumePicker = () => ({ type: 'HIDE_VOLUME_PICKER' });
 

@@ -6,7 +6,7 @@ import { Adjuster } from '../components/Adjuster';
 
 const mapStateToProps = state => ({
   label: 'Focus time',
-  value: state.times.focusTime,
+  value: state.session.focusTime,
   valueLabel: 'min',
   colors: state.theme.colors
 });

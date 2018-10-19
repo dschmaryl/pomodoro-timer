@@ -17,7 +17,8 @@ export class Main extends React.Component {
     this.state = {
       interval: null,
       isPaused: true,
-      currentSession: props.session
+      currentSession: props.session,
+      finishedInBackground: false
     };
   }
 
@@ -34,6 +35,9 @@ export class Main extends React.Component {
   }
 
   checkTimer(props) {
+    if (!props.isPaused && props.endTime - Date.now() < 1000)
+      this.setState({ finishedInBackground: true }, this.finishTimer);
+
     if (!props.isPaused && this.state.isPaused) {
       this.setState({
         interval: setInterval(() => this.timerTick(), 10),
@@ -69,10 +73,10 @@ export class Main extends React.Component {
 
   finishTimer() {
     if (this.props.pauseAtSessionEnd) this.props.togglePaused();
-    if (this.props.notificationClicked) {
-      this.props.toggleNotificationClicked();
-    } else if (this.props.soundIsEnabled) this.props.toggleSoundPlaying();
-    this.props.finishSession();
+    if (this.props.soundIsEnabled) {
+      this.props.toggleSoundPlaying();
+    }
+    this.setState({ finishedInBackground: false }, this.props.finishSession);
   }
 
   timerTick() {

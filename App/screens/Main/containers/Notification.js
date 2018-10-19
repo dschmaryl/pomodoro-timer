@@ -11,13 +11,13 @@ const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
   endTime: state.timer.endTime,
   sessionString: state.session.sessionString,
-  notificationIsEnabled: state.notification.notificationIsEnabled,
-  notificationIsScheduled: state.notification.notificationIsScheduled
+  notificationIsEnabled: state.settings.notificationIsEnabled,
+  // notificationIsScheduled: state.notification.notificationIsScheduled
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleNotificationScheduled: () => dispatch(toggleNotificationScheduled()),
-  toggleNotificationClicked: () => dispatch(toggleNotificationClicked())
+  // toggleNotificationScheduled: () => dispatch(toggleNotificationScheduled()),
+  // toggleNotificationClicked: () => dispatch(toggleNotificationClicked())
 });
 
 export default connect(

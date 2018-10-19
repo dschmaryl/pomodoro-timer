@@ -9,9 +9,9 @@ data = Array(100)
   .map((_, i) => '-  ' + (i + 1) + '  -');
 
 const mapStateToProps = state => ({
-  pickerVisible: state.sound.volumePickerVisible,
+  pickerVisible: state.picker.volumePickerVisible,
   data: data,
-  oldValue: state.sound.volume,
+  oldValue: state.picker.oldVolume,
   colors: state.theme.colors
 });
 

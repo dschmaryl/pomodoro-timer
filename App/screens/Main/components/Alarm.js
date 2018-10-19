@@ -18,8 +18,11 @@ export class Alarm extends React.Component {
 
     if (newProps.soundIsPlaying) {
       console.log('playing sound');
-      this.sound.play();
-    } else {
+      this.sound.play(() => {
+        console.log('playing finished');
+        this.props.toggleSoundPlaying();
+      });
+    } else if (!newProps.soundIsPlaying) {
       console.log('stopping sound');
       this.sound.stop();
     }

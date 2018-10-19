@@ -6,7 +6,7 @@ import { ThemePicker } from '../components/Picker';
 
 const mapStateToProps = state => ({
   themeIndex: state.theme.themeIndex,
-  themePickerVisible: state.theme.themePickerVisible,
+  themePickerVisible: state.picker.themePickerVisible,
   colors: state.theme.colors
 });
 

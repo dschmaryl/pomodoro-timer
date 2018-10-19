@@ -9,18 +9,12 @@ import { styles } from './styles';
 export const Session = ({
   pomodoro,
   sessionString,
-  resetTimer,
-  finishSession,
-  backOneSession,
+  nextSession,
+  previousSession,
   colors
 }) => (
   <View style={[styles.rowView, colors.borderColor]}>
-    <Button
-      onPress={() => {
-        backOneSession();
-        resetTimer();
-      }}
-    >
+    <Button onPress={previousSession}>
       <Icon
         name="md-skip-backward"
         style={[styles.iconStyle, colors.buttonColor]}
@@ -31,12 +25,7 @@ export const Session = ({
         Pomodoro #{pomodoro} - {sessionString}
       </Text>
     </View>
-    <Button
-      onPress={() => {
-        finishSession();
-        resetTimer();
-      }}
-    >
+    <Button onPress={nextSession}>
       <Icon
         name="md-skip-forward"
         style={[styles.iconStyle, colors.buttonColor]}

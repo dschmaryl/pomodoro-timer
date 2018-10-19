@@ -9,15 +9,16 @@ const data = Array(99)
   .map((_, i) => '-  ' + (i + 1) + '  -');
 
 const mapStateToProps = state => ({
-  pickerVisible: state.times.timePickerVisible,
+  pickerVisible: state.picker.timePickerVisible,
   data: data,
-  oldValue: state.times.oldTime,
+  session: state.picker.session,
+  oldValue: state.picker.oldTime,
   colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
   hidePicker: () => dispatch(hideTimePicker()),
-  setValue: newTime => dispatch(setTime(newTime))
+  setValue: (newTime, session) => dispatch(setTime(newTime, session))
 });
 
 export default connect(

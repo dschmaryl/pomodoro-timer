@@ -6,7 +6,7 @@ import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({
   label: 'Sound enabled',
-  isOn: state.sound.soundIsEnabled,
+  isOn: state.settings.soundIsEnabled,
   colors: state.theme.colors
 });
 

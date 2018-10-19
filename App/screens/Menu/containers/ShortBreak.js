@@ -6,7 +6,7 @@ import { Adjuster } from '../components/Adjuster';
 
 const mapStateToProps = state => ({
   label: 'Short break',
-  value: state.times.shortBreakTime,
+  value: state.session.shortBreakTime,
   valueLabel: 'min',
   colors: state.theme.colors
 });

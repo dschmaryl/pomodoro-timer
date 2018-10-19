@@ -6,7 +6,7 @@ import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({
   label: 'Background timer notifications',
-  isOn: state.notification.notificationIsEnabled,
+  isOn: state.settings.notificationIsEnabled,
   colors: state.theme.colors
 });
 

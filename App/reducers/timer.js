@@ -30,16 +30,17 @@ export const timer = (state = initialState, action) => {
 
     case 'TOGGLE_PAUSED':
       if (state.isPaused) {
-        const endTime = Date.now() + state.timeLeft;
         return {
           ...state,
           isPaused: false,
-          endTime: endTime
+          endTime: Date.now() + state.timeLeft,
+          timeLeft: null
         };
       } else {
         return {
           ...state,
           isPaused: true,
+          endTime: null,
           timeLeft: state.endTime - Date.now()
         };
       }

@@ -57,25 +57,17 @@ export const theme = (
     themeName: colors[0].name,
     themeIndex: 0,
     darkMode: true,
-    themePickerVisible: false,
     colors: colors[0].dark
   },
   action
 ) => {
   switch (action.type) {
-    case 'SHOW_THEME_PICKER':
-      return { ...state, themePickerVisible: true };
-
-    case 'HIDE_THEME_PICKER':
-      return { ...state, themePickerVisible: false };
-
     case 'SET_THEME': {
       return {
         ...state,
         themeName: colors[action.themeIndex].name,
         themeIndex: action.themeIndex,
-        colors: colors[action.themeIndex][state.darkMode ? 'dark' : 'light'],
-        themePickerVisible: false
+        colors: colors[action.themeIndex][state.darkMode ? 'dark' : 'light']
       };
     }
 
