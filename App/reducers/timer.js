@@ -16,6 +16,18 @@ const initialState = {
   isPaused: true
 };
 
+const newSession = (newTime, pomodoro, isPaused) => {
+  const time = newTime * 60000 + (isPaused ? 0 : 800);
+  return {
+    endTime: Date.now() + time,
+    timeLeft: time,
+    minutes: newTime,
+    seconds: 0,
+    pomodoro: pomodoro,
+    isPaused: isPaused
+  };
+};
+
 export const timer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_TIME':
@@ -47,41 +59,24 @@ export const timer = (state = initialState, action) => {
 
     case 'FINISH_SESSION':
       if (state.session !== 'focus') {
-        const time = state.focusTime * 60000 + (action.isPaused ? 0 : 800);
+        const pomodoro = state.pomodoro === 4 ? 1 : state.pomodoro + 1;
         return {
           ...state,
           ...focusState,
-          endTime: Date.now() + time,
-          timeLeft: time,
-          minutes: state.focusTime,
-          seconds: 0,
-          pomodoro: state.pomodoro === 4 ? 1 : state.pomodoro + 1,
-          isPaused: action.isPaused
+          ...newSession(state.focusTime, pomodoro, action.isPaused)
         };
       } else {
         if (state.pomodoro === 4) {
-          const time =
-            state.longBreakTime * 60000 + (action.isPaused ? 0 : 800);
           return {
             ...state,
             ...longBreakState,
-            endTime: Date.now() + time,
-            timeLeft: time,
-            minutes: state.longBreakTime,
-            seconds: 0,
-            isPaused: action.isPaused
+            ...newSession(state.longBreakTime, 4, action.isPaused)
           };
         } else {
-          const time =
-            state.shortBreakTime * 60000 + (action.isPaused ? 0 : 800);
           return {
             ...state,
             ...shortBreakState,
-            endTime: Date.now() + time,
-            timeLeft: time,
-            minutes: state.shortBreakTime,
-            seconds: 0,
-            isPaused: action.isPaused
+            ...newSession(state.shortBreakTime, state.pomodoro, action.isPaused)
           };
         }
       }
@@ -92,31 +87,20 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...longBreakState,
-            timeLeft: state.longBreakTime * 60000,
-            minutes: state.longBreakTime,
-            seconds: 0,
-            pomodoro: 4,
-            isPaused: true
+            ...newSession(state.longBreakTime, 4, true)
           };
         } else {
           return {
             ...state,
             ...shortBreakState,
-            timeLeft: state.shortBreakTime * 60000,
-            minutes: state.shortBreakTime,
-            seconds: 0,
-            pomodoro: state.pomodoro - 1,
-            isPaused: true
+            ...newSession(state.shortBreakTime, state.pomodoro - 1, true)
           };
         }
       } else {
         return {
           ...state,
           ...focusState,
-          timeLeft: state.focusTime * 60000,
-          minutes: state.focusTime,
-          seconds: 0,
-          isPaused: true
+          ...newSession(state.focusTime, state.pomodoro, true)
         };
       }
 
