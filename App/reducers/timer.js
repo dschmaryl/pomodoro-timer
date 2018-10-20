@@ -47,38 +47,40 @@ export const timer = (state = initialState, action) => {
 
     case 'FINISH_SESSION':
       if (state.session !== 'focus') {
-        const time = state.focusTime * 60000;
+        const time = state.focusTime * 60000 + (action.isPaused ? 0 : 800);
         return {
           ...state,
           ...focusState,
           endTime: Date.now() + time,
           timeLeft: time,
           minutes: state.focusTime,
-          seconds: action.isPaused ? 0 : 0.8,
+          seconds: 0,
           pomodoro: state.pomodoro === 4 ? 1 : state.pomodoro + 1,
           isPaused: action.isPaused
         };
       } else {
         if (state.pomodoro === 4) {
-          const time = state.longBreakTime * 60000;
+          const time =
+            state.longBreakTime * 60000 + (action.isPaused ? 0 : 800);
           return {
             ...state,
             ...longBreakState,
             endTime: Date.now() + time,
             timeLeft: time,
             minutes: state.longBreakTime,
-            seconds: action.isPaused ? 0 : 0.8,
+            seconds: 0,
             isPaused: action.isPaused
           };
         } else {
-          const time = state.shortBreakTime * 60000;
+          const time =
+            state.shortBreakTime * 60000 + (action.isPaused ? 0 : 800);
           return {
             ...state,
             ...shortBreakState,
             endTime: Date.now() + time,
             timeLeft: time,
             minutes: state.shortBreakTime,
-            seconds: action.isPaused ? 0 : 0.8,
+            seconds: 0,
             isPaused: action.isPaused
           };
         }
