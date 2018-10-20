@@ -10,7 +10,7 @@ import { Notification } from '../components/Notification';
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
   endTime: state.timer.endTime,
-  sessionString: state.session.sessionString,
+  sessionString: state.timer.sessionString,
   notificationIsEnabled: state.settings.notificationIsEnabled,
   // notificationIsScheduled: state.notification.notificationIsScheduled
 });

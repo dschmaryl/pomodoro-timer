@@ -18,7 +18,7 @@ const store = createStore(
 const persistor = persistStore(store);
 
 // don't forget to set 'focusTime' and 'showStart' in reducers
-persistor.purge();
+// persistor.purge();
 
 const { firstBoot, showStart } = store.getState().settings;
 

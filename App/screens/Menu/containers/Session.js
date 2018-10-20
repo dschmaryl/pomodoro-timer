@@ -5,8 +5,8 @@ import { finishSession, backOneSession } from '../../../actions';
 import { Session } from '../components/Session';
 
 const mapStateToProps = state => ({
-  pomodoro: state.session.pomodoro,
-  sessionString: state.session.sessionString,
+  pomodoro: state.timer.pomodoro,
+  sessionString: state.timer.sessionString,
   colors: state.theme.colors
 });
 

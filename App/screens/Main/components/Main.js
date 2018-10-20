@@ -16,9 +16,7 @@ export class Main extends React.Component {
     super(props);
     this.state = {
       interval: null,
-      isPaused: true,
-      currentSession: props.session,
-      finishedInBackground: false
+      isPaused: true
     };
   }
 
@@ -35,9 +33,6 @@ export class Main extends React.Component {
   }
 
   checkTimer(props) {
-    if (!props.isPaused && props.endTime - Date.now() < 1000)
-      this.setState({ finishedInBackground: true }, this.finishTimer);
-
     if (!props.isPaused && this.state.isPaused) {
       this.setState({
         interval: setInterval(() => this.timerTick(), 10),
@@ -50,33 +45,13 @@ export class Main extends React.Component {
         isPaused: true
       });
     }
-
-    if (props.timeLeft === null) {
-      this.setTimer();
-    } else if (props.session !== this.state.currentSession) {
-      this.setState({ currentSession: props.session }, this.setTimer);
-    }
-  }
-
-  setTimer() {
-    const seconds =
-      !this.props.pauseAtSessionEnd && !this.props.isPaused ? 0.8 : 0;
-
-    if (this.props.session === 'focus') {
-      this.props.setTimer(this.props.focusTime, seconds);
-    } else if (this.props.session === 'shortBreak') {
-      this.props.setTimer(this.props.shortBreakTime, seconds);
-    } else {
-      this.props.setTimer(this.props.longBreakTime, seconds);
-    }
   }
 
   finishTimer() {
-    if (this.props.pauseAtSessionEnd) this.props.togglePaused();
     if (this.props.soundIsEnabled) {
       this.props.toggleSoundPlaying();
     }
-    this.setState({ finishedInBackground: false }, this.props.finishSession);
+    this.props.finishSession(this.props.pauseAtSessionEnd);
   }
 
   timerTick() {
