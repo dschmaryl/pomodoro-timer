@@ -51,6 +51,8 @@ export const updateTime = (minutes, seconds) => ({
   minutes,
   seconds
 });
+export const resetTime = () => ({ type: 'RESET_TIME' });
+
 export const finishSession = isPaused => ({
   type: 'FINISH_SESSION',
   isPaused,
@@ -60,7 +62,6 @@ export const backOneSession = () => ({
   type: 'BACK_ONE_SESSION',
   currentTime: Date.now()
 });
-export const resetTime = () => ({ type: 'RESET_TIME' });
 export const togglePaused = () => ({
   type: 'TOGGLE_PAUSED',
   currentTime: Date.now()

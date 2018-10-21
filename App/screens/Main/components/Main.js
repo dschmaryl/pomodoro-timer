@@ -14,10 +14,7 @@ import { styles } from './styles';
 export class Main extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      interval: null,
-      isPaused: true
-    };
+    this.state = { interval: null };
   }
 
   componentDidMount() {
@@ -33,17 +30,11 @@ export class Main extends React.Component {
   }
 
   checkTimer(props) {
-    if (!props.isPaused && this.state.isPaused) {
-      this.setState({
-        interval: setInterval(() => this.timerTick(), 10),
-        isPaused: false
-      });
+    if (!props.isPaused && !this.state.interval) {
+      this.setState({ interval: setInterval(() => this.timerTick(), 5) });
       if (props.soundIsPlaying) this.props.toggleSoundPlaying();
-    } else if (props.isPaused && !this.state.isPaused) {
-      this.setState({
-        interval: clearInterval(this.state.interval),
-        isPaused: true
-      });
+    } else if (props.isPaused && this.state.interval) {
+      this.setState({ interval: clearInterval(this.state.interval) });
     }
   }
 

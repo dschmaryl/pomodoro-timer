@@ -11,7 +11,6 @@ import { Main } from '../components/Main';
 
 const mapStateToProps = state => ({
   endTime: state.timer.endTime,
-  timeLeft: state.timer.timeLeft,
   isPaused: state.timer.isPaused,
   pauseAtSessionEnd: state.settings.pauseAtSessionEnd,
   soundIsEnabled: state.settings.soundIsEnabled,
