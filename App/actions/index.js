@@ -51,9 +51,19 @@ export const updateTime = (minutes, seconds) => ({
   minutes,
   seconds
 });
-export const finishSession = isPaused => ({ type: 'FINISH_SESSION', isPaused });
-export const backOneSession = () => ({ type: 'BACK_ONE_SESSION' });
+export const finishSession = isPaused => ({
+  type: 'FINISH_SESSION',
+  isPaused,
+  currentTime: Date.now()
+});
+export const backOneSession = () => ({
+  type: 'BACK_ONE_SESSION',
+  currentTime: Date.now()
+});
 export const resetTime = () => ({ type: 'RESET_TIME' });
-export const togglePaused = () => ({ type: 'TOGGLE_PAUSED' });
+export const togglePaused = () => ({
+  type: 'TOGGLE_PAUSED',
+  currentTime: Date.now()
+});
 
 export const toggleSoundPlaying = () => ({ type: 'TOGGLE_SOUND_PLAYING' });
