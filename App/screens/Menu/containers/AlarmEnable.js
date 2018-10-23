@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 
-import { toggleSoundEnabled } from '../../../actions';
+import { toggleAlarmEnabled } from '../../../actions';
 
 import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({
-  label: 'Sound enabled',
-  isOn: state.settings.soundIsEnabled,
+  label: 'Alarm sound enabled',
+  isOn: state.settings.alarmIsEnabled,
   colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  onToggle: () => dispatch(toggleSoundEnabled())
+  onToggle: () => dispatch(toggleAlarmEnabled())
 });
 
 export default connect(

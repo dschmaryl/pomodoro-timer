@@ -7,27 +7,21 @@ import { styles } from './styles';
 export const MainButton = ({
   isPaused,
   togglePaused,
-  soundIsPlaying,
-  toggleSoundPlaying,
+  alarmIsPlaying,
+  toggleAlarmPlaying,
   showPauseButton,
   colors
 }) =>
   isPaused ? (
-    <TouchableOpacity
-      onPress={() => {
-        togglePaused();
-        if (soundIsPlaying) toggleSoundPlaying();
-      }}
-      style={styles.mainButtonTouchable}
-    >
+    <TouchableOpacity onPress={togglePaused} style={styles.mainButtonTouchable}>
       <Icon
         name="md-play"
         style={[styles.mainButtonIcon, colors.buttonColor]}
       />
     </TouchableOpacity>
-  ) : soundIsPlaying ? (
+  ) : alarmIsPlaying ? (
     <TouchableOpacity
-      onPress={toggleSoundPlaying}
+      onPress={toggleAlarmPlaying}
       style={styles.mainButtonTouchable}
     >
       <Icon

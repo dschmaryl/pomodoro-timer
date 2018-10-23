@@ -3,8 +3,10 @@ export const settings = (
     pauseAtSessionEnd: true,
     showPauseButton: true,
     notificationIsEnabled: true,
-    soundIsEnabled: true,
-    volume: 50,
+    alarmIsEnabled: true,
+    alarmVolume: 50,
+    tickIsEnabled: false,
+    tickVolume: 50,
     keepScreenAwake: true,
     showStart: false,
     firstRun: true
@@ -21,11 +23,15 @@ export const settings = (
     case 'TOGGLE_NOTIFICATION_ENABLED':
       return { ...state, notificationIsEnabled: !state.notificationIsEnabled };
 
-    case 'TOGGLE_SOUND_ENABLED':
-      return { ...state, soundIsEnabled: !state.soundIsEnabled };
+    case 'TOGGLE_ALARM_ENABLED':
+      return { ...state, alarmIsEnabled: !state.alarmIsEnabled };
 
     case 'SET_VOLUME':
-      return { ...state, volume: action.volume };
+      if (action.soundType === 'alarmVolume') {
+        return { ...state, alarmVolume: action.volume };
+      } else {
+        return { ...state, tickVolume: action.volume };
+      }
 
     case 'TOGGLE_KEEP_SCREEN_AWAKE':
       return { ...state, keepScreenAwake: !state.keepScreenAwake };

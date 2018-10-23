@@ -10,14 +10,14 @@ export const Switcher = ({ label, isOn, colors, onToggle }) => (
       <Text style={[styles.rowText, colors.textColor]}>{label}:</Text>
       <View style={styles.switchView}>
         <Switch
-        onSyncPress={onToggle}
-        value={isOn}
-        style={styles.switch}
-        circleColorActive={colors.backgroundColor.backgroundColor}
-        circleColorInactive={colors.backgroundColor.backgroundColor}
-        backgroundActive={colors.buttonColor.color}
-        backgroundInactive={colors.borderColor.borderColor}
-      />
+          onSyncPress={onToggle}
+          value={isOn}
+          style={styles.switch}
+          circleColorActive={colors.backgroundColor.backgroundColor}
+          circleColorInactive={colors.backgroundColor.backgroundColor}
+          backgroundActive={colors.buttonColor.color}
+          backgroundInactive={colors.borderColor.borderColor}
+        />
       </View>
     </View>
   </TouchableNativeFeedback>

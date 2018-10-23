@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { showTimePicker } from '../../../actions';
+import { showPicker } from '../../../actions';
 
 import { Adjuster } from '../components/Adjuster';
 
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 });
 
 mapDispatchToProps = dispatch => ({
-  onPress: oldTime => dispatch(showTimePicker('focus', oldTime))
+  onPress: oldValue => dispatch(showPicker('focusTime', oldValue))
 });
 
 export default connect(

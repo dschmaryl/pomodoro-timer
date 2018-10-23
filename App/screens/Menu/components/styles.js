@@ -11,11 +11,11 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     height: deviceHeight * 0.09,
-    paddingHorizontal: deviceWidth * 0.04,
+    paddingHorizontal: deviceWidth * 0.03,
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   rowText: {
-    fontSize: deviceWidth * 0.046
+    fontSize: deviceWidth * 0.045
   },
   timerText: {
     paddingLeft: deviceWidth * 0.18,

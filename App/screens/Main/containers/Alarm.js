@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 
-import { toggleSoundPlaying } from '../../../actions';
+import { toggleAlarmPlaying } from '../../../actions';
 
 import { Alarm } from '../components/Alarm';
 
 const mapStateToProps = state => ({
-  volume: state.settings.volume,
-  soundIsPlaying: state.sound.soundIsPlaying
+  alarmVolume: state.settings.alarmVolume,
+  alarmIsPlaying: state.timer.alarmIsPlaying
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleSoundPlaying: () => dispatch(toggleSoundPlaying())
+  toggleAlarmPlaying: () => dispatch(toggleAlarmPlaying())
 });
 
 export default connect(

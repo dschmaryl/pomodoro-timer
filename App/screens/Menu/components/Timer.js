@@ -10,11 +10,11 @@ export const Timer = ({
   minutes,
   seconds,
   isPaused,
-  soundIsPlaying,
+  alarmIsPlaying,
   colors,
   resetTime,
   togglePaused,
-  toggleSoundPlaying
+  toggleAlarmPlaying
 }) => (
   <View style={[styles.rowView, colors.borderColor]}>
     <Button onPress={resetTime}>
@@ -26,8 +26,8 @@ export const Timer = ({
         {seconds < 10 ? '0' + seconds : seconds}
       </Text>
     </View>
-    <Button onPress={toggleSoundPlaying} disabled={!soundIsPlaying}>
-      {soundIsPlaying ? (
+    <Button onPress={toggleAlarmPlaying} disabled={!alarmIsPlaying}>
+      {alarmIsPlaying ? (
         <Icon
           name="md-volume-off"
           style={[styles.iconStyle, colors.buttonColor]}

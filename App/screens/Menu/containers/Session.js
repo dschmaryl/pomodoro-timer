@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { finishSession, backOneSession } from '../../../actions';
+import { nextSession, backOneSession } from '../../../actions';
 
 import { Session } from '../components/Session';
 
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 mapDispatchToProps = dispatch => ({
-  nextSession: () => dispatch(finishSession()),
+  nextSession: () => dispatch(nextSession()),
   previousSession: () => dispatch(backOneSession())
 });
 

@@ -4,7 +4,7 @@ import { ScreenAwake } from '../components/ScreenAwake';
 
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
-  soundIsPlaying: state.sound.soundIsPlaying,
+  alarmIsPlaying: state.timer.alarmIsPlaying,
   keepScreenAwake: state.settings.keepScreenAwake
 });
 

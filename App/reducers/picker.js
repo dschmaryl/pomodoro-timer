@@ -1,40 +1,17 @@
 export const picker = (
-  state = {
-    timePickerVisible: false,
-    session: null,
-    oldTime: null,
-    volumePickerVisible: false,
-    oldVolume: null
-  },
+  state = { pickerVisible: false, valueType: null, oldValue: null },
   action
 ) => {
   switch (action.type) {
-    case 'SHOW_TIME_PICKER':
+    case 'SHOW_PICKER':
       return {
-        ...state,
-        timePickerVisible: true,
-        session: action.session,
-        oldTime: action.oldTime
+        pickerVisible: true,
+        valueType: action.valueType,
+        oldValue: action.oldValue
       };
 
-    case 'HIDE_TIME_PICKER':
-      return { ...state, timePickerVisible: false };
-
-    case 'SHOW_VOLUME_PICKER':
-      return {
-        ...state,
-        volumePickerVisible: true,
-        oldVolume: action.oldVolume
-      };
-
-    case 'HIDE_VOLUME_PICKER':
-      return { ...state, volumePickerVisible: false };
-
-    case 'SHOW_THEME_PICKER':
-      return { ...state, themePickerVisible: true };
-
-    case 'HIDE_THEME_PICKER':
-      return { ...state, themePickerVisible: false };
+    case 'HIDE_PICKER':
+      return { ...state, pickerVisible: false };
 
     default:
       return state;

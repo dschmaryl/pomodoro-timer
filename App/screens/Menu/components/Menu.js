@@ -10,13 +10,12 @@ import LongBreak from '../containers/LongBreak';
 import PauseEnable from '../containers/PauseEnable';
 import PauseButton from '../containers/PauseButton';
 import Notification from '../containers/Notification';
-import SoundEnable from '../containers/SoundEnable';
-import Volume from '../containers/Volume';
+import AlarmEnable from '../containers/AlarmEnable';
+import AlarmVolume from '../containers/AlarmVolume';
 import Theme from '../containers/Theme';
 import DarkMode from '../containers/DarkMode';
 import KeepAwake from '../containers/KeepAwake';
-import TimePicker from '../containers/TimePicker';
-import VolumePicker from '../containers/VolumePicker';
+import Picker from '../containers/Picker';
 import ThemePicker from '../containers/ThemePicker';
 import { Footer } from './Footer';
 
@@ -34,15 +33,14 @@ export const Menu = ({ colors }) => (
       <PauseEnable />
       <PauseButton />
       <Notification />
-      <SoundEnable />
-      <Volume />
+      <AlarmEnable />
+      <AlarmVolume />
       <KeepAwake />
       <Theme />
       <DarkMode />
       <Footer colors={colors} />
     </ScrollView>
-    <TimePicker />
-    <VolumePicker />
+    <Picker />
     <ThemePicker />
   </View>
 );

@@ -3,27 +3,18 @@ import { AppState } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
 export class Notification extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      appState: AppState.currentState,
-      notificationIsScheduled: false
-    };
-  }
+  state = { appState: AppState.currentState };
 
-  componentDidMount() {
+  componentDidMount = () =>
     AppState.addEventListener('change', this.handleAppStateChange);
-  }
 
-  componentWillUnmount() {
+  componentWillUnmount = () =>
     AppState.removeEventListener('change', this.handleAppStateChange);
-  }
 
   handleAppStateChange = nextAppState => {
-    if (nextAppState === 'active' && this.state.notificationIsScheduled) {
+    if (nextAppState === 'active') {
       console.log('canceling push notification');
       PushNotification.cancelLocalNotifications({ id: '31415' });
-      this.setState({ notificationIsScheduled: false });
     } else if (
       nextAppState === 'background' &&
       !this.props.isPaused &&
@@ -41,12 +32,9 @@ export class Notification extends React.Component {
         // smallIcon: 'ic_launcher',
         color: 'red'
       });
-      this.setState({ notificationIsScheduled: true });
     }
     this.setState({ appState: nextAppState });
   };
 
-  render() {
-    return null;
-  }
+  render = () => null;
 }

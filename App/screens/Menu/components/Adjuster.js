@@ -16,10 +16,7 @@ export const Adjuster = ({
   const buttonColor = disabled ? colors.disabledColor : colors.buttonColor;
 
   return (
-    <TouchableNativeFeedback
-      disabled={disabled}
-      onPress={() => onPress(value)}
-    >
+    <TouchableNativeFeedback disabled={disabled} onPress={() => onPress(value)}>
       <View style={[styles.rowView, colors.borderColor]}>
         <Text style={[styles.rowText, textColor]}>{label}:</Text>
         <View style={styles.adjusterView}>

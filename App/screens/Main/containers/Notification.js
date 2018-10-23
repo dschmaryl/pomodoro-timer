@@ -1,26 +1,12 @@
 import { connect } from 'react-redux';
 
-import {
-  toggleNotificationScheduled,
-  toggleNotificationClicked
-} from '../../../actions';
-
 import { Notification } from '../components/Notification';
 
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
   endTime: state.timer.endTime,
   sessionString: state.timer.sessionString,
-  notificationIsEnabled: state.settings.notificationIsEnabled,
-  // notificationIsScheduled: state.notification.notificationIsScheduled
+  notificationIsEnabled: state.settings.notificationIsEnabled
 });
 
-const mapDispatchToProps = dispatch => ({
-  // toggleNotificationScheduled: () => dispatch(toggleNotificationScheduled()),
-  // toggleNotificationClicked: () => dispatch(toggleNotificationClicked())
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Notification);
+export default connect(mapStateToProps)(Notification);

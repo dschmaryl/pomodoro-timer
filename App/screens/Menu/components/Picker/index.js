@@ -48,8 +48,6 @@ const Wrapper = ({ pickerVisible, hidePicker, colors, children }) => {
 
 export const Picker = ({
   pickerVisible,
-  data,
-  session,
   oldValue,
   setValue,
   hidePicker,
@@ -61,7 +59,9 @@ export const Picker = ({
     colors={colors}
   >
     <WheelPicker
-      data={data}
+      data={Array(100)
+        .fill()
+        .map((_, i) => '-  ' + (i + 1) + '  -')}
       isCurved
       isAtmospheric
       visibleItemCount={9}
@@ -70,7 +70,7 @@ export const Picker = ({
       itemTextSize={deviceWidth * 0.12}
       itemTextColor={colors.textColor.color}
       selectedItemTextColor={colors.buttonColor.color}
-      onItemSelected={itemValue => setValue(itemValue.position + 1, session)}
+      onItemSelected={itemValue => setValue(itemValue.position + 1)}
     />
     <TouchableNativeFeedback onPress={hidePicker}>
       <View style={styles.wheelButtonView} />

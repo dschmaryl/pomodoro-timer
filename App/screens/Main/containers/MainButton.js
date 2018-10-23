@@ -1,19 +1,19 @@
 import { connect } from 'react-redux';
 
-import { togglePaused, toggleSoundPlaying } from '../../../actions';
+import { togglePaused, toggleAlarmPlaying } from '../../../actions';
 
 import { MainButton } from '../components/MainButton';
 
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
-  soundIsPlaying: state.sound.soundIsPlaying,
+  alarmIsPlaying: state.timer.alarmIsPlaying,
   showPauseButton: state.settings.showPauseButton,
   colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
   togglePaused: () => dispatch(togglePaused()),
-  toggleSoundPlaying: () => dispatch(toggleSoundPlaying())
+  toggleAlarmPlaying: () => dispatch(toggleAlarmPlaying())
 });
 
 export default connect(

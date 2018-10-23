@@ -12,43 +12,29 @@ import Notification from '../containers/Notification';
 import { styles } from './styles';
 
 export class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { interval: null };
-  }
+  state = { interval: null };
 
-  componentDidMount() {
-    this.checkTimer(this.props);
-  }
+  componentDidMount = () => this.checkTimer(this.props);
 
-  componentWillReceiveProps(newProps) {
-    this.checkTimer(newProps);
-  }
+  componentWillReceiveProps = newProps => this.checkTimer(newProps);
 
-  componentWillUnmount() {
+  componentWillUnmount = () =>
     this.setState({ interval: clearInterval(this.state.interval) });
-  }
 
-  checkTimer(props) {
+  checkTimer = props => {
     if (!props.isPaused && !this.state.interval) {
       this.setState({ interval: setInterval(() => this.timerTick(), 5) });
-      if (props.soundIsPlaying) this.props.toggleSoundPlaying();
     } else if (props.isPaused && this.state.interval) {
       this.setState({ interval: clearInterval(this.state.interval) });
     }
-  }
+  };
 
-  finishTimer() {
-    if (this.props.soundIsEnabled) {
-      this.props.toggleSoundPlaying();
-    }
-    this.props.finishSession(this.props.pauseAtSessionEnd);
-  }
-
-  timerTick() {
+  timerTick = () => {
     const time = this.props.endTime - Date.now();
-    if (time < 1000) {
-      this.finishTimer();
+    if (time < 0) {
+      this.props.finishSession((finishedActive = false));
+    } else if (time < 1000) {
+      this.props.finishSession((finishedActive = true));
     } else {
       const minutes = Math.floor(time / 60000);
       const seconds = Math.floor((time % 60000) / 1000);
@@ -56,20 +42,18 @@ export class Main extends React.Component {
         this.props.updateTime(minutes, seconds);
       }
     }
-  }
+  };
 
-  render() {
-    return (
-      <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
-        <MenuButton />
-        <Session />
-        <Time />
-        <MainButton />
-        <Alarm />
-        <ScreenAwake />
-        <Notification />
-      </View>
-    );
-    // }
-  }
+  render = () => (
+    <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
+      <MenuButton />
+      <Session />
+      <Time />
+      <MainButton />
+      <Alarm />
+      <ScreenAwake />
+      <Notification />
+    </View>
+  );
+  // }
 }
