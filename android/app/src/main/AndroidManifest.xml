@@ -36,12 +36,12 @@
 
         <!-- added for notifications -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_name"
-                android:value="pomodorotimer"/>
+                    android:value="pomodoro-timer"/>
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_description"
                     android:value="Pomodoro Timer"/>
         <!-- Change the resource name to your App's accent color - or any other color you want -->
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
-                    android:resource="@android:color/white"/>
+                    android:resource="@android:color/red"/>
 
         <!-- < Only if you're using GCM or localNotificationSchedule() > -->
         <receiver

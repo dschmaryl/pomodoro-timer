@@ -14,16 +14,13 @@ export class Alarm extends React.Component {
       this.sound.setVolume(newProps.alarmVolume / 100);
 
     if (newProps.alarmIsPlaying) {
-      console.log('playing sound');
       this.sound.play(() => {
-        console.log('playing finished');
         this.props.toggleAlarmPlaying();
       });
     } else if (!newProps.alarmIsPlaying) {
-      console.log('stopping sound');
       this.sound.stop();
     }
-  }
+  };
 
   componentWillUnmount = () => this.sound.stop();
 
