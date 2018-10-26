@@ -8,7 +8,6 @@ export const settings = (
     tickIsEnabled: false,
     tickVolume: 50,
     keepScreenAwake: true,
-    showStart: true,
     firstRun: true
   },
   action
@@ -36,11 +35,8 @@ export const settings = (
     case 'TOGGLE_KEEP_SCREEN_AWAKE':
       return { ...state, keepScreenAwake: !state.keepScreenAwake };
 
-    case 'TOGGLE_SHOW_START':
-      return { ...state, showStart: !state.showStart };
-
-    case 'TOGGLE_FIRST_RUN':
-      return { ...state, firstRun: !state.firstRun };
+    case 'SET_FIRST_RUN_TO_FALSE':
+      return { ...state, firstRun: false };
 
     default:
       return state;

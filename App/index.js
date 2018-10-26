@@ -9,7 +9,6 @@ import storage from 'redux-persist/lib/storage';
 import { PersistGate } from 'redux-persist/integration/react';
 import rootReducer from './reducers';
 
-import Start from './screens/Start';
 import Menu from './screens/Menu';
 import Main from './screens/Main';
 
@@ -19,16 +18,15 @@ const store = createStore(
 );
 const persistor = persistStore(store);
 
-const { firstRun, showStart } = store.getState().settings;
+// persistor.purge();
 
 const RootStack = createStackNavigator(
   {
-    Start: { screen: Start },
     Menu: { screen: Menu },
     Main: { screen: Main }
   },
   {
-    initialRouteName: firstRun || showStart ? 'Start' : 'Main',
+    initialRouteName: 'Main',
     navigationOptions: { header: null },
     cardStyle: { backgroundColor: 'transparent' }
   }

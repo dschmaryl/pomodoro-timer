@@ -36,8 +36,7 @@ export const toggleAlarmEnabled = () => ({ type: 'TOGGLE_ALARM_ENABLED' });
 export const toggleKeepScreenAwake = () => ({
   type: 'TOGGLE_KEEP_SCREEN_AWAKE'
 });
-export const toggleShowStart = () => ({ type: 'TOGGLE_SHOW_START' });
-export const toggleFirstRun = () => ({ type: 'TOGGLE_FIRST_RUN' });
+export const setFirstRunToFalse = () => ({ type: 'SET_FIRST_RUN_TO_FALSE' });
 
 // theme
 export const showThemePicker = () => ({ type: 'SHOW_THEME_PICKER' });

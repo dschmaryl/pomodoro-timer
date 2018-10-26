@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import Start from '../containers/Start';
 import MenuButton from '../containers/MenuButton';
 import Session from '../containers/Session';
 import Time from '../containers/Time';
@@ -53,7 +54,7 @@ export class Main extends React.Component {
       <Alarm />
       <ScreenAwake />
       <Notification />
+      <Start />
     </View>
   );
-  // }
 }

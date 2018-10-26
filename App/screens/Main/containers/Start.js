@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 
-import { toggleFirstBoot } from '../../actions';
+import { setFirstRunToFalse } from '../../../actions';
 
-import { Start } from './Start';
+import { Start } from '../components/Start';
 
 const mapStateToProps = state => ({
-  firstBoot: state.settings.firstBoot,
+  firstRun: state.settings.firstRun,
   colors: state.theme.colors
 });
 
 mapDispatchToProps = dispatch => ({
-  toggleFirstBoot: () => dispatch(toggleFirstBoot())
+  setFirstRunToFalse: () => dispatch(setFirstRunToFalse())
 });
 
 export default connect(
