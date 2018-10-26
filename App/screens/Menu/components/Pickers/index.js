@@ -3,13 +3,13 @@ import {
   TouchableWithoutFeedback,
   TouchableNativeFeedback,
   TouchableOpacity,
-  View,
-  Text
+  View
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { WheelPicker } from 'react-native-wheel-picker-android';
 
 import { deviceWidth } from '../../../device';
+import { themes } from '../../../../themes';
 
 import { styles } from './styles';
 
@@ -46,7 +46,7 @@ const Wrapper = ({ pickerVisible, hidePicker, colors, children }) => {
   }
 };
 
-export const Picker = ({
+export const NumberPicker = ({
   pickerVisible,
   oldValue,
   setValue,
@@ -80,7 +80,7 @@ export const Picker = ({
 
 export const ThemePicker = ({
   themePickerVisible,
-  themeIndex,
+  currentThemeIndex,
   setTheme,
   hideThemePicker,
   colors
@@ -90,50 +90,21 @@ export const ThemePicker = ({
     hidePicker={hideThemePicker}
     colors={colors}
   >
-    <TouchableOpacity
-      onPress={() => {
-        setTheme(0), hideThemePicker();
-      }}
-      style={styles.themeButtonTouchable}
-    >
-      <Text
-        style={[
-          styles.themeButtonText,
-          themeIndex === 0 ? colors.buttonColor : colors.textColor
-        ]}
-      >
-        Cappuccino
-      </Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      onPress={() => {
-        setTheme(1), hideThemePicker();
-      }}
-      style={styles.themeButtonTouchable}
-    >
-      <Text
-        style={[
-          styles.themeButtonText,
-          themeIndex === 1 ? colors.buttonColor : colors.textColor
-        ]}
-      >
-        Solarized
-      </Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      onPress={() => {
-        setTheme(2), hideThemePicker();
-      }}
-      style={styles.themeButtonTouchable}
-    >
-      <Text
-        style={[
-          styles.themeButtonText,
-          themeIndex === 2 ? colors.buttonColor : colors.textColor
-        ]}
-      >
-        Monochrome
-      </Text>
-    </TouchableOpacity>
+    <WheelPicker
+      data={themes.map(theme => theme.name)}
+      isCyclic
+      isCurved
+      isAtmospheric
+      visibleItemCount={5}
+      selectedItemPosition={currentThemeIndex}
+      style={styles.wheelPicker}
+      itemTextSize={deviceWidth * 0.12}
+      itemTextColor={colors.textColor.color}
+      selectedItemTextColor={colors.buttonColor.color}
+      onItemSelected={itemValue => setTheme(itemValue.position)}
+    />
+    <TouchableNativeFeedback onPress={hideThemePicker}>
+      <View style={styles.wheelButtonView} />
+    </TouchableNativeFeedback>
   </Wrapper>
 );

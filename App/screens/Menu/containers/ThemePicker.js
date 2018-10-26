@@ -2,10 +2,10 @@ import { connect } from 'react-redux';
 
 import { setTheme, hideThemePicker } from '../../../actions';
 
-import { ThemePicker } from '../components/Picker';
+import { ThemePicker } from '../components/Pickers';
 
 const mapStateToProps = state => ({
-  themeIndex: state.theme.themeIndex,
+  currentThemeIndex: state.theme.themeIndex,
   themePickerVisible: state.picker.themePickerVisible,
   colors: state.theme.colors
 });

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { setPickerValue, hidePicker } from '../../../actions';
 
-import { Picker } from '../components/Picker';
+import { NumberPicker } from '../components/Pickers';
 
 const mapStateToProps = state => ({
   pickerVisible: state.picker.pickerVisible,
@@ -18,4 +18,4 @@ mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Picker);
+)(NumberPicker);
