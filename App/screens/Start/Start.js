@@ -14,7 +14,7 @@ export class Start extends React.Component {
     this.props.navigation.dispatch(
       StackActions.reset({
         index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'Timer' })]
+        actions: [NavigationActions.navigate({ routeName: 'Main' })]
       })
     );
   }

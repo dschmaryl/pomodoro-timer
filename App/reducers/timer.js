@@ -5,12 +5,12 @@ const longBreakState = { session: 'longBreak', sessionString: 'Long break' };
 const initialState = {
   ...focusState,
   pomodoro: 1,
-  focusTime: 1,
+  focusTime: 25,
   shortBreakTime: 5,
   longBreakTime: 15,
   endTime: null,
   timeLeft: null,
-  minutes: 1,
+  minutes: 25,
   seconds: 0,
   isPaused: true,
   alarmIsPlaying: false

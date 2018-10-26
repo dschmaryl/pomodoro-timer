@@ -8,7 +8,7 @@ export const settings = (
     tickIsEnabled: false,
     tickVolume: 50,
     keepScreenAwake: true,
-    showStart: false,
+    showStart: true,
     firstRun: true
   },
   action

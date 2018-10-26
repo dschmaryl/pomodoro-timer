@@ -19,9 +19,7 @@ const store = createStore(
 );
 const persistor = persistStore(store);
 
-// persistor.purge();
-
-const { firstBoot, showStart } = store.getState().settings;
+const { firstRun, showStart } = store.getState().settings;
 
 const RootStack = createStackNavigator(
   {
@@ -30,7 +28,7 @@ const RootStack = createStackNavigator(
     Main: { screen: Main }
   },
   {
-    initialRouteName: firstBoot || showStart ? 'Start' : 'Main',
+    initialRouteName: firstRun || showStart ? 'Start' : 'Main',
     navigationOptions: { header: null },
     cardStyle: { backgroundColor: 'transparent' }
   }
