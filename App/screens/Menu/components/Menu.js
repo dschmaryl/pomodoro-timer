@@ -12,6 +12,8 @@ import PauseButton from '../containers/PauseButton';
 import Notification from '../containers/Notification';
 import AlarmEnable from '../containers/AlarmEnable';
 import AlarmVolume from '../containers/AlarmVolume';
+import TickEnable from '../containers/TickEnable';
+import TickVolume from '../containers/TickVolume';
 import Theme from '../containers/Theme';
 import DarkMode from '../containers/DarkMode';
 import KeepAwake from '../containers/KeepAwake';
@@ -35,6 +37,8 @@ export const Menu = ({ colors }) => (
       <Notification />
       <AlarmEnable />
       <AlarmVolume />
+      <TickEnable />
+      <TickVolume />
       <KeepAwake />
       <Theme />
       <DarkMode />

@@ -7,6 +7,7 @@ import Session from '../containers/Session';
 import Time from '../containers/Time';
 import MainButton from '../containers/MainButton';
 import Alarm from '../containers/Alarm';
+import Tick from '../containers/Tick';
 import ScreenAwake from '../containers/ScreenAwake';
 import Notification from '../containers/Notification';
 
@@ -52,6 +53,7 @@ export class Main extends React.Component {
       <Time />
       <MainButton />
       <Alarm />
+      <Tick />
       <ScreenAwake />
       <Notification />
       <Start />

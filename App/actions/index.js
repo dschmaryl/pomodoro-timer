@@ -33,6 +33,7 @@ export const toggleNotificationEnabled = () => ({
   type: 'TOGGLE_NOTIFICATION_ENABLED'
 });
 export const toggleAlarmEnabled = () => ({ type: 'TOGGLE_ALARM_ENABLED' });
+export const toggleTickEnabled = () => ({ type: 'TOGGLE_TICK_ENABLED' });
 export const toggleKeepScreenAwake = () => ({
   type: 'TOGGLE_KEEP_SCREEN_AWAKE'
 });
