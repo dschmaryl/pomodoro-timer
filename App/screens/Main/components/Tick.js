@@ -2,7 +2,7 @@ import React from 'react';
 import Sound from 'react-native-sound';
 
 export class Tick extends React.Component {
-  state = { volume: 50, seconds: null };
+  state = { tickVolume: null, seconds: null };
 
   tick = new Sound('tick.mp3', null, error => {
     if (error) {
@@ -11,13 +11,23 @@ export class Tick extends React.Component {
     }
   });
 
-  componentWillReceiveProps = newProps => {
-    if (newProps.volume !== this.state.volume)
-      this.setState({ volume: newProps.volume }, () =>
-        this.tick.setVolume(newProps.tickVolume / 100)
-      );
+  componentDidMount = () =>
+    this.setState(
+      { tickVolume: this.props.tickVolume, seconds: this.props.seconds },
+      () => this.tick.setVolume(this.props.tickVolume / 100)
+    );
 
-    if (newProps.seconds !== this.state.seconds && newProps.tickIsEnabled) {
+  componentWillReceiveProps = newProps => {
+    if (newProps.tickVolume !== this.state.tickVolume) {
+      this.tick.setVolume(newProps.tickVolume / 100);
+      this.setState({ tickVolume: newProps.tickVolume });
+    }
+
+    if (
+      newProps.seconds !== this.state.seconds &&
+      !newProps.isPaused &&
+      newProps.tickIsEnabled
+    ) {
       this.tick.play();
       this.setState({ seconds: newProps.seconds });
     }
