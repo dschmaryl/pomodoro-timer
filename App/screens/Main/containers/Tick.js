@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import { Tick } from '../components/Tick';
 
 const mapStateToProps = state => ({
-  isPaused: state.timer.isPaused,
+  playTicks: !state.timer.isPaused && state.settings.tickIsEnabled,
   seconds: state.timer.seconds,
-  tickIsEnabled: state.settings.tickIsEnabled,
   tickVolume: state.settings.tickVolume
 });
 

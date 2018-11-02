@@ -25,24 +25,9 @@ export class Main extends React.Component {
 
   checkTimer = props => {
     if (!props.isPaused && !this.state.interval) {
-      this.setState({ interval: setInterval(() => this.timerTick(), 5) });
+      this.setState({ interval: setInterval(() => this.props.timerTick(), 1) });
     } else if (props.isPaused && this.state.interval) {
       this.setState({ interval: clearInterval(this.state.interval) });
-    }
-  };
-
-  timerTick = () => {
-    const time = this.props.endTime - Date.now();
-    if (time < 0) {
-      this.props.finishSession((finishedActive = false));
-    } else if (time < 1000) {
-      this.props.finishSession((finishedActive = true));
-    } else {
-      const minutes = Math.floor(time / 60000);
-      const seconds = Math.floor((time % 60000) / 1000);
-      if (seconds != this.props.seconds) {
-        this.props.updateTime(minutes, seconds);
-      }
     }
   };
 

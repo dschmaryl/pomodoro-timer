@@ -46,20 +46,37 @@ export const hideThemePicker = () => ({ type: 'HIDE_THEME_PICKER' });
 export const toggleDarkMode = () => ({ type: 'TOGGLE_DARK_MODE' });
 
 // timer
-export const updateTime = (minutes, seconds) => ({
-  type: 'UPDATE_TIME',
-  minutes,
-  seconds
-});
-export const finishSession = finishedActive => (dispatch, getState) => {
+export const timerTick = () => (dispatch, getState) => {
   const { pauseAtSessionEnd, alarmIsEnabled } = getState().settings;
-  return dispatch({
-    type: 'FINISH_SESSION',
-    isPaused: pauseAtSessionEnd,
-    currentTime: Date.now(),
-    alarmIsPlaying: alarmIsEnabled && finishedActive
-  });
+  const { endTime, seconds } = getState().timer;
+  const time = endTime - Date.now();
+  if (time < 0) {
+    return dispatch({
+      type: 'FINISH_SESSION',
+      isPaused: pauseAtSessionEnd,
+      currentTime: Date.now(),
+      alarmIsPlaying: false
+    });
+  } else if (time < 1000) {
+    return dispatch({
+      type: 'FINISH_SESSION',
+      isPaused: pauseAtSessionEnd,
+      currentTime: Date.now(),
+      alarmIsPlaying: alarmIsEnabled
+    });
+  } else {
+    const newMinutes = Math.floor(time / 60000);
+    const newSeconds = Math.floor((time % 60000) / 1000);
+    if (newSeconds != seconds) {
+      return dispatch({
+        type: 'UPDATE_TIME',
+        minutes: newMinutes,
+        seconds: newSeconds
+      });
+    }
+  }
 };
+
 export const nextSession = () => ({
   type: 'FINISH_SESSION',
   isPaused: true,

@@ -51,6 +51,23 @@ export const themes = [
     }
   },
   {
+    name: 'Lavender',
+    dark: {
+      backgroundColor: { backgroundColor: '#111111' },
+      borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
+      textColor: { color: '#d0c4df' },
+      buttonColor: { color: '#dcabdf' },
+      disabledColor: { color: 'rgba(255,255,255,0.2)' }
+    },
+    light: {
+      backgroundColor: { backgroundColor: '#dddfdf' },
+      borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
+      textColor: { color: '#c792df' },
+      buttonColor: { color: '#dcabdf' },
+      disabledColor: { color: 'rgba(0,0,0,0.2)' }
+    }
+  },
+  {
     name: 'Grape',
     dark: {
       backgroundColor: { backgroundColor: '#1f1a45' },
