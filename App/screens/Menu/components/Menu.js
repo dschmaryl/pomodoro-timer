@@ -17,7 +17,7 @@ import TickVolume from '../containers/TickVolume';
 import Theme from '../containers/Theme';
 import DarkMode from '../containers/DarkMode';
 import KeepAwake from '../containers/KeepAwake';
-import Picker from '../containers/Picker';
+import NumberPicker from '../containers/NumberPicker';
 import ThemePicker from '../containers/ThemePicker';
 import { Footer } from './Footer';
 
@@ -44,7 +44,7 @@ export const Menu = ({ colors }) => (
       <DarkMode />
       <Footer colors={colors} />
     </ScrollView>
-    <Picker />
+    <NumberPicker />
     <ThemePicker />
   </View>
 );
