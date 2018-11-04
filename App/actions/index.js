@@ -1,25 +1,61 @@
+import { themes } from '../themes';
+
 // picker
-export const showPicker = (valueType, oldValue) => ({
-  type: 'SHOW_PICKER',
-  valueType,
-  oldValue
-});
+export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
+  let data;
+  let visibleItemCount = 9;
+  let isCyclic = false;
+  let type = valueType.slice(-4);
+
+  if (type === 'Time') {
+    data = Array(99)
+      .fill()
+      .map((_, i) => '-  ' + (i + 1) + '  -');
+  } else if (type === 'lume') {
+    data = Array(100)
+      .fill()
+      .map((_, i) => '-  ' + (i + 1) + '  -');
+  } else {
+    data = themes.map(theme => theme.name);
+    visibleItemCount = 5;
+    isCyclic = true;
+  }
+
+  return dispatch({
+    type: 'SHOW_PICKER',
+    valueType,
+    data,
+    oldValue: type === 'heme' ? getState().theme.themeIndex : oldValue,
+    visibleItemCount,
+    selectedItemPosition:
+      type === 'heme' ? getState().theme.themeIndex : oldValue - 1,
+    isCyclic
+  });
+};
+
 export const setPickerValue = newValue => (dispatch, getState) => {
   const { valueType } = getState().picker;
-  if (valueType.slice(-4) === 'Time') {
+  const type = valueType.slice(-4);
+  if (type === 'Time') {
     return dispatch({
       type: 'SET_TIME',
       timeType: valueType,
-      newTime: newValue
+      newTime: newValue + 1
     });
-  } else {
+  } else if (type === 'lume') {
     return dispatch({
       type: 'SET_VOLUME',
       soundType: valueType,
-      volume: newValue
+      volume: newValue + 1
+    });
+  } else {
+    return dispatch({
+      type: 'SET_THEME',
+      themeIndex: newValue
     });
   }
 };
+
 export const hidePicker = () => ({ type: 'HIDE_PICKER' });
 
 //settings
@@ -38,11 +74,6 @@ export const toggleKeepScreenAwake = () => ({
   type: 'TOGGLE_KEEP_SCREEN_AWAKE'
 });
 export const setFirstRunToFalse = () => ({ type: 'SET_FIRST_RUN_TO_FALSE' });
-
-// theme
-export const showThemePicker = () => ({ type: 'SHOW_THEME_PICKER' });
-export const setTheme = themeIndex => ({ type: 'SET_THEME', themeIndex });
-export const hideThemePicker = () => ({ type: 'HIDE_THEME_PICKER' });
 export const toggleDarkMode = () => ({ type: 'TOGGLE_DARK_MODE' });
 
 // timer

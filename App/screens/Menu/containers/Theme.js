@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { showThemePicker } from '../../../actions';
+import { showPicker } from '../../../actions';
 
 import { Adjuster } from '../components/Adjuster'
 
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 mapDispatchToProps = dispatch => ({
-  onPress: () => dispatch(showThemePicker())
+  onPress: () => dispatch(showPicker('theme'))
 });
 
 export default connect(
