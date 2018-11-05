@@ -1,14 +1,4 @@
-export const picker = (
-  state = {
-    pickerVisible: false,
-    valueType: null,
-    data: null,
-    selectedItemPosition: null,
-    visibleItemCount: null,
-    isCyclic: false
-  },
-  action
-) => {
+export const picker = (state = { pickerVisible: false }, action) => {
   switch (action.type) {
     case 'SHOW_PICKER':
       return {
@@ -21,7 +11,7 @@ export const picker = (
       };
 
     case 'HIDE_PICKER':
-      return { ...state, pickerVisible: false };
+      return { pickerVisible: false };
 
     default:
       return state;

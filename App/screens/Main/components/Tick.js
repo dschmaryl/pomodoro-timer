@@ -12,16 +12,17 @@ export class Tick extends React.Component {
   });
 
   componentDidMount = () => {
-    this.setState(
-      { tickVolume: this.props.tickVolume, seconds: this.props.seconds },
-      () => this.tick.setVolume(this.props.tickVolume / 100)
-    );
+    this.setState({
+      tickVolume: this.props.tickVolume,
+      seconds: this.props.seconds
+    });
+    this.tick.setVolume(this.props.tickVolume / 100);
   };
 
   componentWillReceiveProps = newProps => {
     if (newProps.tickVolume !== this.state.tickVolume) {
-      this.tick.setVolume(newProps.tickVolume / 100);
       this.setState({ tickVolume: newProps.tickVolume });
+      this.tick.setVolume(newProps.tickVolume / 100);
     }
 
     if (newProps.playTicks && this.state.seconds !== newProps.seconds) {

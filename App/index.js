@@ -13,7 +13,10 @@ import Menu from './screens/Menu';
 import Main from './screens/Main';
 
 const store = createStore(
-  persistReducer({ key: 'root', storage }, rootReducer),
+  persistReducer(
+    { key: 'root', storage, blacklist: ['picker'] },
+    rootReducer
+  ),
   applyMiddleware(thunk)
 );
 const persistor = persistStore(store);

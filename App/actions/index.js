@@ -1,8 +1,5 @@
 import { themes } from '../themes';
 
-// appState
-export const toggleAppState = () => ({ type: 'TOGGLE_APP_STATE' });
-
 // picker
 export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
   let data;
@@ -126,3 +123,4 @@ export const togglePaused = () => ({
 });
 export const resetTime = () => ({ type: 'RESET_TIME' });
 export const toggleAlarmPlaying = () => ({ type: 'TOGGLE_ALARM_PLAYING' });
+export const toggleAppState = () => ({ type: 'TOGGLE_APP_STATE' });
