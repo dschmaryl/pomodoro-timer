@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { AppState } from 'react-native';
 
 import Start from '../containers/Start';
 import MenuButton from '../containers/MenuButton';
@@ -16,12 +17,25 @@ import { styles } from './styles';
 export class Main extends React.Component {
   state = { interval: null };
 
-  componentDidMount = () => this.checkTimer(this.props);
+  componentDidMount = () => {
+    AppState.addEventListener('change', this.handleAppStateChange);
+    this.checkTimer(this.props);
+  };
 
   componentWillReceiveProps = newProps => this.checkTimer(newProps);
 
-  componentWillUnmount = () =>
+  componentWillUnmount = () => {
     this.setState({ interval: clearInterval(this.state.interval) });
+    AppState.removeEventListener('change', this.handleAppStateChange);
+  };
+
+  handleAppStateChange = nextAppState => {
+    if (nextAppState === 'active' && !this.props.appIsActive) {
+      this.props.toggleAppState();
+    } else if (nextAppState === 'background' && this.props.appIsActive) {
+      this.props.toggleAppState();
+    }
+  };
 
   checkTimer = props => {
     if (!props.isPaused && !this.state.interval) {

@@ -1,11 +1,16 @@
 import { themes } from '../themes';
 
+// appState
+export const toggleAppState = () => ({ type: 'TOGGLE_APP_STATE' });
+
 // picker
 export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
   let data;
   let visibleItemCount = 9;
   let isCyclic = false;
   let type = valueType.slice(-4);
+  let selectedItemPosition =
+    type === 'heme' ? getState().theme.themeIndex : oldValue - 1;
 
   if (type === 'Time') {
     data = Array(99)
@@ -17,7 +22,7 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
       .map((_, i) => '-  ' + (i + 1) + '  -');
   } else {
     data = themes.map(theme => theme.name);
-    visibleItemCount = 5;
+    visibleItemCount = 7;
     isCyclic = true;
   }
 
@@ -25,10 +30,8 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
     type: 'SHOW_PICKER',
     valueType,
     data,
-    oldValue: type === 'heme' ? getState().theme.themeIndex : oldValue,
     visibleItemCount,
-    selectedItemPosition:
-      type === 'heme' ? getState().theme.themeIndex : oldValue - 1,
+    selectedItemPosition,
     isCyclic
   });
 };
