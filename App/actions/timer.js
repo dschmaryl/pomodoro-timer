@@ -36,28 +36,35 @@ const timerTick = (dispatch, getState) => {
 
 export const togglePaused = () => (dispatch, getState) => {
   const { isPaused } = getState().timer;
-
   if (isPaused) {
     timerInterval = setInterval(() => timerTick(dispatch, getState), 2);
   } else {
     clearInterval(timerInterval);
   }
-
   dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
 };
 
-export const nextSession = () => ({
-  type: 'FINISH_SESSION',
-  isPaused: true,
-  currentTime: Date.now()
-});
+export const nextSession = () => {
+  clearInterval(timerInterval);
+  return {
+    type: 'FINISH_SESSION',
+    isPaused: true,
+    currentTime: Date.now()
+  };
+};
 
-export const backOneSession = () => ({
-  type: 'BACK_ONE_SESSION',
-  currentTime: Date.now()
-});
+export const backOneSession = () => {
+  clearInterval(timerInterval);
+  return {
+    type: 'BACK_ONE_SESSION',
+    currentTime: Date.now()
+  };
+};
 
-export const resetTime = () => ({ type: 'RESET_TIME' });
+export const resetTime = () => {
+  clearInterval(timerInterval);
+  return { type: 'RESET_TIME' };
+};
 
 export const toggleAlarmPlaying = () => ({ type: 'TOGGLE_ALARM_PLAYING' });
 
@@ -68,6 +75,5 @@ export const setAppState = nextAppState => (dispatch, getState) => {
   } else if (nextAppState !== 'active') {
     clearInterval(timerInterval);
   }
-
   dispatch({ type: 'SET_APP_STATE', nextAppState });
 };
