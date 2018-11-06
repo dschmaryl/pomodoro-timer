@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleAlarmPlaying } from '../../../actions';
+import { toggleAlarmPlaying } from '../../../actions/timer';
 
 import { Alarm } from '../components/Alarm';
 

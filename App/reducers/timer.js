@@ -14,7 +14,7 @@ const initialState = {
   seconds: 0,
   isPaused: true,
   alarmIsPlaying: false,
-  appIsActive: true
+  appState: 'active'
 };
 
 const newSession = (newTime, currentTime, isPaused) => {
@@ -142,10 +142,10 @@ export const timer = (state = initialState, action) => {
     case 'TOGGLE_ALARM_PLAYING':
       return { ...state, alarmIsPlaying: !state.alarmIsPlaying };
 
-    case 'TOGGLE_APP_STATE':
+    case 'SET_APP_STATE':
       return {
         ...state,
-        appIsActive: !state.appIsActive,
+        appState: action.nextAppState,
         alarmIsPlaying: false
       };
 

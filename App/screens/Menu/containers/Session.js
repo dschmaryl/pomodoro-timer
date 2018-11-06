@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { nextSession, backOneSession } from '../../../actions';
+import { nextSession, backOneSession } from '../../../actions/timer';
 
 import { Session } from '../components/Session';
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { togglePauseAtSessionEnd } from '../../../actions';
+import { togglePauseAtSessionEnd } from '../../../actions/settings';
 
 import { Switcher } from '../components/Switcher';
 

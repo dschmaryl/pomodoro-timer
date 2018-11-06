@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setFirstRunToFalse } from '../../../actions';
+import { setFirstRunToFalse } from '../../../actions/settings';
 
 import { Start } from '../components/Start';
 

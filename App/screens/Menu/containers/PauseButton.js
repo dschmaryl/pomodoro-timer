@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleShowPauseButton } from '../../../actions';
+import { toggleShowPauseButton } from '../../../actions/settings';
 
 import { Switcher } from '../components/Switcher';
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleDarkMode } from '../../../actions';
+import { toggleDarkMode } from '../../../actions/settings';
 
 import { Switcher } from '../components/Switcher';
 

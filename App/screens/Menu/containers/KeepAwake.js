@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleKeepScreenAwake } from '../../../actions';
+import { toggleKeepScreenAwake } from '../../../actions/settings';
 
 import { Switcher } from '../components/Switcher';
 

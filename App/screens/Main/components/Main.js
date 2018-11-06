@@ -15,35 +15,15 @@ import Notification from '../containers/Notification';
 import { styles } from './styles';
 
 export class Main extends React.Component {
-  state = { interval: null };
-
   componentDidMount = () => {
+    this.props.setAppState('active');
     AppState.addEventListener('change', this.handleAppStateChange);
-    this.checkTimer(this.props);
   };
 
-  componentWillReceiveProps = newProps => this.checkTimer(newProps);
-
-  componentWillUnmount = () => {
-    this.setState({ interval: clearInterval(this.state.interval) });
+  componentWillUnmount = () =>
     AppState.removeEventListener('change', this.handleAppStateChange);
-  };
 
-  handleAppStateChange = nextAppState => {
-    if (nextAppState === 'active' && !this.props.appIsActive) {
-      this.props.toggleAppState();
-    } else if (nextAppState === 'background' && this.props.appIsActive) {
-      this.props.toggleAppState();
-    }
-  };
-
-  checkTimer = props => {
-    if (!props.isPaused && !this.state.interval) {
-      this.setState({ interval: setInterval(() => this.props.timerTick(), 1) });
-    } else if (props.isPaused && this.state.interval) {
-      this.setState({ interval: clearInterval(this.state.interval) });
-    }
-  };
+  handleAppStateChange = nextAppState => this.props.setAppState(nextAppState);
 
   render = () => (
     <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>

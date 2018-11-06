@@ -4,7 +4,7 @@ import {
   resetTime,
   togglePaused,
   toggleAlarmPlaying
-} from '../../../actions';
+} from '../../../actions/timer';
 
 import { Timer } from '../components/Timer';
 

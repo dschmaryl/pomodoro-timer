@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleAlarmEnabled } from '../../../actions';
+import { toggleAlarmEnabled } from '../../../actions/settings';
 
 import { Switcher } from '../components/Switcher';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Sound from 'react-native-sound';
 
 export class Tick extends React.Component {
-  state = { tickVolume: null, seconds: null };
+  state = { tickVolume: null, seconds: null, lastTick: null };
 
   tick = new Sound('sixtymin.mp3', null, error => {
     if (error) {
@@ -26,8 +26,10 @@ export class Tick extends React.Component {
     }
 
     if (newProps.playTicks && this.state.seconds !== newProps.seconds) {
-      this.tick.play();
-      this.setState({ seconds: newProps.seconds });
+      const currentTime = Date.now();
+      const tickGap = currentTime - this.state.lastTick;
+      if (tickGap < 100 || tickGap > 900) this.tick.play();
+      this.setState({ seconds: newProps.seconds, lastTick: currentTime });
     }
   };
 

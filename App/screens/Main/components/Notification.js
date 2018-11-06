@@ -2,15 +2,15 @@ import React from 'react';
 import PushNotification from 'react-native-push-notification';
 
 export class Notification extends React.Component {
-  state = { notificationIsScheduled: false };
+  state = { isScheduled: false };
 
   componentWillReceiveProps = newProps => {
-    if (newProps.appIsActive && this.state.notificationIsScheduled) {
+    if (newProps.appState === 'active' && this.state.isScheduled) {
       console.log('canceling push notification');
       PushNotification.cancelLocalNotifications({ id: '31415' });
-      this.setState({ notificationIsScheduled: false });
+      this.setState({ isScheduled: false });
     } else if (
-      !newProps.appIsActive &&
+      newProps.appState !== 'active' &&
       !newProps.isPaused &&
       newProps.notificationIsEnabled
     ) {
@@ -26,7 +26,7 @@ export class Notification extends React.Component {
         smallIcon: 'ic_launcher',
         color: 'red'
       });
-      this.setState({ notificationIsScheduled: true });
+      this.setState({ isScheduled: true });
     }
   };
 

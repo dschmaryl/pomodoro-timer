@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { toggleTickEnabled } from '../../../actions';
+import { toggleTickEnabled } from '../../../actions/settings';
 
 import { Switcher } from '../components/Switcher';
 

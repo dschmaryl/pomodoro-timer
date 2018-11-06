@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Notification } from '../components/Notification';
 
 const mapStateToProps = state => ({
-  appIsActive: state.timer.appIsActive,
+  appState: state.timer.appState,
   isPaused: state.timer.isPaused,
   endTime: state.timer.endTime,
   sessionString: state.timer.sessionString,

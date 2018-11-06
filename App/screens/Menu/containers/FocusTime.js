@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { showPicker } from '../../../actions';
+import { showPicker } from '../../../actions/picker';
 
 import { Adjuster } from '../components/Adjuster';
 
