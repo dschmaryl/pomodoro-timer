@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Modal,
   TouchableNativeFeedback,
   TouchableOpacity,
   TouchableWithoutFeedback,
@@ -21,45 +22,53 @@ export const Picker = ({
   onItemSelected,
   hidePicker,
   colors
-}) =>
-  !pickerVisible ? null : (
-    <View style={styles.pickerContainer}>
-      <TouchableWithoutFeedback onPress={hidePicker}>
-        <View
-          style={[
-            styles.pickerTranslucentLayer,
-            { backgroundColor: '#000000' }
-          ]}
-        />
-      </TouchableWithoutFeedback>
-      <View style={[styles.pickerView, colors.backgroundColor]}>
-        <WheelPicker
-          data={data}
-          isCyclic={isCyclic}
-          isCurved
-          isAtmospheric
-          visibleItemCount={visibleItemCount}
-          selectedItemPosition={selectedItemPosition}
-          style={styles.wheelPicker}
-          itemTextSize={deviceWidth * 0.12}
-          itemTextColor={colors.textColor.color}
-          selectedItemTextColor={colors.buttonColor.color}
-          onItemSelected={item => onItemSelected(item.position)}
-        />
-        <View style={styles.closeButtonContainer}>
-          <TouchableOpacity
-            onPress={hidePicker}
-            style={styles.closeButtonTouchable}
-          >
-            <Icon
-              name="md-close"
-              style={[styles.closeButtonIcon, colors.buttonColor]}
-            />
-          </TouchableOpacity>
+}) => (
+  <View style={styles.pickerContainer}>
+    <Modal
+      visible={pickerVisible}
+      animationType="fade"
+      transparent={true}
+      onRequestClose={hidePicker}
+    >
+      <View style={styles.pickerContainer}>
+        <TouchableWithoutFeedback onPress={hidePicker}>
+          <View
+            style={[
+              styles.pickerTranslucentLayer,
+              { backgroundColor: '#000000' }
+            ]}
+          />
+        </TouchableWithoutFeedback>
+        <View style={[styles.pickerView, colors.backgroundColor]}>
+          <WheelPicker
+            data={data}
+            isCyclic={isCyclic}
+            isCurved
+            isAtmospheric
+            visibleItemCount={visibleItemCount}
+            selectedItemPosition={selectedItemPosition}
+            style={styles.wheelPicker}
+            itemTextSize={deviceWidth * 0.12}
+            itemTextColor={colors.textColor.color}
+            selectedItemTextColor={colors.buttonColor.color}
+            onItemSelected={item => onItemSelected(item.position)}
+          />
+          <View style={styles.closeButtonContainer}>
+            <TouchableOpacity
+              onPress={hidePicker}
+              style={styles.closeButtonTouchable}
+            >
+              <Icon
+                name="md-close"
+                style={[styles.closeButtonIcon, colors.buttonColor]}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
+        <TouchableNativeFeedback onPress={hidePicker}>
+          <View style={styles.wheelButtonView} />
+        </TouchableNativeFeedback>
       </View>
-      <TouchableNativeFeedback onPress={hidePicker}>
-        <View style={styles.wheelButtonView} />
-      </TouchableNativeFeedback>
-    </View>
-  );
+    </Modal>
+  </View>
+);
