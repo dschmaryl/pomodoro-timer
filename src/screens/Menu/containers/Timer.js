@@ -9,8 +9,6 @@ import {
 import { Timer } from '../components/Timer';
 
 const mapStateToProps = state => ({
-  minutes: state.timer.minutes,
-  seconds: state.timer.seconds,
   isPaused: state.timer.isPaused,
   alarmIsPlaying: state.timer.alarmIsPlaying,
   colors: state.theme.colors

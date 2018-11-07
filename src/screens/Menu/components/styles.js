@@ -17,9 +17,27 @@ export const styles = StyleSheet.create({
   rowText: {
     fontSize: deviceWidth * 0.045
   },
-  timerText: {
-    paddingLeft: deviceWidth * 0.18,
-    fontSize: deviceWidth * 0.075
+
+  timeView: {
+    alignItems: 'center',
+    width: deviceWidth * 0.31333
+  },
+  timeText: {
+    fontSize: deviceWidth * 0.08
+  },
+
+  timerSideContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: deviceWidth * 0.31333
+  },
+
+  timerCenterContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: deviceWidth * 0.31333
   },
 
   // buttons

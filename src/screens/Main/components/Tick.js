@@ -25,15 +25,17 @@ export class Tick extends React.Component {
       this.tick.setVolume(newProps.tickVolume / 100);
     }
 
-    if (newProps.appState !== 'active') this.setState({ muteTick: true });
-
-    if (newProps.playTicks && this.state.seconds !== newProps.seconds) {
-      if (this.state.seconds === null) {
+    if (newProps.playTicks) {
+      if (newProps.appState !== 'active') {
+        // left app, mute first tick on return to prevent quick ticks
+        this.setState({ muteTick: true });
+      } else if (
+        this.state.seconds !== newProps.seconds &&
+        !this.state.muteTick
+      ) {
         this.tick.play();
-      } else if (!this.state.muteTick) {
-        this.tick.play();
+        this.setState({ seconds: newProps.seconds, muteTick: false });
       }
-      this.setState({ seconds: newProps.seconds, muteTick: false });
     }
   };
 

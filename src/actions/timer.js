@@ -7,6 +7,7 @@ const timerTick = (dispatch, getState) => {
     const { pauseAtSessionEnd, alarmIsEnabled } = getState().settings;
     if (pauseAtSessionEnd) clearInterval(timerInterval);
     if (time < 0) {
+      // app must have returned from not active, so no alarm
       return dispatch({
         type: 'FINISH_SESSION',
         isPaused: pauseAtSessionEnd,

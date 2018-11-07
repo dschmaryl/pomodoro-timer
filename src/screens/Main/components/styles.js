@@ -49,9 +49,15 @@ export const styles = StyleSheet.create({
   sessionText: {
     fontSize: deviceWidth * 0.1
   },
-  timerText: {
-    fontSize: deviceWidth * 0.25
+
+  timeView: {
+    alignItems: 'center',
+    width: deviceWidth * 0.6
   },
+  timeText: {
+    fontSize: (deviceWidth * 0.08) * 3
+  },
+
   mainButtonTouchable: {
     height: deviceWidth * 0.3,
     width: deviceWidth * 0.3,
