@@ -22,12 +22,11 @@ const timerTick = (dispatch, getState) => {
       });
     }
   } else {
-    const newMinutes = Math.floor(time / 60000);
     const newSeconds = Math.floor((time % 60000) / 1000);
     if (newSeconds != seconds) {
       return dispatch({
         type: 'UPDATE_TIME',
-        minutes: newMinutes,
+        minutes: Math.floor(time / 60000),
         seconds: newSeconds
       });
     }
