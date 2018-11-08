@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
 
   timeText: {
-    fontSize: makeSize(0.08)
+    fontSize: Math.floor(makeSize(0.077))
   },
 
   timerSideContainer: {

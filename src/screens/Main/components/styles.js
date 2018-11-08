@@ -50,12 +50,8 @@ export const styles = StyleSheet.create({
     fontSize: makeSize(0.1)
   },
 
-  timeView: {
-    alignItems: 'center',
-    width: makeSize(0.6)
-  },
   timeText: {
-    fontSize: makeSize(0.08) * 3
+    fontSize: makeSize(0.24)
   },
 
   mainButtonTouchable: {
