@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { deviceWidth, deviceHeight } from '../../device';
+import { makeSize } from '../../device';
 
 export const styles = StyleSheet.create({
   scrollView: {
@@ -10,65 +10,60 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: deviceHeight * 0.09,
-    paddingHorizontal: deviceWidth * 0.03,
+    height: makeSize(0.14),
+    paddingHorizontal: makeSize(0.03),
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   rowText: {
-    fontSize: deviceWidth * 0.045
+    fontSize: makeSize(0.045)
   },
 
-  timeView: {
-    alignItems: 'center',
-    width: deviceWidth * 0.31333
-  },
   timeText: {
-    fontSize: deviceWidth * 0.08
+    fontSize: makeSize(0.08)
   },
 
   timerSideContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: deviceWidth * 0.31333
+    width: makeSize(0.31333)
   },
 
   timerCenterContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    width: deviceWidth * 0.31333
+    alignItems: 'center'
   },
 
   // buttons
   touchable: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: deviceHeight * 0.08,
-    width: deviceWidth * 0.12
+    height: makeSize(0.12),
+    width: makeSize(0.12)
   },
   iconStyle: {
-    fontSize: deviceWidth * 0.07
+    fontSize: makeSize(0.07)
   },
   adjusterView: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    width: deviceWidth * 0.4
+    width: makeSize(0.4)
   },
   adjusterValueView: {
     alignItems: 'flex-end',
-    paddingRight: deviceWidth * 0.04
+    paddingRight: makeSize(0.04)
   },
 
   // switches
   switchView: {
-    marginRight: deviceWidth * 0.06
+    marginRight: makeSize(0.06)
   },
   switch: {
     transform: [
-      { scaleX: deviceWidth * 0.0034 },
-      { scaleY: deviceWidth * 0.0034 }
+      { scaleX: makeSize(0.0034) },
+      { scaleY: makeSize(0.0034) }
     ]
   }
 });

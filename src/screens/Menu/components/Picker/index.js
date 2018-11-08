@@ -9,7 +9,7 @@ import {
 import { WheelPicker } from 'react-native-wheel-picker-android';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { deviceWidth } from '../../../device';
+import { makeSize } from '../../../device';
 
 import { styles } from './styles';
 
@@ -48,7 +48,7 @@ export const Picker = ({
             visibleItemCount={visibleItemCount}
             selectedItemPosition={selectedItemPosition}
             style={styles.wheelPicker}
-            itemTextSize={deviceWidth * 0.12}
+            itemTextSize={makeSize(0.12)}
             itemTextColor={colors.textColor.color}
             selectedItemTextColor={colors.buttonColor.color}
             onItemSelected={item => onItemSelected(item.position)}

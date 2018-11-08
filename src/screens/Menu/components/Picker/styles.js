@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
 
-import { deviceWidth } from '../../../device';
+import { makeSize } from '../../../device';
 
-const pickerViewWidth = deviceWidth * 0.6;
+const pickerViewWidth = makeSize(0.6);
 
 export const styles = StyleSheet.create({
   pickerContainer: {
@@ -49,7 +49,7 @@ export const styles = StyleSheet.create({
   },
 
   closeButtonIcon: {
-    fontSize: deviceWidth * 0.07
+    fontSize: makeSize(0.07)
   },
 
   wheelButtonView: {
@@ -74,6 +74,6 @@ export const styles = StyleSheet.create({
   },
 
   themeButtonText: {
-    fontSize: deviceWidth * 0.046
+    fontSize: makeSize(0.046)
   }
 });
