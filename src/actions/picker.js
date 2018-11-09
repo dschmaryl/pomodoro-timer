@@ -4,22 +4,33 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
   let data;
   let visibleItemCount = 9;
   let isCyclic = false;
-  const typeSlice = valueType.slice(-4);
-  const selectedItemPosition =
-    typeSlice === 'heme' ? getState().theme.themeIndex : oldValue - 1;
+  let selectedItemPosition = oldValue - 1;
 
-  if (typeSlice === 'Time') {
-    data = Array(99)
-      .fill()
-      .map((_, i) => '-  ' + (i + 1) + '  -');
-  } else if (typeSlice === 'lume') {
-    data = Array(100)
-      .fill()
-      .map((_, i) => '-  ' + (i + 1) + '  -');
-  } else {
-    data = themes.map(theme => theme.name);
-    visibleItemCount = 7;
-    isCyclic = true;
+  switch (valueType) {
+    case 'focusTime' || 'shortBreakTime' || 'longBreakTime':
+      data = Array(99)
+        .fill()
+        .map((_, i) => '-  ' + (i + 1) + '  -');
+
+    case 'alarmVolume' || 'tickVolume':
+      data = Array(100)
+        .fill()
+        .map((_, i) => '-  ' + (i + 1) + '  -');
+
+    case 'alarmSound':
+      data = themes.map(theme => theme.name);
+      selectedItemPosition = getState().theme.themeIndex;
+      visibleItemCount = 7;
+      isCyclic = true;
+
+    case 'theme':
+      data = themes.map(theme => theme.name);
+      selectedItemPosition = getState().theme.themeIndex;
+      visibleItemCount = 7;
+      isCyclic = true;
+
+    default:
+      console.log('error in showPicker: unknown valuetype');
   }
 
   return dispatch({
@@ -34,24 +45,36 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
 
 export const setPickerValue = newValue => (dispatch, getState) => {
   const { valueType } = getState().picker;
-  const typeSlice = valueType.slice(-4);
-  if ( typeSlice === 'Time') {
-    return dispatch({
-      type: 'SET_TIME',
-      timeType: valueType,
-      newTime: newValue + 1
-    });
-  } else if (typeSlice === 'lume') {
-    return dispatch({
-      type: 'SET_VOLUME',
-      soundType: valueType,
-      volume: newValue + 1
-    });
-  } else {
-    return dispatch({
-      type: 'SET_THEME',
-      themeIndex: newValue
-    });
+
+  switch (valueType) {
+    case 'focusTime' || 'shortBreakTime' || 'longBreakTime':
+      return dispatch({
+        type: 'SET_TIME',
+        timeType: valueType,
+        newTime: newValue + 1
+      });
+
+    case 'alarmVolume' || 'tickVolume':
+      return dispatch({
+        type: 'SET_VOLUME',
+        soundType: valueType,
+        volume: newValue + 1
+      });
+
+    case 'alarmSound':
+      return dispatch({
+        type: 'SET_ALARM_SOUND',
+        alarmSound: newValue
+      });
+
+    case 'theme':
+      return dispatch({
+        type: 'SET_THEME',
+        themeIndex: newValue
+      });
+
+    default:
+      return null;
   }
 };
 
