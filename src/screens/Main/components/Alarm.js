@@ -1,37 +1,49 @@
 import React from 'react';
 import Sound from 'react-native-sound';
 
-export class Alarm extends React.Component {
-  state = { alarmVolume: null };
+import { sounds } from '../../../sounds';
 
-  alarm = new Sound('alarm.mp3', null, error => {
-    if (error) {
-      console.log('alarm sound error: ', error);
-      return;
-    }
-  });
+export class Alarm extends React.Component {
+  state = { alarmVolume: null, alarmSoundIndex: null };
+
+  alarms = sounds.alarmSounds.map(
+    alarmSound =>
+      new Sound(alarmSound.soundFile, null, error => {
+        if (error) {
+          console.log('alarm sound error: ', error);
+          return;
+        }
+      })
+  );
 
   componentDidMount = () => {
-    this.setState({ alarmVolume: this.props.alarmVolume });
-    this.alarm.setVolume(this.props.alarmVolume / 100);
+    this.setState({
+      alarmVolume: this.props.alarmVolume,
+      alarmSoundIndex: this.props.alarmSoundIndex
+    });
+    this.alarms[this.props.alarmSoundIndex].setVolume(
+      this.props.alarmVolume / 100
+    );
   };
 
   componentWillReceiveProps = newProps => {
     if (newProps.alarmVolume !== this.state.alarmVolume) {
       this.setState({ alarmVolume: newProps.alarmVolume });
-      this.alarm.setVolume(newProps.alarmVolume / 100);
+      this.alarms[newProps.alarmSoundIndex].setVolume(
+        newProps.alarmVolume / 100
+      );
     }
 
     if (newProps.alarmIsPlaying) {
-      this.alarm.play(() => {
+      this.alarms[newProps.alarmSoundIndex].play(() => {
         this.props.toggleAlarmPlaying();
       });
     } else if (!newProps.alarmIsPlaying) {
-      this.alarm.stop();
+      this.alarms[newProps.alarmSoundIndex].stop();
     }
   };
 
-  componentWillUnmount = () => this.alarm.stop();
+  componentWillUnmount = () => this.alarms.map(alarm => alarm.stop());
 
   render = () => null;
 }

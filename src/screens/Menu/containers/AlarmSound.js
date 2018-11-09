@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
+import { sounds } from '../../../sounds';
 import { showPicker } from '../../../actions/picker';
-
-import { Adjuster } from '../components/Adjuster'
+import { Adjuster } from '../components/Adjuster';
 
 const mapStateToProps = state => ({
   label: 'Alarm sound',
-  value: state.settings.alarmSound,
+  value: sounds.alarmSounds[state.settings.alarmSoundIndex].name,
   disabled: !state.settings.alarmIsEnabled,
   colors: state.settings.colors
 });

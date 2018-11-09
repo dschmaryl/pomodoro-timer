@@ -11,7 +11,6 @@ export const settings = (
     tickIsEnabled: false,
     tickVolume: 50,
     keepScreenAwake: true,
-    themeName: themes[0].name,
     themeIndex: 0,
     darkMode: true,
     colors: themes[0].dark,
@@ -51,7 +50,6 @@ export const settings = (
     case 'SET_THEME': {
       return {
         ...state,
-        themeName: themes[action.themeIndex].name,
         themeIndex: action.themeIndex,
         colors: themes[action.themeIndex][state.darkMode ? 'dark' : 'light']
       };
