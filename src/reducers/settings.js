@@ -10,6 +10,7 @@ export const settings = (
     alarmSoundIndex: 0,
     tickIsEnabled: false,
     tickVolume: 50,
+    tickSoundIndex: 0,
     keepScreenAwake: true,
     themeIndex: 0,
     darkMode: true,
