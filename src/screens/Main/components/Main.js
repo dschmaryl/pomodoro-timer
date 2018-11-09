@@ -29,11 +29,9 @@ export class Main extends React.Component {
     <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
       <MenuButton />
       <Session />
-      <View>
-        <Transition shared="time">
-          <Time textStyle={styles.timeText} />
-        </Transition>
-      </View>
+      <Transition shared="time">
+        <Time textStyle={styles.timeText} />
+      </Transition>
       <MainButton />
       <Alarm />
       <Tick />
