@@ -5,7 +5,7 @@ import { setAppState } from '../../../actions/timer';
 import { Main } from '../components/Main';
 
 const mapStateToProps = state => ({
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

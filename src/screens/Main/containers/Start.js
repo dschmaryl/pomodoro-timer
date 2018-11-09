@@ -6,7 +6,7 @@ import { Start } from '../components/Start';
 
 const mapStateToProps = state => ({
   firstRun: state.settings.firstRun,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

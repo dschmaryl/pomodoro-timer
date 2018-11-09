@@ -1,3 +1,5 @@
+import { themes } from '../themes';
+
 export const settings = (
   state = {
     pauseAtSessionEnd: true,
@@ -5,9 +7,14 @@ export const settings = (
     notificationIsEnabled: true,
     alarmIsEnabled: true,
     alarmVolume: 50,
+    alarmSoundIndex: 0,
     tickIsEnabled: false,
     tickVolume: 50,
     keepScreenAwake: true,
+    themeName: themes[0].name,
+    themeIndex: 0,
+    darkMode: true,
+    colors: themes[0].dark,
     firstRun: true
   },
   action
@@ -25,6 +32,9 @@ export const settings = (
     case 'TOGGLE_ALARM_ENABLED':
       return { ...state, alarmIsEnabled: !state.alarmIsEnabled };
 
+    case 'SET_ALARM_SOUND':
+      return { ...state, alarmSoundIndex: action.alarmSoundIndex };
+
     case 'TOGGLE_TICK_ENABLED':
       return { ...state, tickIsEnabled: !state.tickIsEnabled };
 
@@ -37,6 +47,24 @@ export const settings = (
 
     case 'TOGGLE_KEEP_SCREEN_AWAKE':
       return { ...state, keepScreenAwake: !state.keepScreenAwake };
+
+    case 'SET_THEME': {
+      return {
+        ...state,
+        themeName: themes[action.themeIndex].name,
+        themeIndex: action.themeIndex,
+        colors: themes[action.themeIndex][state.darkMode ? 'dark' : 'light']
+      };
+    }
+
+    case 'TOGGLE_DARK_MODE': {
+      const darkMode = !state.darkMode;
+      return {
+        ...state,
+        darkMode: darkMode,
+        colors: themes[state.themeIndex][darkMode ? 'dark' : 'light']
+      };
+    }
 
     case 'SET_FIRST_RUN_TO_FALSE':
       return { ...state, firstRun: false };

@@ -19,13 +19,13 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
 
     case 'alarmSound':
       data = themes.map(theme => theme.name);
-      selectedItemPosition = getState().theme.themeIndex;
+      selectedItemPosition = getState().settings.themeIndex;
       visibleItemCount = 7;
       isCyclic = true;
 
     case 'theme':
       data = themes.map(theme => theme.name);
-      selectedItemPosition = getState().theme.themeIndex;
+      selectedItemPosition = getState().settings.themeIndex;
       visibleItemCount = 7;
       isCyclic = true;
 

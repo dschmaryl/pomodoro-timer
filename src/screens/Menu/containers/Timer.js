@@ -11,7 +11,7 @@ import { Timer } from '../components/Timer';
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
   alarmIsPlaying: state.timer.alarmIsPlaying,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

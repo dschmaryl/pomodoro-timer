@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
   alarmIsPlaying: state.timer.alarmIsPlaying,
   showPauseButton: state.settings.showPauseButton,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

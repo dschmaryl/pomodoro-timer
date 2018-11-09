@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   label: 'Long break',
   value: state.timer.longBreakTime,
   valueLabel: 'min',
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

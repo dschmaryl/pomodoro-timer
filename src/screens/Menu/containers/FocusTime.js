@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   label: 'Focus time',
   value: state.timer.focusTime,
   valueLabel: 'min',
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

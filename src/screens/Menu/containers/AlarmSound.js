@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
   label: 'Alarm sound',
   value: state.settings.alarmSound,
   disabled: !state.settings.alarmIsEnabled,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

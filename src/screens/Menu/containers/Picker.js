@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
   selectedItemPosition: state.picker.selectedItemPosition,
   visibleItemCount: state.picker.visibleItemCount,
   isCyclic: state.picker.isCyclic,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

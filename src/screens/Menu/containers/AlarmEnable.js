@@ -7,7 +7,7 @@ import { Switcher } from '../components/Switcher';
 const mapStateToProps = state => ({
   label: 'Alarm sound enabled',
   isOn: state.settings.alarmIsEnabled,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

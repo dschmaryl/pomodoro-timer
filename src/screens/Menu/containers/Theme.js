@@ -6,8 +6,8 @@ import { Adjuster } from '../components/Adjuster'
 
 const mapStateToProps = state => ({
   label: 'Color theme',
-  value: state.theme.themeName,
-  colors: state.theme.colors
+  value: state.settings.themeName,
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

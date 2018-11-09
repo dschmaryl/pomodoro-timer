@@ -7,7 +7,7 @@ import { Switcher } from '../components/Switcher';
 const mapStateToProps = state => ({
   label: 'Pausable from main screen',
   isOn: state.settings.showPauseButton,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({

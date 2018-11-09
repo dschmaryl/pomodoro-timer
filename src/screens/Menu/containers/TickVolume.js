@@ -9,7 +9,7 @@ const mapStateToProps = state => ({
   value: state.settings.tickVolume,
   valueLabel: ' %',
   disabled: !state.settings.tickIsEnabled,
-  colors: state.theme.colors
+  colors: state.settings.colors
 });
 
 mapDispatchToProps = dispatch => ({
