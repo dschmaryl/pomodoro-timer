@@ -47,8 +47,8 @@ export const timer = (state = initialState, action) => {
         state.session === 'focus'
           ? state.focusTime
           : state.session === 'shortBreak'
-            ? state.shortBreakTime
-            : state.longBreakTime;
+          ? state.shortBreakTime
+          : state.longBreakTime;
       return {
         ...state,
         timeLeft: time * 60000,

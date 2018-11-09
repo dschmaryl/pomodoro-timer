@@ -29,12 +29,13 @@ export class Tick extends React.Component {
       if (newProps.appState !== 'active') {
         // left app, mute first tick on return to prevent quick ticks
         this.setState({ muteTick: true });
-      } else if (
-        this.state.seconds !== newProps.seconds &&
-        !this.state.muteTick
-      ) {
-        this.tick.play();
-        this.setState({ seconds: newProps.seconds, muteTick: false });
+      } else {
+        if (this.state.seconds !== newProps.seconds) {
+          if (!this.state.muteTick) {
+            this.tick.play();
+          }
+          this.setState({ seconds: newProps.seconds, muteTick: false });
+        }
       }
     }
   };
