@@ -72,7 +72,7 @@ export const setAppState = nextAppState => (dispatch, getState) => {
   const { isPaused } = getState().timer;
   if (nextAppState === 'active' && !isPaused) {
     timerInterval = setInterval(() => timerTick(dispatch, getState), 2);
-  } else if (nextAppState !== 'active') {
+  } else {
     clearInterval(timerInterval);
   }
   dispatch({ type: 'SET_APP_STATE', nextAppState });
