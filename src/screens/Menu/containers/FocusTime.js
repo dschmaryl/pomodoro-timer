@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
+import { getMin } from '../../../utils';
 import { showPicker } from '../../../actions/picker';
-
 import { Adjuster } from '../components/Adjuster';
 
 const mapStateToProps = state => ({
   label: 'Focus time',
-  value: state.timer.focusTime,
+  value: getMin(state.timer.focusTime),
   valueLabel: 'min',
   colors: state.settings.colors
 });

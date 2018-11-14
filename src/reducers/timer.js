@@ -1,3 +1,5 @@
+import { getMillisecs, getMinSecs } from '../utils';
+
 const focusState = { session: 'focus', sessionString: 'Focus' };
 const shortBreakState = { session: 'shortBreak', sessionString: 'Short break' };
 const longBreakState = { session: 'longBreak', sessionString: 'Long break' };
@@ -5,9 +7,9 @@ const longBreakState = { session: 'longBreak', sessionString: 'Long break' };
 const initialState = {
   ...focusState,
   pomodoro: 1,
-  focusTime: 25,
-  shortBreakTime: 5,
-  longBreakTime: 15,
+  focusTime: getMillisecs(25),
+  shortBreakTime: getMillisecs(5),
+  longBreakTime: getMillisecs(15),
   endTime: null,
   timeLeft: null,
   minutes: 25,
@@ -18,12 +20,14 @@ const initialState = {
 };
 
 const newSession = (newTime, currentTime, isPaused) => {
-  const timeLeft = newTime * 60000 + (isPaused ? 0 : 800);
+  const timeLeft = newTime + (isPaused ? 0 : 800);
+  const { minutes, seconds } = getMinSecs(timeLeft);
+
   return {
     endTime: currentTime + timeLeft,
     timeLeft: timeLeft,
-    minutes: newTime,
-    seconds: 0,
+    minutes,
+    seconds,
     isPaused: isPaused
   };
 };
@@ -33,11 +37,17 @@ export const timer = (state = initialState, action) => {
     case 'SET_TIME':
       switch (action.timeType) {
         case 'focusTime':
-          return { ...state, focusTime: action.newTime };
+          return { ...state, focusTime: getMillisecs(action.newTime) };
         case 'shortBreakTime':
-          return { ...state, shortBreakTime: action.newTime };
+          return {
+            ...state,
+            shortBreakTime: getMillisecs(action.newTime)
+          };
         case 'longBreakTime':
-          return { ...state, longBreakTime: action.newTime };
+          return {
+            ...state,
+            longBreakTime: getMillisecs(action.newTime)
+          };
         default:
           return state;
       }
@@ -49,11 +59,13 @@ export const timer = (state = initialState, action) => {
           : state.session === 'shortBreak'
           ? state.shortBreakTime
           : state.longBreakTime;
+      const { minutes, seconds } = getMinSecs(time);
+
       return {
         ...state,
-        timeLeft: time * 60000,
-        minutes: time,
-        seconds: 0,
+        timeLeft: time,
+        minutes,
+        seconds,
         isPaused: true
       };
 
@@ -121,7 +133,7 @@ export const timer = (state = initialState, action) => {
       if (state.isPaused) {
         const timeLeft = state.timeLeft
           ? state.timeLeft
-          : state.minutes * 60000 + state.seconds * 1000;
+          : getMillisecs(state.minutes, state.seconds);
         return {
           ...state,
           isPaused: false,

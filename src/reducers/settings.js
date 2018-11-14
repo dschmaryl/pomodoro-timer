@@ -12,9 +12,9 @@ export const settings = (
     tickVolume: 50,
     tickSoundIndex: 0,
     keepScreenAwake: true,
-    themeIndex: 0,
+    themeIndex: 1,
     darkMode: true,
-    colors: themes[0].dark,
+    colors: themes[1].dark,
     firstRun: true
   },
   action

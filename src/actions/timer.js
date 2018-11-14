@@ -1,3 +1,5 @@
+import { getMin, getSec } from '../utils';
+
 let timerInterval;
 
 const timerTick = (dispatch, getState) => {
@@ -23,11 +25,12 @@ const timerTick = (dispatch, getState) => {
       });
     }
   } else {
-    const newSeconds = Math.floor((time % 60000) / 1000);
+    // check to see if a full second has passed
+    const newSeconds = getSec(time);
     if (newSeconds != seconds) {
       return dispatch({
         type: 'UPDATE_TIME',
-        minutes: Math.floor(time / 60000),
+        minutes: getMin(time),
         seconds: newSeconds
       });
     }

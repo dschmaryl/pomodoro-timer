@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 
+import { getMin } from '../../../utils';
 import { showPicker } from '../../../actions/picker';
-
 import { Adjuster } from '../components/Adjuster';
 
 const mapStateToProps = state => ({
   label: 'Short break',
-  value: state.timer.shortBreakTime,
+  value: getMin(state.timer.shortBreakTime),
   valueLabel: 'min',
   colors: state.settings.colors
 });
