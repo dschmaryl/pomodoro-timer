@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   },
 
   timeText: {
-    fontSize: Math.floor(makeSize(0.077))
+    fontSize: makeSize(0.06)
   },
 
   timerSideContainer: {
@@ -61,9 +61,6 @@ export const styles = StyleSheet.create({
     marginRight: makeSize(0.06)
   },
   switch: {
-    transform: [
-      { scaleX: makeSize(0.0034) },
-      { scaleY: makeSize(0.0034) }
-    ]
+    transform: [{ scaleX: makeSize(0.0034) }, { scaleY: makeSize(0.0034) }]
   }
 });

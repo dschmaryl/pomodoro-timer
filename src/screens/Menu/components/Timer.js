@@ -1,6 +1,5 @@
 import React from 'react';
 import { View } from 'react-native';
-import { Transition } from 'react-navigation-fluid-transitions';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { Button } from './Button';
@@ -26,9 +25,7 @@ export const Timer = ({
       </Button>
     </View>
     <View style={styles.timerCenterContainer}>
-      <Transition shared="time">
-        <Time textStyle={styles.timeText} />
-      </Transition>
+      <Time textStyle={styles.timeText} />
     </View>
     <View style={styles.timerSideContainer}>
       <Button onPress={toggleAlarmPlaying} disabled={!alarmIsPlaying}>

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 
 import { setPickerValue, hidePicker } from '../../../actions/picker';
 
-import { Picker } from '../components/Picker';
+import { Picker } from '../components/Modals';
 
 const mapStateToProps = state => ({
   pickerVisible: state.picker.pickerVisible,

@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   },
   startContainer: {
     flex: 1,
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     bottom: 0,
     left: 0,
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
   },
 
   timeText: {
-    fontSize: makeSize(0.24)
+    fontSize: makeSize(0.26)
   },
 
   mainButtonTouchable: {

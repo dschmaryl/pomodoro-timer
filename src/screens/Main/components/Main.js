@@ -1,6 +1,5 @@
 import React from 'react';
 import { AppState, View } from 'react-native';
-import { Transition } from 'react-navigation-fluid-transitions';
 
 import Start from '../containers/Start';
 import MenuButton from '../containers/MenuButton';
@@ -29,9 +28,7 @@ export class Main extends React.Component {
     <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
       <MenuButton />
       <Session />
-      <Transition shared="time">
-        <Time textStyle={styles.timeText} />
-      </Transition>
+      <Time textStyle={styles.timeText} />
       <MainButton />
       <Alarm />
       <Tick />

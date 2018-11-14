@@ -11,16 +11,12 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
     case 'focusTime':
     case 'shortBreakTime':
     case 'longBreakTime':
-      data = Array(99)
-        .fill()
-        .map((_, i) => '-  ' + (i + 1) + '  -');
+      data = Array.from({ length: 99 }, (_, i) => '-  ' + (i + 1) + '  -');
       break;
 
     case 'alarmVolume':
     case 'tickVolume':
-      data = Array(100)
-        .fill()
-        .map((_, i) => '-  ' + (i + 1) + '  -');
+      data = Array.from({ length: 100 }, (_, i) => '-  ' + (i + 1) + '  -');
       break;
 
     case 'alarmSound':
