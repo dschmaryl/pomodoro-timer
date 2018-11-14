@@ -36,10 +36,10 @@ export const themes = [
   {
     name: 'Rose',
     dark: {
-      backgroundColor: { backgroundColor: '#111111' },
+      backgroundColor: { backgroundColor: '#000000' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
-      textColor: { color: '#c78989' },
-      buttonColor: { color: '#a14d4d' },
+      textColor: { color: '#eac3cf' },
+      buttonColor: { color: '#c26573' },
       disabledColor: { color: 'rgba(255,255,255,0.2)' }
     },
     light: {
@@ -53,17 +53,17 @@ export const themes = [
   {
     name: 'Lavender',
     dark: {
-      backgroundColor: { backgroundColor: '#111111' },
+      backgroundColor: { backgroundColor: '#000000' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
-      textColor: { color: '#d0c4df' },
-      buttonColor: { color: '#dcabdf' },
+      textColor: { color: '#dab5d7' },
+      buttonColor: { color: '#c27fb2' },
       disabledColor: { color: 'rgba(255,255,255,0.2)' }
     },
     light: {
-      backgroundColor: { backgroundColor: '#dddfdf' },
+      backgroundColor: { backgroundColor: '#ffffff' },
       borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
-      textColor: { color: '#c792df' },
-      buttonColor: { color: '#dcabdf' },
+      textColor: { color: '#7b5da5' },
+      buttonColor: { color: '#c27fb2' },
       disabledColor: { color: 'rgba(0,0,0,0.2)' }
     }
   },
@@ -89,15 +89,15 @@ export const themes = [
     dark: {
       backgroundColor: { backgroundColor: '#000000' },
       borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
-      textColor: { color: '#bbbbbb' },
-      buttonColor: { color: '#eeeeee' },
+      textColor: { color: '#aaaaaa' },
+      buttonColor: { color: '#555555' },
       disabledColor: { color: 'rgba(255,255,255,0.2)' }
     },
     light: {
       backgroundColor: { backgroundColor: '#eeeeee' },
       borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
-      textColor: { color: '#555555' },
-      buttonColor: { color: '#333333' },
+      textColor: { color: '#444444' },
+      buttonColor: { color: '#777777' },
       disabledColor: { color: 'rgba(0,0,0,0.2)' }
     }
   }
