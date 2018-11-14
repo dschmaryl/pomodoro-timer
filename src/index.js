@@ -1,5 +1,5 @@
 import React from 'react';
-import { createFluidNavigator } from 'react-navigation-fluid-transitions';
+import { createStackNavigator } from 'react-navigation';
 
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -21,13 +21,11 @@ const persistor = persistStore(store);
 
 // persistor.purge();
 
-const Navigator = createFluidNavigator(
+const Navigator = createStackNavigator(
+  { Main, Menu },
   {
-    Menu: { screen: Menu },
-    Main: { screen: Main }
-  },
-  {
-    initialRouteName: 'Main'
+    navigationOptions: { header: null },
+    cardStyle: { backgroundColor: 'transparent' }
   }
 );
 

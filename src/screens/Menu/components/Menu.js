@@ -18,7 +18,7 @@ import TickVolume from '../containers/TickVolume';
 import Theme from '../containers/Theme';
 import DarkMode from '../containers/DarkMode';
 import KeepAwake from '../containers/KeepAwake';
-import Picker from '../containers/Picker'
+import Picker from '../containers/Picker';
 import { Footer } from './Footer';
 
 import { styles } from './styles';
