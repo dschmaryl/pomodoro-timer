@@ -6,9 +6,8 @@ import { Picker } from '../components/Modals';
 
 const mapStateToProps = state => ({
   pickerVisible: state.picker.pickerVisible,
-  valueType: state.picker.valueType,
+  headerText: state.picker.headerText,
   data: state.picker.data,
-  oldValue: state.picker.oldValue,
   selectedItemPosition: state.picker.selectedItemPosition,
   visibleItemCount: state.picker.visibleItemCount,
   isCyclic: state.picker.isCyclic,

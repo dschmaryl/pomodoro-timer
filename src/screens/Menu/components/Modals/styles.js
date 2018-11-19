@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { makeSize } from '../../../device';
 
-const pickerViewWidth = makeSize(0.6);
+const pickerViewWidth = makeSize(0.8);
 
 export const styles = StyleSheet.create({
   pickerContainer: {
@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
+
   pickerTranslucentLayer: {
     flex: 1,
     position: 'absolute',
@@ -35,45 +36,46 @@ export const styles = StyleSheet.create({
     width: pickerViewWidth
   },
 
-  closeButtonContainer: {
-    position: 'absolute',
-    top: 0,
-    right: 0
-  },
-
-  closeButtonTouchable: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: pickerViewWidth * 0.2,
-    width: pickerViewWidth * 0.2
-  },
-
-  closeButtonIcon: {
-    fontSize: makeSize(0.07)
-  },
-
-  wheelButtonView: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: pickerViewWidth * 0.2,
-    width: pickerViewWidth * 0.2
+  headerText: {
+    fontFamily: 'Cookie-Regular',
+    fontSize: pickerViewWidth * 0.13,
+    paddingTop: pickerViewWidth * 0.08,
+    paddingBottom: pickerViewWidth * 0.06
   },
 
   wheelPicker: {
-    width: pickerViewWidth,
-    height: pickerViewWidth * 0.9
+    height: pickerViewWidth * 0.5,
+    width: pickerViewWidth * 0.9
   },
 
-  themeButtonTouchable: {
+  timePickerWheelContainer: {
+    width: pickerViewWidth,
+    flexDirection: 'row',
     justifyContent: 'center',
-    width: pickerViewWidth,
-    height: pickerViewWidth * 0.26,
-    paddingTop: pickerViewWidth * 0.05,
-    paddingLeft: pickerViewWidth * 0.18
+    alignItems: 'center'
   },
 
-  themeButtonText: {
-    fontSize: makeSize(0.046)
+  timePickerWheel: {
+    height: pickerViewWidth * 0.5,
+    width: pickerViewWidth * 0.38
+  },
+
+  pickerColon: {
+    fontSize: pickerViewWidth * 0.14,
+    paddingBottom: pickerViewWidth * 0.045,
+    marginLeft: -pickerViewWidth * 0.06,
+    marginRight: -pickerViewWidth * 0.06
+  },
+
+  doneButtonTouchable: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: pickerViewWidth * 0.3,
+    width: pickerViewWidth * 0.3,
+    paddingBottom: pickerViewWidth * 0.02
+  },
+
+  doneButtonIcon: {
+    fontSize: pickerViewWidth * 0.18
   }
 });

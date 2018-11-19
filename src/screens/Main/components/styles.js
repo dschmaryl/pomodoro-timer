@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   menuButtonIcon: {
-    fontSize: makeSize(0.12)
+    fontSize: makeSize(0.14)
   },
   sessionView: {
     alignItems: 'center',

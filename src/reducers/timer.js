@@ -37,17 +37,11 @@ export const timer = (state = initialState, action) => {
     case 'SET_TIME':
       switch (action.timeType) {
         case 'focusTime':
-          return { ...state, focusTime: getMillisecs(action.newTime) };
+          return { ...state, focusTime: action.newTime };
         case 'shortBreakTime':
-          return {
-            ...state,
-            shortBreakTime: getMillisecs(action.newTime)
-          };
+          return { ...state, shortBreakTime: action.newTime };
         case 'longBreakTime':
-          return {
-            ...state,
-            longBreakTime: getMillisecs(action.newTime)
-          };
+          return { ...state, longBreakTime: action.newTime };
         default:
           return state;
       }

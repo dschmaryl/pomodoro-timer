@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Modal,
   Text,
-  TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
   View
@@ -10,23 +9,29 @@ import {
 import { WheelPicker } from 'react-native-wheel-picker-android';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import { getMinSecs } from '../../../../utils';
 import { makeSize } from '../../../device';
 
 import { styles } from './styles';
 
 export const TimePicker = ({
-  pickerVisible,
-  data,
-  visibleItemCount,
-  selectedItemPosition,
-  isCyclic,
-  onItemSelected,
+  timePickerVisible,
+  sessionType,
+  oldTime,
+  setMinutes,
+  setSeconds,
   hidePicker,
   colors
-}) => (
-  <View style={styles.pickerContainer}>
+}) => {
+  const { minutes, seconds } = getMinSecs(oldTime);
+  const minutesData = Array.from({ length: 99 }, (_, i) => i + 1);
+  const secondsData = Array.from({ length: 60 }, (_, i) =>
+    i < 10 ? '0' + i : '' + i
+  );
+
+  return (
     <Modal
-      visible={pickerVisible}
+      visible={timePickerVisible}
       animationType="fade"
       transparent={true}
       onRequestClose={hidePicker}
@@ -41,57 +46,58 @@ export const TimePicker = ({
           />
         </TouchableWithoutFeedback>
         <View style={[styles.pickerView, colors.backgroundColor]}>
-          <Text>Focus</Text>
-          <TextInput
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
-          />
-          <View style={styles.pickerWheelContainer}>
-            <WheelPicker
-              data={data}
-              isCyclic={isCyclic}
-              isCurved
-              isAtmospheric
-              visibleItemCount={visibleItemCount}
-              selectedItemPosition={selectedItemPosition}
-              // style={styles.wheelPicker}
-              style={{ height: makeSize(0.4), width: makeSize(0.14) }}
-              itemTextSize={makeSize(0.12)}
-              itemTextColor={colors.textColor.color}
-              selectedItemTextColor={colors.buttonColor.color}
-              onItemSelected={item => onItemSelected(item.position)}
-            />
-            <Text>min</Text>
-            <WheelPicker
-              data={data}
-              isCyclic={isCyclic}
-              isCurved
-              isAtmospheric
-              visibleItemCount={visibleItemCount}
-              selectedItemPosition={selectedItemPosition}
-              // style={styles.wheelPicker}
-              style={{ height: makeSize(0.4), width: makeSize(0.14) }}
-              itemTextSize={makeSize(0.12)}
-              itemTextColor={colors.textColor.color}
-              selectedItemTextColor={colors.buttonColor.color}
-              onItemSelected={item => onItemSelected(item.position)}
-            />
-            <Text>sec</Text>
-          </View>
+          <Text style={[styles.headerText, colors.textColor]}>
+            {sessionType === 'focusTime'
+              ? 'Focus time length'
+              : sessionType === 'shortBreakTime'
+              ? 'Short break length'
+              : 'Long break length'}
+          </Text>
 
-          <View style={styles.doneButtonContainer}>
-            <TouchableOpacity
-              onPress={hidePicker}
-              style={styles.doneButtonTouchable}
+          <View style={styles.timePickerWheelContainer}>
+            <WheelPicker
+              data={minutesData}
+              isCurved
+              isAtmospheric
+              visibleItemCount={5}
+              selectedItemPosition={minutes - 1}
+              style={styles.timePickerWheel}
+              itemTextSize={makeSize(0.28)}
+              itemTextColor={colors.textColor.color}
+              selectedItemTextColor={colors.buttonColor.color}
+              onItemSelected={item => setMinutes(item.position + 1)}
+            />
+            <Text
+              style={[styles.pickerColon, { color: colors.buttonColor.color }]}
             >
-              <Icon
-                name="md-checkmark"
-                style={[styles.doneButtonIcon, colors.buttonColor]}
-              />
-            </TouchableOpacity>
+              :
+            </Text>
+            <WheelPicker
+              data={secondsData}
+              isCurved
+              isCyclic
+              isAtmospheric
+              visibleItemCount={5}
+              selectedItemPosition={seconds}
+              style={styles.timePickerWheel}
+              itemTextSize={makeSize(0.28)}
+              itemTextColor={colors.textColor.color}
+              selectedItemTextColor={colors.buttonColor.color}
+              onItemSelected={item => setSeconds(item.position)}
+            />
           </View>
-        </View>
 
+          <TouchableOpacity
+            onPress={hidePicker}
+            style={styles.doneButtonTouchable}
+          >
+            <Icon
+              name="md-checkmark"
+              style={[styles.doneButtonIcon, colors.buttonColor]}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </Modal>
-  </View>
-);
+  );
+};

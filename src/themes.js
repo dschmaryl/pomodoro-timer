@@ -34,6 +34,23 @@ export const themes = [
     }
   },
   {
+    name: 'Olive',
+    dark: {
+      backgroundColor: { backgroundColor: '#111111' },
+      borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
+      textColor: { color: '#b7c656' },
+      buttonColor: { color: '#637713' },
+      disabledColor: { color: 'rgba(255,255,255,0.2)' }
+    },
+    light: {
+      backgroundColor: { backgroundColor: '#f2f2f2' },
+      borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
+      textColor: { color: '#3d4324' },
+      buttonColor: { color: '#637713' },
+      disabledColor: { color: 'rgba(0,0,0,0.2)' }
+    }
+  },
+  {
     name: 'Rose',
     dark: {
       backgroundColor: { backgroundColor: '#000000' },

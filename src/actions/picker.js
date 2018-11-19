@@ -1,35 +1,63 @@
 import { sounds } from '../sounds';
 import { themes } from '../themes';
 
+import { getMin, getSec, getMillisecs } from '../utils';
+
+export const showTimePicker = sessionType => (dispatch, getState) => {
+  const oldTime = getState().timer[sessionType];
+
+  return dispatch({ type: 'SHOW_TIME_PICKER', sessionType, oldTime });
+};
+
+export const setMinutes = newValue => (dispatch, getState) => {
+  const { sessionType } = getState().picker;
+  let seconds = getSec(getState().timer[sessionType]);
+
+  return dispatch({
+    type: 'SET_TIME',
+    timeType: sessionType,
+    newTime: getMillisecs(newValue, seconds)
+  });
+};
+
+export const setSeconds = newValue => (dispatch, getState) => {
+  const { sessionType } = getState().picker;
+  let minutes = getMin(getState().timer[sessionType]);
+
+  return dispatch({
+    type: 'SET_TIME',
+    timeType: sessionType,
+    newTime: getMillisecs(minutes, newValue)
+  });
+};
+
 export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
   let data;
-  let visibleItemCount = 9;
+  let headerText;
+  let visibleItemCount = 7;
   let isCyclic = false;
   let selectedItemPosition = oldValue - 1;
 
   switch (valueType) {
-    case 'focusTime':
-    case 'shortBreakTime':
-    case 'longBreakTime':
-      data = Array.from({ length: 99 }, (_, i) => '-  ' + (i + 1) + '  -');
-      break;
-
     case 'alarmVolume':
     case 'tickVolume':
       data = Array.from({ length: 100 }, (_, i) => '-  ' + (i + 1) + '  -');
+      headerText = valueType === 'alarmVolume' ? 'Alarm volume' : 'Tick volume';
       break;
 
     case 'alarmSound':
       data = sounds.alarmSounds.map(sound => sound.name);
+      headerText = 'Alarm sound';
       selectedItemPosition = getState().settings.alarmSoundIndex;
-      visibleItemCount = 7;
+      visibleItemCount = 5;
       isCyclic = true;
       break;
 
     case 'theme':
       data = themes.map(theme => theme.name);
+      headerText = 'Color Theme';
       selectedItemPosition = getState().settings.themeIndex;
-      visibleItemCount = 7;
+      visibleItemCount = 5;
       isCyclic = true;
       break;
 
@@ -41,6 +69,7 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
   return dispatch({
     type: 'SHOW_PICKER',
     valueType,
+    headerText,
     data,
     visibleItemCount,
     selectedItemPosition,
@@ -52,15 +81,6 @@ export const setPickerValue = newValue => (dispatch, getState) => {
   const { valueType } = getState().picker;
 
   switch (valueType) {
-    case 'focusTime':
-    case 'shortBreakTime':
-    case 'longBreakTime':
-      return dispatch({
-        type: 'SET_TIME',
-        timeType: valueType,
-        newTime: newValue + 1
-      });
-
     case 'alarmVolume':
     case 'tickVolume':
       return dispatch({
