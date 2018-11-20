@@ -1,5 +1,22 @@
 export const themes = [
   {
+    name: 'Monochrome',
+    dark: {
+      backgroundColor: { backgroundColor: '#000000' },
+      borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
+      textColor: { color: '#aaaaaa' },
+      buttonColor: { color: '#555555' },
+      disabledColor: { color: 'rgba(255,255,255,0.2)' }
+    },
+    light: {
+      backgroundColor: { backgroundColor: '#eeeeee' },
+      borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
+      textColor: { color: '#444444' },
+      buttonColor: { color: '#777777' },
+      disabledColor: { color: 'rgba(0,0,0,0.2)' }
+    }
+  },
+  {
     name: 'Cappuccino',
     dark: {
       backgroundColor: { backgroundColor: '#3c2f2f' },
@@ -98,23 +115,6 @@ export const themes = [
       borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
       textColor: { color: '#303876' },
       buttonColor: { color: '#367a8d' },
-      disabledColor: { color: 'rgba(0,0,0,0.2)' }
-    }
-  },
-  {
-    name: 'Monochrome',
-    dark: {
-      backgroundColor: { backgroundColor: '#000000' },
-      borderColor: { borderColor: 'rgba(255,255,255,0.2)' },
-      textColor: { color: '#aaaaaa' },
-      buttonColor: { color: '#555555' },
-      disabledColor: { color: 'rgba(255,255,255,0.2)' }
-    },
-    light: {
-      backgroundColor: { backgroundColor: '#eeeeee' },
-      borderColor: { borderColor: 'rgba(0,0,0,0.2)' },
-      textColor: { color: '#444444' },
-      buttonColor: { color: '#777777' },
       disabledColor: { color: 'rgba(0,0,0,0.2)' }
     }
   }

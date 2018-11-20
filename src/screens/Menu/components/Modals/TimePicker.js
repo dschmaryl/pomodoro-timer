@@ -24,7 +24,7 @@ export const TimePicker = ({
   colors
 }) => {
   const { minutes, seconds } = getMinSecs(oldTime);
-  const minutesData = Array.from({ length: 99 }, (_, i) => i + 1);
+  const minutesData = Array.from({ length: 100 }, (_, i) => i);
   const secondsData = Array.from({ length: 60 }, (_, i) =>
     i < 10 ? '0' + i : '' + i
   );
@@ -60,12 +60,12 @@ export const TimePicker = ({
               isCurved
               isAtmospheric
               visibleItemCount={5}
-              selectedItemPosition={minutes - 1}
+              selectedItemPosition={minutes}
               style={styles.timePickerWheel}
-              itemTextSize={makeSize(0.28)}
+              itemTextSize={makeSize(0.27)}
               itemTextColor={colors.textColor.color}
               selectedItemTextColor={colors.buttonColor.color}
-              onItemSelected={item => setMinutes(item.position + 1)}
+              onItemSelected={item => setMinutes(item.position)}
             />
             <Text
               style={[styles.pickerColon, { color: colors.buttonColor.color }]}
@@ -80,7 +80,7 @@ export const TimePicker = ({
               visibleItemCount={5}
               selectedItemPosition={seconds}
               style={styles.timePickerWheel}
-              itemTextSize={makeSize(0.28)}
+              itemTextSize={makeSize(0.27)}
               itemTextColor={colors.textColor.color}
               selectedItemTextColor={colors.buttonColor.color}
               onItemSelected={item => setSeconds(item.position)}

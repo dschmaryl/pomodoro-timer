@@ -62,9 +62,9 @@ export const styles = StyleSheet.create({
 
   pickerColon: {
     fontSize: pickerViewWidth * 0.14,
-    paddingBottom: pickerViewWidth * 0.045,
-    marginLeft: -pickerViewWidth * 0.06,
-    marginRight: -pickerViewWidth * 0.06
+    paddingBottom: pickerViewWidth * 0.042,
+    marginLeft: -pickerViewWidth * 0.08,
+    marginRight: -pickerViewWidth * 0.08
   },
 
   doneButtonTouchable: {
