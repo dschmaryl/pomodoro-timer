@@ -1,17 +1,17 @@
 import { StyleSheet } from 'react-native';
 
-import { makeSize } from '../../../device';
+import { scaleSize, scaleFont } from '../../../device';
 
 export const styles = StyleSheet.create({
   headerView: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: makeSize(0.05),
-    paddingBottom: makeSize(0.03),
+    paddingTop: scaleSize(0.05),
+    paddingBottom: scaleSize(0.03),
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   headerText: {
-    fontSize: makeSize(0.14),
+    fontSize: scaleFont(46),
     fontFamily: 'Cookie-Regular'
   }
 });

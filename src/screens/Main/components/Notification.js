@@ -16,13 +16,13 @@ export class Notification extends React.Component {
     ) {
       console.log('scheduling push notification');
       PushNotification.localNotificationSchedule({
-        // channelName: 'rn-push-notification-channel',
         id: '31415',
         title: 'Pomodoro Timer',
         message: newProps.sessionString + ' time is up!',
         date: new Date(newProps.endTime),
-        vibrate: false,
-        soundName: 'alarm.mp3',
+        vibrate: true,
+        vibration: 300,
+        soundName: 'ding_once.wav',
         smallIcon: 'ic_launcher',
         color: 'red'
       });

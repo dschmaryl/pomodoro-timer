@@ -1,5 +1,11 @@
-import { Dimensions } from 'react-native';
+import { Dimensions, PixelRatio } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
+const fontScaler = (height > width ? width : height) / 360;
 
-export const makeSize = size => (size * width * height) / 650;
+export const scaleSize = size => size * (height > width ? width : height);
+
+export const scaleFont = fontSize => fontSize * fontScaler;
+
+export const scaleFontWithPixelRatio = fontSize =>
+  fontSize * fontScaler * PixelRatio.get();

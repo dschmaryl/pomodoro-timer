@@ -38,11 +38,10 @@ const timerTick = (dispatch, getState) => {
 };
 
 export const togglePaused = () => (dispatch, getState) => {
+  clearInterval(timerInterval);
   const { isPaused } = getState().timer;
   if (isPaused) {
     timerInterval = setInterval(() => timerTick(dispatch, getState), 2);
-  } else {
-    clearInterval(timerInterval);
   }
   dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
 };

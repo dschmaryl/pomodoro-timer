@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { makeSize } from '../../../device';
+import { scaleSize, scaleFont } from '../../../device';
 
-const pickerViewWidth = makeSize(0.8);
+const pickerViewWidth = scaleSize(0.8);
 
 export const styles = StyleSheet.create({
-  pickerContainer: {
+  modalContainer: {
     flex: 1,
     position: 'absolute',
     top: 0,
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
-  pickerTranslucentLayer: {
+  modalTranslucentLayer: {
     flex: 1,
     position: 'absolute',
     top: 0,
@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
 
   headerText: {
     fontFamily: 'Cookie-Regular',
-    fontSize: pickerViewWidth * 0.13,
+    fontSize: scaleFont(40),
     paddingTop: pickerViewWidth * 0.08,
     paddingBottom: pickerViewWidth * 0.06
   },
@@ -48,21 +48,21 @@ export const styles = StyleSheet.create({
     width: pickerViewWidth * 0.9
   },
 
-  timePickerWheelContainer: {
+  timeWheelPickerContainer: {
     width: pickerViewWidth,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center'
   },
 
-  timePickerWheel: {
+  timeWheelPicker: {
     height: pickerViewWidth * 0.5,
     width: pickerViewWidth * 0.38
   },
 
-  pickerColon: {
-    fontSize: pickerViewWidth * 0.14,
-    paddingBottom: pickerViewWidth * 0.042,
+  timeColon: {
+    fontSize: scaleFont(38),
+    paddingBottom: pickerViewWidth * 0.036,
     marginLeft: -pickerViewWidth * 0.08,
     marginRight: -pickerViewWidth * 0.08
   },
@@ -71,11 +71,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: pickerViewWidth * 0.3,
-    width: pickerViewWidth * 0.3,
-    paddingBottom: pickerViewWidth * 0.02
+    width: pickerViewWidth * 0.3
   },
 
   doneButtonIcon: {
-    fontSize: pickerViewWidth * 0.18
+    fontSize: scaleFont(56)
   }
 });

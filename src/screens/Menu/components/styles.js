@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { makeSize } from '../../device';
+import { scaleSize, scaleFont } from '../../device';
 
 export const styles = StyleSheet.create({
   scrollView: {
@@ -10,23 +10,23 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    height: makeSize(0.14),
-    paddingHorizontal: makeSize(0.03),
+    height: scaleSize(0.14),
+    paddingHorizontal: scaleSize(0.03),
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   rowText: {
-    fontSize: makeSize(0.045)
+    fontSize: scaleFont(16)
   },
 
   timeText: {
-    fontSize: makeSize(0.06)
+    fontSize: scaleFont(25)
   },
 
   timerSideContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    width: makeSize(0.31333)
+    width: scaleSize(0.31333)
   },
 
   timerCenterContainer: {
@@ -39,28 +39,28 @@ export const styles = StyleSheet.create({
   touchable: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: makeSize(0.12),
-    width: makeSize(0.12)
+    height: scaleSize(0.12),
+    width: scaleSize(0.12)
   },
   iconStyle: {
-    fontSize: makeSize(0.07)
+    fontSize: scaleFont(22)
   },
   adjusterView: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    width: makeSize(0.4)
+    width: scaleSize(0.4)
   },
   adjusterValueView: {
     alignItems: 'flex-end',
-    paddingRight: makeSize(0.04)
+    paddingRight: scaleSize(0.04)
   },
 
   // switches
   switchView: {
-    marginRight: makeSize(0.06)
+    marginRight: scaleSize(0.06)
   },
   switch: {
-    transform: [{ scaleX: makeSize(0.0034) }, { scaleY: makeSize(0.0034) }]
+    transform: [{ scaleX: scaleSize(0.0034) }, { scaleY: scaleSize(0.0034) }]
   }
 });

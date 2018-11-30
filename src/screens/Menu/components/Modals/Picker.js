@@ -9,9 +9,9 @@ import {
 import { WheelPicker } from 'react-native-wheel-picker-android';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { makeSize } from '../../../device';
-
+import { scaleFontWithPixelRatio } from '../../../device';
 import { styles } from './styles';
+
 
 export const Picker = ({
   pickerVisible,
@@ -30,13 +30,10 @@ export const Picker = ({
     transparent={true}
     onRequestClose={hidePicker}
   >
-    <View style={styles.pickerContainer}>
+    <View style={styles.modalContainer}>
       <TouchableWithoutFeedback onPress={hidePicker}>
         <View
-          style={[
-            styles.pickerTranslucentLayer,
-            { backgroundColor: '#000000' }
-          ]}
+          style={[styles.modalTranslucentLayer, { backgroundColor: '#000000' }]}
         />
       </TouchableWithoutFeedback>
       <View style={[styles.pickerView, colors.backgroundColor]}>
@@ -49,7 +46,7 @@ export const Picker = ({
           visibleItemCount={visibleItemCount}
           selectedItemPosition={selectedItemPosition}
           style={styles.wheelPicker}
-          itemTextSize={makeSize(0.14)}
+          itemTextSize={scaleFontWithPixelRatio(24)}
           itemTextColor={colors.textColor.color}
           selectedItemTextColor={colors.buttonColor.color}
           onItemSelected={item => onItemSelected(item.position)}

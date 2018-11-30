@@ -10,8 +10,7 @@ import { WheelPicker } from 'react-native-wheel-picker-android';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getMinSecs } from '../../../../utils';
-import { makeSize } from '../../../device';
-
+import { scaleFontWithPixelRatio } from '../../../device';
 import { styles } from './styles';
 
 export const TimePicker = ({
@@ -28,6 +27,7 @@ export const TimePicker = ({
   const secondsData = Array.from({ length: 60 }, (_, i) =>
     i < 10 ? '0' + i : '' + i
   );
+  const wheelFontSize = scaleFontWithPixelRatio(36);
 
   return (
     <Modal
@@ -36,11 +36,11 @@ export const TimePicker = ({
       transparent={true}
       onRequestClose={hidePicker}
     >
-      <View style={styles.pickerContainer}>
+      <View style={styles.modalContainer}>
         <TouchableWithoutFeedback onPress={hidePicker}>
           <View
             style={[
-              styles.pickerTranslucentLayer,
+              styles.modalTranslucentLayer,
               { backgroundColor: '#000000' }
             ]}
           />
@@ -54,21 +54,21 @@ export const TimePicker = ({
               : 'Long break length'}
           </Text>
 
-          <View style={styles.timePickerWheelContainer}>
+          <View style={styles.timeWheelPickerContainer}>
             <WheelPicker
               data={minutesData}
               isCurved
               isAtmospheric
               visibleItemCount={5}
               selectedItemPosition={minutes}
-              style={styles.timePickerWheel}
-              itemTextSize={makeSize(0.27)}
+              style={styles.timeWheelPicker}
+              itemTextSize={wheelFontSize}
               itemTextColor={colors.textColor.color}
               selectedItemTextColor={colors.buttonColor.color}
               onItemSelected={item => setMinutes(item.position)}
             />
             <Text
-              style={[styles.pickerColon, { color: colors.buttonColor.color }]}
+              style={[styles.timeColon, { color: colors.buttonColor.color }]}
             >
               :
             </Text>
@@ -79,8 +79,8 @@ export const TimePicker = ({
               isAtmospheric
               visibleItemCount={5}
               selectedItemPosition={seconds}
-              style={styles.timePickerWheel}
-              itemTextSize={makeSize(0.27)}
+              style={styles.timeWheelPicker}
+              itemTextSize={wheelFontSize}
               itemTextColor={colors.textColor.color}
               selectedItemTextColor={colors.buttonColor.color}
               onItemSelected={item => setSeconds(item.position)}

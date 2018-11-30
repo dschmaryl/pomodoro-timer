@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { makeSize } from '../../device';
+import { scaleSize, scaleFont } from '../../device';
 
 export const styles = StyleSheet.create({
   mainContainer: {
@@ -21,46 +21,46 @@ export const styles = StyleSheet.create({
   startHeaderView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: makeSize(0.1),
-    padding: makeSize(0.004)
+    marginBottom: scaleSize(0.1),
+    padding: scaleSize(0.004)
   },
   startHeaderText: {
     fontFamily: 'Cookie-Regular',
-    fontSize: makeSize(0.25),
-    marginBottom: -makeSize(0.05)
+    fontSize: scaleFont(80),
+    marginBottom: -scaleSize(0.05)
   },
   menuButtonTouchable: {
     position: 'absolute',
     top: 0,
     right: 0,
-    height: makeSize(0.25),
-    width: makeSize(0.25),
+    height: scaleSize(0.25),
+    width: scaleSize(0.25),
     justifyContent: 'center',
     alignItems: 'center'
   },
   menuButtonIcon: {
-    fontSize: makeSize(0.14)
+    fontSize: scaleFont(50)
   },
   sessionView: {
     alignItems: 'center',
-    marginTop: makeSize(0.06),
-    marginBottom: makeSize(0.025)
+    marginTop: scaleSize(0.06),
+    marginBottom: scaleSize(0.025)
   },
   sessionText: {
-    fontSize: makeSize(0.1)
+    fontSize: scaleFont(36)
   },
 
   timeText: {
-    fontSize: makeSize(0.26)
+    fontSize: scaleFont(90)
   },
 
   mainButtonTouchable: {
-    height: makeSize(0.3),
-    width: makeSize(0.3),
+    height: scaleSize(0.3),
+    width: scaleSize(0.3),
     justifyContent: 'center',
     alignItems: 'center'
   },
   mainButtonIcon: {
-    fontSize: makeSize(0.16)
+    fontSize: scaleFont(60)
   }
 });
