@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    height: scaleSize(0.13)
+    height: scaleSize(0.14)
   },
   footerText: {
     fontSize: scaleFont(24),

@@ -6,12 +6,12 @@ export const styles = StyleSheet.create({
   headerView: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: scaleSize(0.05),
-    paddingBottom: scaleSize(0.03),
+    paddingTop: scaleSize(0.06),
+    paddingBottom: scaleSize(0.02),
     borderBottomWidth: StyleSheet.hairlineWidth
   },
   headerText: {
-    fontSize: scaleFont(46),
+    fontSize: scaleFont(40),
     fontFamily: 'Cookie-Regular'
   }
 });
