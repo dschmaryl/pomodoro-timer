@@ -61,7 +61,7 @@ export const TimePicker = ({
               isAtmospheric
               visibleItemCount={5}
               selectedItemPosition={minutes}
-              style={styles.timeWheelPicker}
+              style={styles.timeMinutesWheelPicker}
               itemTextSize={wheelFontSize}
               itemTextColor={colors.textColor.color}
               selectedItemTextColor={colors.buttonColor.color}
@@ -79,7 +79,7 @@ export const TimePicker = ({
               isAtmospheric
               visibleItemCount={5}
               selectedItemPosition={seconds}
-              style={styles.timeWheelPicker}
+              style={styles.timeSecondsWheelPicker}
               itemTextSize={wheelFontSize}
               itemTextColor={colors.textColor.color}
               selectedItemTextColor={colors.buttonColor.color}

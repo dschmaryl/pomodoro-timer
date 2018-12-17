@@ -55,12 +55,18 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
 
-  timeWheelPicker: {
+  timeMinutesWheelPicker: {
+    zIndex: 3,
     height: pickerViewWidth * 0.5,
     width: pickerViewWidth * 0.38
   },
-
+  timeSecondsWheelPicker: {
+    zIndex: 2,
+    height: pickerViewWidth * 0.5,
+    width: pickerViewWidth * 0.38
+  },
   timeColon: {
+    zIndex: 1,
     fontSize: scaleFont(38),
     paddingBottom: pickerViewWidth * 0.036,
     marginLeft: -pickerViewWidth * 0.08,
