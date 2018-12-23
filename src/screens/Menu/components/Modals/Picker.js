@@ -12,7 +12,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { scaleFontWithPixelRatio } from '../../../device';
 import { styles } from './styles';
 
-
 export const Picker = ({
   pickerVisible,
   headerText,
