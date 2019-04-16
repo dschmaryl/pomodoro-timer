@@ -30,6 +30,12 @@ build/
 local.properties
 *.iml
 
+# Eclipse
+#
+.project
+org.eclipse*
+.classpath
+
 # node.js
 #
 node_modules/
