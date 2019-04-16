@@ -11,7 +11,7 @@ export class Alarm extends React.Component {
       new Sound(alarmSound.soundFile, null, error => {
         if (error) {
           console.log('alarm sound error: ', error);
-          console.log('soundFile: ', alarmSound.soundFile)
+          console.log('soundFile: ', alarmSound.soundFile);
           return;
         }
       })

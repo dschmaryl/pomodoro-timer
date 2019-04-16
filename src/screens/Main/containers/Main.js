@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import { setAppState } from '../../../actions/timer';
-
 import { Main } from '../components/Main';
 
 const mapStateToProps = state => ({

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import { setFirstRunToFalse } from '../../../actions/settings';
-
 import { Start } from '../components/Start';
 
 const mapStateToProps = state => ({

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import { setPickerValue, hidePicker } from '../../../actions/picker';
-
 import { Picker } from '../components/Modals';
 
 const mapStateToProps = state => ({

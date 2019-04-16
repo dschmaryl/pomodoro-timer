@@ -5,7 +5,7 @@ export const sounds = {
     { name: 'Ring - long', soundFile: 'ring_long.wav' },
     { name: 'Ding - once', soundFile: 'ding_once.wav' },
     { name: 'Ding - 4 times', soundFile: 'ding_four_times.wav' },
-    { name: 'Ding - 20 secs', soundFile: 'ding_twenty_seconds.wav'}
+    { name: 'Ding - 20 secs', soundFile: 'ding_twenty_seconds.wav' }
   ],
-  tickSounds: [ { name: 'Old style', soundFile: 'old_style_tick.wav' }]
+  tickSounds: [{ name: 'Old style', soundFile: 'old_style_tick.wav' }]
 };

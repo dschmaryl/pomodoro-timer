@@ -5,7 +5,6 @@ import {
   togglePaused,
   toggleAlarmPlaying
 } from '../../../actions/timer';
-
 import { Timer } from '../components/Timer';
 
 const mapStateToProps = state => ({

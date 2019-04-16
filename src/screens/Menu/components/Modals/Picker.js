@@ -10,6 +10,7 @@ import { WheelPicker } from 'react-native-wheel-picker-android';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { scaleFontWithPixelRatio } from '../../../device';
+
 import { styles } from './styles';
 
 export const Picker = ({

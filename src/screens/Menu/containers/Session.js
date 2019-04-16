@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import { nextSession, backOneSession } from '../../../actions/timer';
-
 import { Session } from '../components/Session';
 
 const mapStateToProps = state => ({

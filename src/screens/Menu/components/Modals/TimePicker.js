@@ -11,6 +11,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getMinSecs } from '../../../../utils';
 import { scaleFontWithPixelRatio } from '../../../device';
+
 import { styles } from './styles';
 
 export const TimePicker = ({

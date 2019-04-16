@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import { toggleTickEnabled } from '../../../actions/settings';
-
 import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({

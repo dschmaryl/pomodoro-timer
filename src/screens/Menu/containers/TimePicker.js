@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 import { setMinutes, setSeconds, hidePicker } from '../../../actions/picker';
-
 import { TimePicker } from '../components/Modals';
 
 const mapStateToProps = state => ({
