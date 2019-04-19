@@ -29,10 +29,8 @@ const Navigator = createAppContainer(
     },
     {
       initialRouteName: 'Main',
-      initialRouteParams: {},
       headerMode: 'none',
       transparentCard: true
-      // cardStyle: { backgroundColor: 'transparent' }
     }
   )
 );

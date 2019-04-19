@@ -41,7 +41,7 @@ export const togglePaused = () => (dispatch, getState) => {
   clearInterval(timerInterval);
   const { isPaused } = getState().timer;
   if (isPaused) {
-    timerInterval = setInterval(() => timerTick(dispatch, getState), 2);
+    timerInterval = setInterval(() => timerTick(dispatch, getState), 5);
   }
   dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
 };
@@ -71,7 +71,7 @@ export const resetTime = () => {
 export const toggleAlarmPlaying = () => ({ type: 'TOGGLE_ALARM_PLAYING' });
 
 export const setAppState = nextAppState => (dispatch, getState) => {
-  clearInterval(timerInterval)
+  clearInterval(timerInterval);
   const { isPaused } = getState().timer;
   if (nextAppState === 'active' && !isPaused) {
     timerInterval = setInterval(() => timerTick(dispatch, getState), 2);

@@ -1,4 +1,4 @@
-import { sounds } from '../sounds';
+import { alarmSounds } from '../sounds';
 import { themes } from '../themes';
 
 import { getMin, getSec, getMillisecs } from '../utils';
@@ -46,7 +46,7 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
       break;
 
     case 'alarmSound':
-      data = sounds.alarmSounds.map(sound => sound.name);
+      data = alarmSounds.map(sound => sound.name);
       headerText = 'Alarm sound';
       selectedItemPosition = getState().settings.alarmSoundIndex;
       visibleItemCount = 5;
