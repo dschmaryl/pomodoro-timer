@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-import { WheelPicker } from 'react-native-wheel-picker-android';
+import { WheelPicker } from '@delightfulstudio/react-native-wheel-picker-android';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { getMinSecs } from '../../../../utils';
@@ -24,7 +24,7 @@ export const TimePicker = ({
   colors
 }) => {
   const { minutes, seconds } = getMinSecs(oldTime);
-  const minutesData = Array.from({ length: 100 }, (_, i) => i);
+  const minutesData = Array.from({ length: 100 }, (_, i) => '' + i);
   const secondsData = Array.from({ length: 60 }, (_, i) =>
     i < 10 ? '0' + i : '' + i
   );
@@ -68,6 +68,7 @@ export const TimePicker = ({
               selectedItemTextColor={colors.buttonColor.color}
               onItemSelected={item => setMinutes(item.position)}
             />
+
             <Text
               style={[styles.timeColon, { color: colors.buttonColor.color }]}
             >

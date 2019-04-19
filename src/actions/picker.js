@@ -16,7 +16,7 @@ export const setMinutes = newValue => (dispatch, getState) => {
   return dispatch({
     type: 'SET_TIME',
     timeType: sessionType,
-    newTime: Math.max(1000, getMillisecs(newValue, seconds))
+    newTime: Math.max(1000, getMillisecs(+newValue, seconds))
   });
 };
 
@@ -27,7 +27,7 @@ export const setSeconds = newValue => (dispatch, getState) => {
   return dispatch({
     type: 'SET_TIME',
     timeType: sessionType,
-    newTime: Math.max(1000, getMillisecs(minutes, newValue))
+    newTime: Math.max(1000, getMillisecs(minutes, +newValue))
   });
 };
 
