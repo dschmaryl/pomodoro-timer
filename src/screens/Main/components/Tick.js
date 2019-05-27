@@ -25,8 +25,6 @@ export class Tick extends React.Component {
         muted={this.state.muteTick}
         source={tickSounds[0].soundFile}
         volume={this.props.tickVolume / 100}
-        rate={1}
-        style={{ position: 'absolute', top: 0, left: 0 }}
       />
     );
 }

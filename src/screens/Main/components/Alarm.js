@@ -14,7 +14,5 @@ export const Alarm = ({
       source={alarmSounds[alarmSoundIndex].soundFile}
       volume={alarmVolume / 100}
       onEnd={toggleAlarmPlaying}
-      rate={1}
-      style={{ position: 'absolute', top: 0, left: 0 }}
     />
   );
