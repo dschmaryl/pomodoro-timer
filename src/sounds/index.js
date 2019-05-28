@@ -1,27 +1,27 @@
 export const alarmSounds = [
   {
     name: 'Ring - short',
-    soundFile: require('./soundFiles/ring_short.wav')
+    soundFile: require('./soundFiles/ring_short.mp3')
   },
   {
     name: 'Ring - medium',
-    soundFile: require('./soundFiles/ring_medium.wav')
+    soundFile: require('./soundFiles/ring_medium.mp3')
   },
   {
     name: 'Ring - long',
-    soundFile: require('./soundFiles/ring_long.wav')
+    soundFile: require('./soundFiles/ring_long.mp3')
   },
   {
     name: 'Ding - once',
-    soundFile: require('./soundFiles/ding_once.wav')
+    soundFile: require('./soundFiles/ding_once.mp3')
   },
   {
     name: 'Ding - 4 times',
-    soundFile: require('./soundFiles/ding_four_times.wav')
+    soundFile: require('./soundFiles/ding_four_times.mp3')
   },
   {
     name: 'Ding - 20 secs',
-    soundFile: require('./soundFiles/ding_twenty_seconds.wav')
+    soundFile: require('./soundFiles/ding_twenty_seconds.mp3')
   }
 ];
 
