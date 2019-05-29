@@ -1,5 +1,5 @@
 import React from 'react';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
@@ -21,18 +21,16 @@ const persistor = persistStore(store);
 
 // persistor.purge();
 
-const Navigator = createAppContainer(
-  createStackNavigator(
-    {
-      Main: { screen: Main },
-      Menu: { screen: Menu }
-    },
-    {
-      initialRouteName: 'Main',
-      headerMode: 'none',
-      transparentCard: true
-    }
-  )
+const Navigator = createStackNavigator(
+  {
+    Main: { screen: Main },
+    Menu: { screen: Menu }
+  },
+  {
+    initialRouteName: 'Main',
+    headerMode: 'none',
+    transparentCard: true
+  }
 );
 
 const App = () => (

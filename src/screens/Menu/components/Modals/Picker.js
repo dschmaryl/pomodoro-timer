@@ -6,7 +6,7 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-import { WheelPicker } from '@delightfulstudio/react-native-wheel-picker-android';
+import { WheelPicker } from 'react-native-wheel-picker-android';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import { scaleFontWithPixelRatio } from '../../../device';
