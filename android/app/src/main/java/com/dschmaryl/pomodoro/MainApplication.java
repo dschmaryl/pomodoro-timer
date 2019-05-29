@@ -4,9 +4,9 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.wheelpicker.WheelPickerPackage;
-import com.brentvatne.react.ReactVideoPackage;
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.corbt.keepawake.KCKeepAwakePackage;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
+import com.brentvatne.react.ReactVideoPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -28,9 +28,9 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
         new WheelPickerPackage(),
-        new ReactVideoPackage(),
+        new KCKeepAwakePackage(),
         new ReactNativePushNotificationPackage(),
-        new KCKeepAwakePackage()
+        new ReactVideoPackage()
       );
     }
 
