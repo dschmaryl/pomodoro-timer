@@ -1,4 +1,4 @@
-package com.dschmaryl.pomodoro;
+package com.pomodoro;
 
 import com.facebook.react.ReactActivity;
 

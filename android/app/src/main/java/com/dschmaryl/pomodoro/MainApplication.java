@@ -1,13 +1,8 @@
-package com.dschmaryl.pomodoro;
+package com.pomodoro;
 
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.delightfulstudio.wheelpicker.WheelPickerPackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.brentvatne.react.ReactVideoPackage;
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
-import com.corbt.keepawake.KCKeepAwakePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -27,13 +22,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-        new MainReactPackage(),
-        new WheelPickerPackage(),
-        new WheelPickerPackage(),
-        new RNGestureHandlerPackage(),
-        new ReactVideoPackage(),
-        new ReactNativePushNotificationPackage(),
-        new KCKeepAwakePackage()
+          new MainReactPackage()
       );
     }
 

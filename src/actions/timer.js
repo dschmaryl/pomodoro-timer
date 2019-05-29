@@ -1,5 +1,7 @@
 import { getMin, getSec } from '../utils';
 
+const TIMER_INTERVAL = 5;
+
 let timerInterval;
 
 const timerTick = (dispatch, getState) => {
@@ -41,9 +43,12 @@ export const togglePaused = () => (dispatch, getState) => {
   clearInterval(timerInterval);
   const { isPaused } = getState().timer;
   if (isPaused) {
-    timerInterval = setInterval(() => timerTick(dispatch, getState), 5);
+    timerInterval = setInterval(
+      () => timerTick(dispatch, getState),
+      TIMER_INTERVAL
+    );
   }
-  dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
+  return dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
 };
 
 export const nextSession = () => {
@@ -74,7 +79,10 @@ export const setAppState = nextAppState => (dispatch, getState) => {
   clearInterval(timerInterval);
   const { isPaused } = getState().timer;
   if (nextAppState === 'active' && !isPaused) {
-    timerInterval = setInterval(() => timerTick(dispatch, getState), 2);
+    timerInterval = setInterval(
+      () => timerTick(dispatch, getState),
+      TIMER_INTERVAL
+    );
   }
-  dispatch({ type: 'SET_APP_STATE', nextAppState });
+  return dispatch({ type: 'SET_APP_STATE', nextAppState });
 };
