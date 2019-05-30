@@ -4817,6 +4817,11 @@ react-lifecycles-compat@^3, react-lifecycles-compat@^3.0.0, react-lifecycles-com
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
+react-native-background-timer@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-background-timer/-/react-native-background-timer-2.1.1.tgz#9a2489681ab2f8033c213c73272e9d4c47572cd5"
+  integrity sha512-cuXIIv+dcG8a8qkTD8pMzeqOEZCO+UGKglZWIe1osve+yJslmCowYQff+bI9xa7NOt2w+Vtd4L3d9JonlSqODg==
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -4841,7 +4846,7 @@ react-native-keep-awake@^3.1.0:
   resolved "https://registry.yarnpkg.com/react-native-keep-awake/-/react-native-keep-awake-3.2.0.tgz#2f025fe0bd2ac63b5e61c18ef9cad240f203df1f"
   integrity sha512-0AuCp9oAoXH244hbUOeHgcJ4e/t+dEweTasNrp52ytA1nvCD69eAjbBL5B3aJhPSKUqwlUO9II5M26DtKd71bg==
 
-react-native-push-notification@^3.1.1:
+react-native-push-notification@^3.1.3:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.1.3.tgz#f8dab43aec734dbb1a8bbc50caf82dd682655392"
   integrity sha512-bOZBApQ2zQ41/kSX047jm06XeDl2ylCwMuraT+4yRrlMQ6FDoAxIBh+Q+6jE1B5tVzot62mZnPcV6JaFTWtYeg==

@@ -4,8 +4,10 @@ export const settings = (
   state = {
     pauseAtSessionEnd: true,
     showPauseButton: true,
+    runInBackground: undefined,
     notificationIsEnabled: true,
     alarmIsEnabled: true,
+    alarmRepeat: false,
     alarmVolume: 50,
     alarmSoundIndex: 0,
     tickIsEnabled: false,
@@ -26,11 +28,33 @@ export const settings = (
     case 'TOGGLE_SHOW_PAUSE_BUTTON':
       return { ...state, showPauseButton: !state.showPauseButton };
 
+    case 'TOGGLE_RUN_IN_BACKGROUND':
+      if (state.runInBackground) {
+        return { ...state, runInBackground: false };
+      } else {
+        return {
+          ...state,
+          runInBackground: true,
+          notificationIsEnabled: false
+        };
+      }
+
     case 'TOGGLE_NOTIFICATION_ENABLED':
-      return { ...state, notificationIsEnabled: !state.notificationIsEnabled };
+      if (state.notificationIsEnabled) {
+        return { ...state, notificationIsEnabled: false };
+      } else {
+        return {
+          ...state,
+          notificationIsEnabled: true,
+          runInBackground: false
+        };
+      }
 
     case 'TOGGLE_ALARM_ENABLED':
       return { ...state, alarmIsEnabled: !state.alarmIsEnabled };
+
+    case 'TOGGLE_ALARM_REPEAT':
+      return { ...state, alarmRepeat: !state.alarmRepeat };
 
     case 'SET_ALARM_SOUND':
       return { ...state, alarmSoundIndex: action.alarmSoundIndex };

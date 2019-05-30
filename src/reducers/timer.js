@@ -10,8 +10,6 @@ const initialState = {
   focusTime: getMillisecs(25),
   shortBreakTime: getMillisecs(5),
   longBreakTime: getMillisecs(15),
-  endTime: null,
-  timeLeft: null,
   minutes: 25,
   seconds: 0,
   isPaused: true,
@@ -19,17 +17,9 @@ const initialState = {
   appState: 'active'
 };
 
-const newSession = (newTime, currentTime, isPaused) => {
-  const timeLeft = newTime + (isPaused ? 0 : 800);
-  const { minutes, seconds } = getMinSecs(timeLeft);
-
-  return {
-    endTime: currentTime + timeLeft,
-    timeLeft: timeLeft,
-    minutes,
-    seconds,
-    isPaused: isPaused
-  };
+const newSession = newTime => {
+  const { minutes, seconds } = getMinSecs(newTime);
+  return { minutes, seconds };
 };
 
 export const timer = (state = initialState, action) => {
@@ -53,46 +43,34 @@ export const timer = (state = initialState, action) => {
           : state.session === 'shortBreak'
           ? state.shortBreakTime
           : state.longBreakTime;
-      const { minutes, seconds } = getMinSecs(time);
 
-      return {
-        ...state,
-        timeLeft: time,
-        minutes,
-        seconds,
-        isPaused: true
-      };
+      return { ...state, ...getMinSecs(time), isPaused: true };
 
     case 'FINISH_SESSION':
       if (state.session !== 'focus') {
         return {
           ...state,
           ...focusState,
-          ...newSession(state.focusTime, action.currentTime, action.isPaused),
-          pomodoro: state.pomodoro === 4 ? 1 : state.pomodoro + 1,
-          alarmIsPlaying: action.alarmIsPlaying
+          ...getMinSecs(state.focusTime),
+          isPaused: action.isPaused,
+          alarmIsPlaying: action.alarmIsPlaying,
+          pomodoro: state.pomodoro === 4 ? 1 : state.pomodoro + 1
         };
       } else {
         if (state.pomodoro === 4) {
           return {
             ...state,
             ...longBreakState,
-            ...newSession(
-              state.longBreakTime,
-              action.currentTime,
-              action.isPaused
-            ),
+            ...getMinSecs(state.longBreakTime),
+            isPaused: action.isPaused,
             alarmIsPlaying: action.alarmIsPlaying
           };
         } else {
           return {
             ...state,
             ...shortBreakState,
-            ...newSession(
-              state.shortBreakTime,
-              action.currentTime,
-              action.isPaused
-            ),
+            ...getMinSecs(state.shortBreakTime),
+            isPaused: action.isPaused,
             alarmIsPlaying: action.alarmIsPlaying
           };
         }
@@ -103,21 +81,24 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           ...focusState,
-          ...newSession(state.focusTime, action.currentTime, true)
+          ...getMinSecs(state.focusTime),
+          isPaused: true
         };
       } else {
         if (state.pomodoro === 1) {
           return {
             ...state,
             ...longBreakState,
-            ...newSession(state.longBreakTime, action.currentTime, true),
+            ...getMinSecs(state.longBreakTime),
+            isPaused: true,
             pomodoro: 4
           };
         } else {
           return {
             ...state,
             ...shortBreakState,
-            ...newSession(state.shortBreakTime, action.currentTime, true),
+            ...getMinSecs(state.shortBreakTime),
+            isPaused: true,
             pomodoro: state.pomodoro - 1
           };
         }
@@ -125,20 +106,15 @@ export const timer = (state = initialState, action) => {
 
     case 'TOGGLE_PAUSED':
       if (state.isPaused) {
-        const timeLeft = state.timeLeft
-          ? state.timeLeft
-          : getMillisecs(state.minutes, state.seconds);
         return {
           ...state,
           isPaused: false,
-          endTime: action.currentTime + timeLeft,
           alarmIsPlaying: false
         };
       } else {
         return {
           ...state,
-          isPaused: true,
-          timeLeft: state.endTime - action.currentTime
+          isPaused: true
         };
       }
 
@@ -152,7 +128,7 @@ export const timer = (state = initialState, action) => {
       return {
         ...state,
         appState: action.nextAppState,
-        alarmIsPlaying: false
+        alarmIsPlaying: action.alarmIsPlaying
       };
 
     default:

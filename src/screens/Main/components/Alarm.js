@@ -7,12 +7,14 @@ export const Alarm = ({
   alarmSoundIndex,
   alarmVolume,
   alarmIsPlaying,
+  alarmRepeat,
   toggleAlarmPlaying
 }) =>
   !alarmIsPlaying ? null : (
     <Video
       source={alarmSounds[alarmSoundIndex].soundFile}
       volume={alarmVolume / 100}
-      onEnd={toggleAlarmPlaying}
+      repeat={alarmRepeat}
+      onEnd={alarmRepeat ? () => {} : toggleAlarmPlaying}
     />
   );

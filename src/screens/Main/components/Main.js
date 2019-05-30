@@ -17,6 +17,13 @@ export class Main extends React.Component {
   componentDidMount = () => {
     this.props.setAppState('active');
     AppState.addEventListener('change', this.handleAppStateChange);
+
+    if (
+      this.props.runInBackground === undefined ||
+      this.props.notificationIsEnabled
+    ) {
+      this.props.toggleRunInBackground();
+    }
   };
 
   componentWillUnmount = () =>
