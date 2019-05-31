@@ -18,10 +18,7 @@ export class Main extends React.Component {
     this.props.setAppState('active');
     AppState.addEventListener('change', this.handleAppStateChange);
 
-    if (
-      this.props.runInBackground === undefined ||
-      this.props.notificationIsEnabled
-    ) {
+    if (this.props.runInBackground === undefined) {
       this.props.toggleRunInBackground();
     }
   };

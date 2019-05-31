@@ -8,29 +8,23 @@ const timerTick = (dispatch, getState) => {
   const { minutes, seconds } = getState().timer;
   let newSeconds, newMinutes;
 
-  if (seconds === 1) {
-    if (minutes === 0) {
-      const { pauseAtSessionEnd, alarmIsEnabled } = getState().settings;
-      if (pauseAtSessionEnd) BackgroundTimer.clearInterval(timerInterval);
-      return dispatch({
-        type: 'FINISH_SESSION',
-        isPaused: pauseAtSessionEnd,
-        alarmIsPlaying: alarmIsEnabled
-      });
-    } else {
-      newMinutes = minutes - 1;
-      newSeconds = 59;
-    }
+  if (seconds === 1 && minutes === 0) {
+    const { pauseAtSessionEnd } = getState().settings;
+    if (pauseAtSessionEnd) BackgroundTimer.clearInterval(timerInterval);
+    return dispatch({
+      type: 'FINISH_SESSION',
+      isPaused: pauseAtSessionEnd,
+      sessionEnded: true
+    });
   } else {
-    newMinutes = minutes;
+    newMinutes = seconds === 0 ? minutes - 1 : minutes;
     newSeconds = seconds === 0 ? 59 : seconds - 1;
+    return dispatch({
+      type: 'UPDATE_TIME',
+      minutes: newMinutes,
+      seconds: newSeconds
+    });
   }
-
-  return dispatch({
-    type: 'UPDATE_TIME',
-    minutes: newMinutes,
-    seconds: newSeconds
-  });
 };
 
 export const togglePaused = () => (dispatch, getState) => {
@@ -61,19 +55,18 @@ export const resetTime = () => {
   return { type: 'RESET_TIME' };
 };
 
-export const toggleAlarmPlaying = () => ({ type: 'TOGGLE_ALARM_PLAYING' });
+export const toggleSessionEnded = () => ({ type: 'TOGGLE_SESSION_ENDED' });
 
 export const setAppState = nextAppState => (dispatch, getState) => {
   const { timer, settings } = getState();
   if (nextAppState !== 'active') {
-    if (!settings.runInBackground && !timer.isPaused) {
-      dispatch(togglePaused());
+    if (!timer.isPaused) {
+      if (!settings.runInBackground && !settings.notificationIsEnabled) {
+        // both background options are disabled, so pause
+        dispatch(togglePaused());
+      }
     }
   }
 
-  return dispatch({
-    type: 'SET_APP_STATE',
-    nextAppState,
-    alarmIsPlaying: timer.alarmIsPlaying && settings.runInBackground
-  });
+  return dispatch({ type: 'SET_APP_STATE', nextAppState });
 };

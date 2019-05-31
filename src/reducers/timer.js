@@ -13,13 +13,8 @@ const initialState = {
   minutes: 25,
   seconds: 0,
   isPaused: true,
-  alarmIsPlaying: false,
+  sessionEnded: false,
   appState: 'active'
-};
-
-const newSession = newTime => {
-  const { minutes, seconds } = getMinSecs(newTime);
-  return { minutes, seconds };
 };
 
 export const timer = (state = initialState, action) => {
@@ -53,7 +48,7 @@ export const timer = (state = initialState, action) => {
           ...focusState,
           ...getMinSecs(state.focusTime),
           isPaused: action.isPaused,
-          alarmIsPlaying: action.alarmIsPlaying,
+          sessionEnded: action.sessionEnded,
           pomodoro: state.pomodoro === 4 ? 1 : state.pomodoro + 1
         };
       } else {
@@ -63,7 +58,7 @@ export const timer = (state = initialState, action) => {
             ...longBreakState,
             ...getMinSecs(state.longBreakTime),
             isPaused: action.isPaused,
-            alarmIsPlaying: action.alarmIsPlaying
+            sessionEnded: action.sessionEnded
           };
         } else {
           return {
@@ -71,7 +66,7 @@ export const timer = (state = initialState, action) => {
             ...shortBreakState,
             ...getMinSecs(state.shortBreakTime),
             isPaused: action.isPaused,
-            alarmIsPlaying: action.alarmIsPlaying
+            sessionEnded: action.sessionEnded
           };
         }
       }
@@ -106,30 +101,19 @@ export const timer = (state = initialState, action) => {
 
     case 'TOGGLE_PAUSED':
       if (state.isPaused) {
-        return {
-          ...state,
-          isPaused: false,
-          alarmIsPlaying: false
-        };
+        return { ...state, isPaused: false, sessionEnded: false };
       } else {
-        return {
-          ...state,
-          isPaused: true
-        };
+        return { ...state, isPaused: true };
       }
 
     case 'UPDATE_TIME':
       return { ...state, minutes: action.minutes, seconds: action.seconds };
 
-    case 'TOGGLE_ALARM_PLAYING':
-      return { ...state, alarmIsPlaying: !state.alarmIsPlaying };
+    case 'TOGGLE_SESSION_ENDED':
+      return { ...state, sessionEnded: !state.sessionEnded };
 
     case 'SET_APP_STATE':
-      return {
-        ...state,
-        appState: action.nextAppState,
-        alarmIsPlaying: action.alarmIsPlaying
-      };
+      return { ...state, appState: action.nextAppState };
 
     default:
       return state;

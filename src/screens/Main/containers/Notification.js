@@ -1,13 +1,22 @@
 import { connect } from 'react-redux';
 
+import { toggleSessionEnded } from '../../../actions/timer';
+
 import { Notification } from '../components/Notification';
 
 const mapStateToProps = state => ({
-  appState: state.timer.appState,
-  isPaused: state.timer.isPaused,
-  endTime: state.timer.endTime,
-  sessionString: state.timer.sessionString,
-  notificationIsEnabled: state.settings.notificationIsEnabled
+  sendNotification:
+    state.timer.sessionEnded &&
+    state.settings.notificationIsEnabled &&
+    state.timer.appState !== 'active',
+  sessionString: state.timer.sessionString
 });
 
-export default connect(mapStateToProps)(Notification);
+const mapDispatchToProps = dispatch => ({
+  toggleSessionEnded: () => dispatch(toggleSessionEnded())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Notification);
