@@ -9,6 +9,7 @@ import ShortBreak from '../containers/ShortBreak';
 import LongBreak from '../containers/LongBreak';
 import PauseEnable from '../containers/PauseEnable';
 import PauseButton from '../containers/PauseButton';
+import KeepAwake from '../containers/KeepAwake';
 import Background from '../containers/Background';
 import Notification from '../containers/Notification';
 import AlarmEnable from '../containers/AlarmEnable';
@@ -19,7 +20,6 @@ import TickEnable from '../containers/TickEnable';
 import TickVolume from '../containers/TickVolume';
 import Theme from '../containers/Theme';
 import DarkMode from '../containers/DarkMode';
-import KeepAwake from '../containers/KeepAwake';
 import TimePicker from '../containers/TimePicker';
 import Picker from '../containers/Picker';
 import { Footer } from './Footer';
@@ -37,6 +37,7 @@ export const Menu = ({ colors }) => (
       <LongBreak />
       <PauseEnable />
       <PauseButton />
+      <KeepAwake />
       <Background />
       <Notification />
       <AlarmEnable />
@@ -45,7 +46,6 @@ export const Menu = ({ colors }) => (
       <AlarmSound />
       <TickEnable />
       <TickVolume />
-      <KeepAwake />
       <Theme />
       <DarkMode />
       <Footer colors={colors} />

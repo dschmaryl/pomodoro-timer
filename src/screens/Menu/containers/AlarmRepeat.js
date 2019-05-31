@@ -6,6 +6,7 @@ import { Switcher } from '../components/Switcher';
 const mapStateToProps = state => ({
   label: 'Repeat alarm indefinitely',
   isOn: state.settings.alarmRepeat,
+  disabled: !state.settings.alarmIsEnabled,
   colors: state.settings.colors
 });
 
