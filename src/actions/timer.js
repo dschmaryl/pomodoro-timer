@@ -1,4 +1,5 @@
 import BackgroundTimer from 'react-native-background-timer';
+import { getMillisecs, getMinSecs } from '../utils';
 
 const TIMER_INTERVAL = 1000;
 
@@ -9,6 +10,7 @@ const timerTick = (dispatch, getState) => {
   let newSeconds, newMinutes;
 
   if (seconds === 1 && minutes === 0) {
+    // end of session
     const { pauseAtSessionEnd } = getState().settings;
     if (pauseAtSessionEnd) BackgroundTimer.clearInterval(timerInterval);
     return dispatch({
@@ -29,15 +31,18 @@ const timerTick = (dispatch, getState) => {
 
 export const togglePaused = () => (dispatch, getState) => {
   BackgroundTimer.clearInterval(timerInterval);
-  const { isPaused } = getState().timer;
+  const { isPaused, minutes, seconds } = getState().timer;
+  let endTime = null;
   if (isPaused) {
+    endTime = Date.now() + getMillisecs(minutes, seconds);
+
     timerTick(dispatch, getState);
     timerInterval = BackgroundTimer.setInterval(
       () => timerTick(dispatch, getState),
       TIMER_INTERVAL
     );
   }
-  return dispatch({ type: 'TOGGLE_PAUSED' });
+  return dispatch({ type: 'TOGGLE_PAUSED', endTime });
 };
 
 export const nextSession = () => {
@@ -64,6 +69,32 @@ export const setAppState = nextAppState => (dispatch, getState) => {
       if (!settings.runInBackground && !settings.notificationIsEnabled) {
         // both background options are disabled, so pause
         dispatch(togglePaused());
+      }
+    }
+  } else {
+    if (!timerInterval && !timer.isPaused) {
+      if (settings.runInBackground || settings.notificationIsEnabled) {
+        // check endTime and restart timer
+        const { minutes, seconds } = getMinSecs(timer.endTime - Date.now());
+        if (minutes < 0 || seconds < 0) {
+          // finished while in background
+          dispatch({
+            type: 'FINISH_SESSION',
+            isPaused: settings.pauseAtSessionEnd,
+            sessionEnded: false
+          });
+          if (!settings.pauseAtSessionEnd) {
+            timerInterval = BackgroundTimer.setInterval(
+              () => timerTick(dispatch, getState),
+              TIMER_INTERVAL
+            );
+          }
+        } else {
+          dispatch({ type: 'UPDATE_TIME', minutes, seconds });
+        }
+      } else {
+        // should be paused, so pause it
+        dispatch({ type: 'TOGGLE_PAUSED' });
       }
     }
   }

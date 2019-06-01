@@ -101,9 +101,14 @@ export const timer = (state = initialState, action) => {
 
     case 'TOGGLE_PAUSED':
       if (state.isPaused) {
-        return { ...state, isPaused: false, sessionEnded: false };
+        return {
+          ...state,
+          isPaused: false,
+          endTime: action.endTime,
+          sessionEnded: false
+        };
       } else {
-        return { ...state, isPaused: true };
+        return { ...state, isPaused: true, endTime: null };
       }
 
     case 'UPDATE_TIME':

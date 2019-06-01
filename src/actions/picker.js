@@ -62,7 +62,6 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
       break;
 
     default:
-      console.log('error in showPicker: unknown valuetype');
       return;
   }
 

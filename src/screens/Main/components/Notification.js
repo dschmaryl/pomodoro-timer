@@ -12,15 +12,18 @@ export class Notification extends React.Component {
           id: '31415',
           title: 'Pomodoro Timer',
           message: newProps.sessionString + ' time is up!',
-          date: new Date(Date.now()),
+          date: new Date(this.props.endTime),
           vibrate: true,
           vibration: 300,
           soundName: 'ding_once.mpg',
           smallIcon: 'ic_launcher',
           color: 'red'
         });
-        this.props.toggleSessionEnded();
       });
+    } else {
+      console.log('canceling push notification');
+      PushNotification.cancelLocalNotifications({ id: '31415' });
+      this.setState({ isScheduled: false });
     }
   };
 
