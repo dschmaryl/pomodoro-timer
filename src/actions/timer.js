@@ -91,6 +91,10 @@ export const setAppState = nextAppState => (dispatch, getState) => {
           }
         } else {
           dispatch({ type: 'UPDATE_TIME', minutes, seconds });
+          timerInterval = BackgroundTimer.setInterval(
+            () => timerTick(dispatch, getState),
+            TIMER_INTERVAL
+          );
         }
       } else {
         // should be paused, so pause it
