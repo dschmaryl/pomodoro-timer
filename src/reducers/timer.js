@@ -7,6 +7,7 @@ const longBreakState = { session: 'longBreak', sessionString: 'Long break' };
 const initialState = {
   ...focusState,
   pomodoro: 1,
+  numPomodoros: 4,
   focusTime: getMillisecs(25),
   shortBreakTime: getMillisecs(5),
   longBreakTime: getMillisecs(15),
@@ -31,6 +32,9 @@ export const timer = (state = initialState, action) => {
           return state;
       }
 
+    case 'SET_NUM_POMODOROS':
+      return { ...state, numPomodoros: action.numPomodoros };
+
     case 'RESET_TIME':
       const time =
         state.session === 'focus'
@@ -49,10 +53,11 @@ export const timer = (state = initialState, action) => {
           ...getMinSecs(state.focusTime),
           isPaused: action.isPaused,
           sessionEnded: action.sessionEnded,
-          pomodoro: state.pomodoro === 4 ? 1 : state.pomodoro + 1
+          pomodoro:
+            state.pomodoro >= state.numPomodoros ? 1 : state.pomodoro + 1
         };
       } else {
-        if (state.pomodoro === 4) {
+        if (state.pomodoro >= state.numPomodoros) {
           return {
             ...state,
             ...longBreakState,

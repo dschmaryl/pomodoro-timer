@@ -39,6 +39,14 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
   let selectedItemPosition = oldValue - 1;
 
   switch (valueType) {
+    case 'numPomodoros':
+      data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
+        v => '-  ' + v + '  -'
+      );
+      headerText = 'Number of short breaks';
+      selectedItemPosition++;
+      break;
+
     case 'alarmVolume':
     case 'tickVolume':
       data = Array.from({ length: 100 }, (_, i) => '-  ' + (i + 1) + '  -');
@@ -88,6 +96,12 @@ export const setPickerValue = newValue => (dispatch, getState) => {
   const { valueType } = getState().picker;
 
   switch (valueType) {
+    case 'numPomodoros':
+      return dispatch({
+        type: 'SET_NUM_POMODOROS',
+        numPomodoros: newValue + 1
+      });
+
     case 'alarmVolume':
     case 'tickVolume':
       return dispatch({

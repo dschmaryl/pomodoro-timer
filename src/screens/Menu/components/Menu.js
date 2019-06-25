@@ -6,6 +6,7 @@ import Timer from '../containers/Timer';
 import Session from '../containers/Session';
 import FocusTime from '../containers/FocusTime';
 import ShortBreak from '../containers/ShortBreak';
+import NumPomodoros from '../containers/NumPomodoros';
 import LongBreak from '../containers/LongBreak';
 import PauseEnable from '../containers/PauseEnable';
 import PauseButton from '../containers/PauseButton';
@@ -35,6 +36,7 @@ export const Menu = ({ colors }) => (
       <Session />
       <FocusTime />
       <ShortBreak />
+      <NumPomodoros />
       <LongBreak />
       <PauseEnable />
       <PauseButton />
