@@ -4,8 +4,10 @@ import { Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 
 export class Start extends React.Component {
-  componentDidMount = () =>
-    setTimeout(() => this.props.setFirstRunToFalse(), 1600);
+  componentDidMount = () => {
+    if (this.props.firstRun)
+      setTimeout(() => this.props.setFirstRunToFalse(), 1600);
+  };
 
   render = () =>
     !this.props.firstRun ? null : (

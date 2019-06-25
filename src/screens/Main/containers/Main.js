@@ -6,8 +6,7 @@ import { Main } from '../components/Main';
 
 const mapStateToProps = state => ({
   colors: state.settings.colors,
-  runInBackground: state.settings.runInBackground, // to update persisted
-  notificationIsEnabled: state.settings.notificationIsEnabled // same
+  runInBackground: state.settings.runInBackground // to update persisted
 });
 
 mapDispatchToProps = dispatch => ({

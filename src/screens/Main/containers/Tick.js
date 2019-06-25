@@ -4,8 +4,8 @@ import { Tick } from '../components/Tick';
 
 const mapStateToProps = state => ({
   playTicks:
-    !state.timer.isPaused &&
     state.settings.tickIsEnabled &&
+    !state.timer.isPaused &&
     (state.settings.runInBackground || state.timer.appState === 'active'),
   tickVolume: state.settings.tickVolume,
   tickSoundIndex: state.settings.tickSoundIndex,

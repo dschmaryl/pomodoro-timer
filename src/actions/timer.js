@@ -1,13 +1,12 @@
 import BackgroundTimer from 'react-native-background-timer';
 import { getMillisecs, getMinSecs } from '../utils';
 
-const TIMER_INTERVAL = 1000;
+const INTERVAL_LENGTH = 1000;
 
 let timerInterval;
 
 const timerTick = (dispatch, getState) => {
   const { minutes, seconds } = getState().timer;
-  let newSeconds, newMinutes;
 
   if (seconds === 1 && minutes === 0) {
     // end of session
@@ -19,12 +18,10 @@ const timerTick = (dispatch, getState) => {
       sessionEnded: true
     });
   } else {
-    newMinutes = seconds === 0 ? minutes - 1 : minutes;
-    newSeconds = seconds === 0 ? 59 : seconds - 1;
     return dispatch({
       type: 'UPDATE_TIME',
-      minutes: newMinutes,
-      seconds: newSeconds
+      minutes: minutes - (seconds === 0 ? 1 : 0),
+      seconds: seconds === 0 ? 59 : seconds - 1
     });
   }
 };
@@ -39,7 +36,7 @@ export const togglePaused = () => (dispatch, getState) => {
     timerTick(dispatch, getState);
     timerInterval = BackgroundTimer.setInterval(
       () => timerTick(dispatch, getState),
-      TIMER_INTERVAL
+      INTERVAL_LENGTH
     );
   }
   return dispatch({ type: 'TOGGLE_PAUSED', endTime });
@@ -86,14 +83,14 @@ export const setAppState = nextAppState => (dispatch, getState) => {
           if (!settings.pauseAtSessionEnd) {
             timerInterval = BackgroundTimer.setInterval(
               () => timerTick(dispatch, getState),
-              TIMER_INTERVAL
+              INTERVAL_LENGTH
             );
           }
         } else {
           dispatch({ type: 'UPDATE_TIME', minutes, seconds });
           timerInterval = BackgroundTimer.setInterval(
             () => timerTick(dispatch, getState),
-            TIMER_INTERVAL
+            INTERVAL_LENGTH
           );
         }
       } else {

@@ -33,12 +33,10 @@ const Navigator = createStackNavigator(
   }
 );
 
-const App = () => (
+export const App = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <Navigator />
     </PersistGate>
   </Provider>
 );
-
-export default App;
