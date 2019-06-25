@@ -9,8 +9,8 @@ const mapStateToProps = state => ({
   alarmSoundIndex: state.settings.alarmSoundIndex,
   alarmRepeat: state.settings.alarmRepeat,
   alarmIsPlaying:
-    state.timer.sessionEnded &&
     state.settings.alarmIsEnabled &&
+    state.timer.sessionEnded &&
     (state.timer.appState === 'active' || state.settings.runInBackground)
 });
 

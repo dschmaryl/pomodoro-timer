@@ -1,4 +1,4 @@
-import { alarmSounds } from '../sounds';
+import { alarmSounds, tickSounds } from '../sounds';
 import { themes } from '../themes';
 
 import { getMin, getSec, getMillisecs } from '../utils';
@@ -53,6 +53,14 @@ export const showPicker = (valueType, oldValue) => (dispatch, getState) => {
       isCyclic = true;
       break;
 
+    case 'tickSound':
+      data = tickSounds.map(sound => sound.name);
+      headerText = 'Tick sound';
+      selectedItemPosition = getState().settings.tickSoundIndex;
+      visibleItemCount = 5;
+      isCyclic = true;
+      break;
+
     case 'theme':
       data = themes.map(theme => theme.name);
       headerText = 'Color Theme';
@@ -92,6 +100,12 @@ export const setPickerValue = newValue => (dispatch, getState) => {
       return dispatch({
         type: 'SET_ALARM_SOUND',
         alarmSoundIndex: newValue
+      });
+
+    case 'tickSound':
+      return dispatch({
+        type: 'SET_TICK_SOUND',
+        tickSoundIndex: newValue
       });
 
     case 'theme':

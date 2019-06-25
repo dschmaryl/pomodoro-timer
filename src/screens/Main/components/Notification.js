@@ -20,7 +20,7 @@ export class Notification extends React.Component {
           color: 'red'
         });
       });
-    } else {
+    } else if (this.state.isScheduled) {
       console.log('canceling push notification');
       PushNotification.cancelLocalNotifications({ id: '31415' });
       this.setState({ isScheduled: false });

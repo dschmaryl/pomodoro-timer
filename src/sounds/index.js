@@ -29,5 +29,13 @@ export const tickSounds = [
   {
     name: 'Old style',
     soundFile: require('./soundFiles/old_style_tick.wav')
+  },
+  {
+    name: 'New style',
+    soundFile: require('./soundFiles/old_style_tick.wav')
+  },
+  {
+    name: 'Other style',
+    soundFile: require('./soundFiles/old_style_tick.wav')
   }
 ];

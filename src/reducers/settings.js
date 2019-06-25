@@ -62,6 +62,9 @@ export const settings = (
     case 'TOGGLE_TICK_ENABLED':
       return { ...state, tickIsEnabled: !state.tickIsEnabled };
 
+    case 'SET_TICK_SOUND':
+      return { ...state, tickSoundIndex: action.tickSoundIndex };
+
     case 'SET_VOLUME':
       if (action.soundType === 'alarmVolume') {
         return { ...state, alarmVolume: action.volume };
