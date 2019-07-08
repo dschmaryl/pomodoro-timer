@@ -19,7 +19,7 @@ import AlarmVolume from '../containers/AlarmVolume';
 import AlarmSound from '../containers/AlarmSound';
 import TickEnable from '../containers/TickEnable';
 import TickVolume from '../containers/TickVolume';
-import TickSound from '../containers/TickSound';
+// import TickSound from '../containers/TickSound';
 import Theme from '../containers/Theme';
 import DarkMode from '../containers/DarkMode';
 import TimePicker from '../containers/TimePicker';
@@ -49,7 +49,7 @@ export const Menu = ({ colors }) => (
       <AlarmSound />
       <TickEnable />
       <TickVolume />
-      <TickSound />
+      {/* <TickSound /> */}
       <Theme />
       <DarkMode />
       <Footer colors={colors} />
