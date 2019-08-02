@@ -5,9 +5,13 @@ export class Notification extends React.Component {
   state = { isScheduled: false };
 
   componentWillReceiveProps = newProps => {
-    if (newProps.sendNotification && !this.state.isScheduled) {
+    if (
+      newProps.sendNotification &&
+      !this.state.isScheduled &&
+      !this.props.isPaused
+    ) {
       this.setState({ isScheduled: true }, () => {
-        console.log('scheduling push notification');
+        // console.log('scheduling push notification');
         PushNotification.localNotificationSchedule({
           id: '31415',
           title: 'Pomodoro Timer',
@@ -20,8 +24,8 @@ export class Notification extends React.Component {
           color: 'red'
         });
       });
-    } else if (this.state.isScheduled) {
-      console.log('canceling push notification');
+    } else if (!newProps.sendNotification && this.state.isScheduled) {
+      // console.log('canceling push notification');
       PushNotification.cancelLocalNotifications({ id: '31415' });
       this.setState({ isScheduled: false });
     }

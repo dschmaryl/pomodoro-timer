@@ -65,7 +65,7 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           ...focusState,
-          ...newSession(state.focusTime),
+          ...newSession(state.focusTime, action.currentTime, action.isPaused),
           isPaused: action.isPaused,
           sessionEnded: action.sessionEnded,
           pomodoro:
@@ -76,7 +76,11 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...longBreakState,
-            ...newSession(state.longBreakTime),
+            ...newSession(
+              state.longBreakTime,
+              action.currentTime,
+              action.isPaused
+            ),
             isPaused: action.isPaused,
             sessionEnded: action.sessionEnded
           };
@@ -84,7 +88,11 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...shortBreakState,
-            ...newSession(state.shortBreakTime),
+            ...newSession(
+              state.shortBreakTime,
+              action.currentTime,
+              action.isPaused
+            ),
             isPaused: action.isPaused,
             sessionEnded: action.sessionEnded
           };
@@ -96,7 +104,7 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           ...focusState,
-          ...newSession(state.focusTime),
+          ...newSession(state.focusTime, action.currentTime, true),
           isPaused: true
         };
       } else {
@@ -104,7 +112,7 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...longBreakState,
-            ...newSession(state.longBreakTime),
+            ...newSession(state.longBreakTime, action.currentTime, true),
             isPaused: true,
             pomodoro: 4
           };
@@ -112,7 +120,7 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...shortBreakState,
-            ...newSession(state.shortBreakTime),
+            ...newSession(state.shortBreakTime, action.currentTime, true),
             isPaused: true,
             pomodoro: state.pomodoro - 1
           };

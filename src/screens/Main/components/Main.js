@@ -1,5 +1,7 @@
 import React from 'react';
-import { AppState, View } from 'react-native';
+import { AppState, View, BackHandler } from 'react-native';
+
+import { withNavigationFocus } from 'react-navigation';
 
 import Start from '../containers/Start';
 import MenuButton from '../containers/MenuButton';
@@ -13,10 +15,11 @@ import Notification from '../containers/Notification';
 
 import { styles } from './styles';
 
-export class Main extends React.Component {
+class MainComponent extends React.Component {
   componentDidMount = () => {
     this.props.setAppState('active');
     AppState.addEventListener('change', this.handleAppStateChange);
+    BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
 
     if (this.props.runInBackground === undefined)
       this.props.toggleRunInBackground();
@@ -24,10 +27,14 @@ export class Main extends React.Component {
     if (this.props.numPomodoros === undefined) this.props.setNumPomodoros();
   };
 
-  componentWillUnmount = () =>
+  componentWillUnmount = () => {
     AppState.removeEventListener('change', this.handleAppStateChange);
+    BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
+  };
 
   handleAppStateChange = nextAppState => this.props.setAppState(nextAppState);
+
+  handleBackPress = () => this.props.isFocused;
 
   render = () => (
     <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
@@ -43,3 +50,5 @@ export class Main extends React.Component {
     </View>
   );
 }
+
+export const Main = withNavigationFocus(MainComponent);
