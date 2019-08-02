@@ -1,55 +1,58 @@
 import BackgroundTimer from 'react-native-background-timer';
 import { getMillisecs, getMinSecs } from '../utils';
 
-const INTERVAL_LENGTH = 988; // help correct latency
+const INTERVAL_LENGTH = 2; // help correct latency
 
 let timerInterval;
 
 const timerTick = (dispatch, getState) => {
-  const { minutes, seconds } = getState().timer;
-
-  if (seconds === 1 && minutes === 0) {
+  const { endTime, seconds } = getState().timer;
+  const time = endTime - Date.now();
+  if (time < 1000) {
     // end of session
     const { pauseAtSessionEnd } = getState().settings;
     if (pauseAtSessionEnd) BackgroundTimer.clearInterval(timerInterval);
     return dispatch({
       type: 'FINISH_SESSION',
       isPaused: pauseAtSessionEnd,
+      currentTime: Date.now(),
       sessionEnded: true
     });
   } else {
-    return dispatch({
-      type: 'UPDATE_TIME',
-      minutes: minutes - (seconds === 0 ? 1 : 0),
-      seconds: seconds === 0 ? 59 : seconds - 1
-    });
+    // check to see if a full second has passed
+    const newSeconds = getSec(time);
+    if (newSeconds != seconds) {
+      return dispatch({
+        type: 'UPDATE_TIME',
+        minutes: getMin(time),
+        seconds: newSeconds
+      });
+    }
   }
 };
 
 export const togglePaused = () => (dispatch, getState) => {
   BackgroundTimer.clearInterval(timerInterval);
-  const { isPaused, minutes, seconds } = getState().timer;
-  let endTime = null;
-  if (isPaused) {
-    endTime = Date.now() + getMillisecs(minutes, seconds);
 
+  if (getState().timer.isPaused) {
     timerTick(dispatch, getState);
     timerInterval = BackgroundTimer.setInterval(
       () => timerTick(dispatch, getState),
       INTERVAL_LENGTH
     );
   }
-  return dispatch({ type: 'TOGGLE_PAUSED', endTime });
+
+  return dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
 };
 
 export const nextSession = () => {
   BackgroundTimer.clearInterval(timerInterval);
-  return { type: 'FINISH_SESSION', isPaused: true };
+  return { type: 'FINISH_SESSION', isPaused: true, currentTime: Date.now() };
 };
 
 export const backOneSession = () => {
   BackgroundTimer.clearInterval(timerInterval);
-  return { type: 'BACK_ONE_SESSION' };
+  return { type: 'BACK_ONE_SESSION', currentTime: Date.now() };
 };
 
 export const resetTime = () => {

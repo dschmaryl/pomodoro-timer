@@ -11,6 +11,8 @@ const initialState = {
   focusTime: getMillisecs(25),
   shortBreakTime: getMillisecs(5),
   longBreakTime: getMillisecs(15),
+  endTime: null,
+  timeLeft: null,
   minutes: 25,
   seconds: 0,
   isPaused: true,
@@ -43,7 +45,7 @@ export const timer = (state = initialState, action) => {
           ? state.shortBreakTime
           : state.longBreakTime;
 
-      return { ...state, ...getMinSecs(time), isPaused: true };
+      return { ...state, ...getMinSecs(time), timeLeft: time, isPaused: true };
 
     case 'FINISH_SESSION':
       if (state.session !== 'focus') {
@@ -106,14 +108,20 @@ export const timer = (state = initialState, action) => {
 
     case 'TOGGLE_PAUSED':
       if (state.isPaused) {
+        const timeLeft =
+          state.timeLeft || getMillisecs(state.minutes, state.seconds);
         return {
           ...state,
           isPaused: false,
-          endTime: action.endTime,
+          endTime: action.currentTime + timeLeft,
           sessionEnded: false
         };
       } else {
-        return { ...state, isPaused: true, endTime: null };
+        return {
+          ...state,
+          isPaused: true,
+          timeLeft: state.endTime - action.currentTime
+        };
       }
 
     case 'UPDATE_TIME':
