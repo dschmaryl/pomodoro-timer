@@ -1,7 +1,7 @@
 import BackgroundTimer from 'react-native-background-timer';
-import { getMillisecs, getMinSecs } from '../utils';
+import { getMin, getSec, getMinSecs } from '../utils';
 
-const INTERVAL_LENGTH = 2; // help correct latency
+const INTERVAL_LENGTH = 2;
 
 let timerInterval;
 
@@ -35,7 +35,6 @@ export const togglePaused = () => (dispatch, getState) => {
   BackgroundTimer.clearInterval(timerInterval);
 
   if (getState().timer.isPaused) {
-    timerTick(dispatch, getState);
     timerInterval = BackgroundTimer.setInterval(
       () => timerTick(dispatch, getState),
       INTERVAL_LENGTH

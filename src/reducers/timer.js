@@ -20,6 +20,19 @@ const initialState = {
   appState: 'active'
 };
 
+const newSession = (newTime, currentTime, isPaused) => {
+  const timeLeft = newTime + (isPaused ? 0 : 800);
+  const { minutes, seconds } = getMinSecs(timeLeft);
+
+  return {
+    endTime: currentTime + timeLeft,
+    timeLeft: timeLeft,
+    minutes,
+    seconds,
+    isPaused: isPaused
+  };
+};
+
 export const timer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_TIME':
@@ -52,7 +65,7 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           ...focusState,
-          ...getMinSecs(state.focusTime),
+          ...newSession(state.focusTime),
           isPaused: action.isPaused,
           sessionEnded: action.sessionEnded,
           pomodoro:
@@ -63,7 +76,7 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...longBreakState,
-            ...getMinSecs(state.longBreakTime),
+            ...newSession(state.longBreakTime),
             isPaused: action.isPaused,
             sessionEnded: action.sessionEnded
           };
@@ -71,7 +84,7 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...shortBreakState,
-            ...getMinSecs(state.shortBreakTime),
+            ...newSession(state.shortBreakTime),
             isPaused: action.isPaused,
             sessionEnded: action.sessionEnded
           };
@@ -83,7 +96,7 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           ...focusState,
-          ...getMinSecs(state.focusTime),
+          ...newSession(state.focusTime),
           isPaused: true
         };
       } else {
@@ -91,7 +104,7 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...longBreakState,
-            ...getMinSecs(state.longBreakTime),
+            ...newSession(state.longBreakTime),
             isPaused: true,
             pomodoro: 4
           };
@@ -99,7 +112,7 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...shortBreakState,
-            ...getMinSecs(state.shortBreakTime),
+            ...newSession(state.shortBreakTime),
             isPaused: true,
             pomodoro: state.pomodoro - 1
           };
