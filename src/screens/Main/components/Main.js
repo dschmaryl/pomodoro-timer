@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppState, View, BackHandler } from 'react-native';
+import { AppState, View, BackHandler, Alert } from 'react-native';
 
 import { withNavigationFocus } from 'react-navigation';
 
@@ -34,7 +34,34 @@ class MainComponent extends React.Component {
 
   handleAppStateChange = nextAppState => this.props.setAppState(nextAppState);
 
-  handleBackPress = () => this.props.isFocused;
+  handleBackPress = () => {
+    if (this.props.isFocused && !this.props.isPaused) {
+      Alert.alert(
+        'Are you sure?',
+        'Using the back button to exit will pause the timer.',
+        [
+          {
+            text: 'Exit',
+            onPress: () => this.exitApp()
+          },
+          {
+            text: 'Cancel',
+            onPress: () => {},
+            style: 'cancel'
+          }
+        ],
+        { cancelable: true }
+      );
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  exitApp = () => {
+    this.props.togglePaused();
+    BackHandler.exitApp();
+  };
 
   render = () => (
     <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
