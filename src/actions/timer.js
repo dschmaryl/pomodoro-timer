@@ -1,7 +1,7 @@
 import BackgroundTimer from 'react-native-background-timer';
 import { getMillisecs, getMinSecs } from '../utils';
 
-const INTERVAL_LENGTH = 1000;
+const INTERVAL_LENGTH = 988; // help correct latency
 
 let timerInterval;
 
