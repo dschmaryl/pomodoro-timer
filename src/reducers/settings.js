@@ -4,7 +4,7 @@ export const settings = (
   state = {
     pauseAtSessionEnd: true,
     showPauseButton: true,
-    runInBackground: undefined,
+    runInBackground: false,
     notificationIsEnabled: true,
     alarmIsEnabled: true,
     alarmRepeat: false,
