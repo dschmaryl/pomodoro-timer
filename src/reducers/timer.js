@@ -16,7 +16,8 @@ const initialState = {
   minutes: 25,
   seconds: 0,
   isPaused: true,
-  sessionEnded: false,
+  // sessionEnded: false,
+  alarmIsPlaying: false,
   appState: 'active'
 };
 
@@ -67,7 +68,7 @@ export const timer = (state = initialState, action) => {
           ...focusState,
           ...newSession(state.focusTime, action.currentTime, action.isPaused),
           isPaused: action.isPaused,
-          sessionEnded: action.sessionEnded,
+          alarmIsPlaying: action.alarmIsPlaying,
           pomodoro:
             state.pomodoro >= state.numPomodoros ? 1 : state.pomodoro + 1
         };
@@ -82,7 +83,7 @@ export const timer = (state = initialState, action) => {
               action.isPaused
             ),
             isPaused: action.isPaused,
-            sessionEnded: action.sessionEnded
+            alarmIsPlaying: action.alarmIsPlaying
           };
         } else {
           return {
@@ -94,7 +95,7 @@ export const timer = (state = initialState, action) => {
               action.isPaused
             ),
             isPaused: action.isPaused,
-            sessionEnded: action.sessionEnded
+            alarmIsPlaying: action.alarmIsPlaying
           };
         }
       }
@@ -105,7 +106,8 @@ export const timer = (state = initialState, action) => {
           ...state,
           ...focusState,
           ...newSession(state.focusTime, action.currentTime, true),
-          isPaused: true
+          isPaused: true,
+          alarmIsPlaying: false
         };
       } else {
         if (state.pomodoro === 1) {
@@ -114,7 +116,8 @@ export const timer = (state = initialState, action) => {
             ...longBreakState,
             ...newSession(state.longBreakTime, action.currentTime, true),
             isPaused: true,
-            pomodoro: 4
+            pomodoro: 4,
+            alarmIsPlaying: false
           };
         } else {
           return {
@@ -122,7 +125,8 @@ export const timer = (state = initialState, action) => {
             ...shortBreakState,
             ...newSession(state.shortBreakTime, action.currentTime, true),
             isPaused: true,
-            pomodoro: state.pomodoro - 1
+            pomodoro: state.pomodoro - 1,
+            alarmIsPlaying: false
           };
         }
       }
@@ -135,7 +139,7 @@ export const timer = (state = initialState, action) => {
           ...state,
           isPaused: false,
           endTime: action.currentTime + timeLeft,
-          sessionEnded: false
+          alarmIsPlaying: false
         };
       } else {
         return {
@@ -148,8 +152,8 @@ export const timer = (state = initialState, action) => {
     case 'UPDATE_TIME':
       return { ...state, minutes: action.minutes, seconds: action.seconds };
 
-    case 'TOGGLE_SESSION_ENDED':
-      return { ...state, sessionEnded: !state.sessionEnded };
+    case 'TOGGLE_ALARM_PLAYING':
+      return { ...state, alarmIsPlaying: !state.alarmIsPlaying };
 
     case 'SET_APP_STATE':
       return { ...state, appState: action.nextAppState };

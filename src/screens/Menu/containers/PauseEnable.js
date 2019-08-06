@@ -4,7 +4,7 @@ import { togglePauseAtSessionEnd } from '../../../actions/settings';
 import { Switcher } from '../components/Switcher';
 
 const mapStateToProps = state => ({
-  label: 'Pause at session end',
+  label: 'Pause at end of session',
   isOn: state.settings.pauseAtSessionEnd,
   colors: state.settings.colors
 });

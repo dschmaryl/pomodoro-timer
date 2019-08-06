@@ -5,11 +5,7 @@ export class Notification extends React.Component {
   state = { isScheduled: false };
 
   componentWillReceiveProps = newProps => {
-    if (
-      newProps.sendNotification &&
-      !this.state.isScheduled &&
-      !this.props.isPaused
-    ) {
+    if (newProps.sendNotification && !this.state.isScheduled) {
       this.setState({ isScheduled: true }, () => {
         // console.log('scheduling push notification');
         PushNotification.localNotificationSchedule({
@@ -24,9 +20,10 @@ export class Notification extends React.Component {
           color: 'red'
         });
       });
-    } else if (!newProps.sendNotification && this.state.isScheduled) {
+    } else if (!newProps.sendNotification) {
       // console.log('canceling push notification');
       PushNotification.cancelLocalNotifications({ id: '31415' });
+
       this.setState({ isScheduled: false });
     }
   };

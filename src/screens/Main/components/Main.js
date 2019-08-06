@@ -20,11 +20,6 @@ class MainComponent extends React.Component {
     this.props.setAppState('active');
     AppState.addEventListener('change', this.handleAppStateChange);
     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-
-    if (this.props.runInBackground === undefined)
-      this.props.toggleRunInBackground();
-
-    if (this.props.numPomodoros === undefined) this.props.setNumPomodoros();
   };
 
   componentWillUnmount = () => {
@@ -35,7 +30,11 @@ class MainComponent extends React.Component {
   handleAppStateChange = nextAppState => this.props.setAppState(nextAppState);
 
   handleBackPress = () => {
-    if (this.props.isFocused && !this.props.isPaused) {
+    if (
+      this.props.isFocused &&
+      !this.props.isPaused &&
+      this.props.runInBackground
+    ) {
       Alert.alert(
         'Are you sure?',
         'Using the back button to exit will pause the timer.',

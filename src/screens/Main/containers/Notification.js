@@ -4,9 +4,10 @@ import { Notification } from '../components/Notification';
 
 const mapStateToProps = state => ({
   sendNotification:
-    state.settings.notificationIsEnabled && state.timer.appState !== 'active',
+    state.settings.notificationIsEnabled &&
+    state.timer.appState !== 'active' &&
+    !state.timer.isPaused,
   sessionString: state.timer.sessionString,
-  isPaused: state.timer.isPaused,
   endTime: state.timer.endTime
 });
 

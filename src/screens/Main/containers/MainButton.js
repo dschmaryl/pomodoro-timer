@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { togglePaused, toggleSessionEnded } from '../../../actions/timer';
+import { togglePaused, toggleAlarmIsPlaying } from '../../../actions/timer';
 import { MainButton } from '../components/MainButton';
 
 const mapStateToProps = state => ({
@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 
 mapDispatchToProps = dispatch => ({
   togglePaused: () => dispatch(togglePaused()),
-  toggleSessionEnded: () => dispatch(toggleSessionEnded())
+  toggleAlarmIsPlaying: () => dispatch(toggleAlarmIsPlaying())
 });
 
 export default connect(

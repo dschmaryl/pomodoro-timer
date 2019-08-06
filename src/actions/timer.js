@@ -1,22 +1,33 @@
 import BackgroundTimer from 'react-native-background-timer';
-import { getMin, getSec, getMinSecs } from '../utils';
+import { getMin, getSec } from '../utils';
 
 const INTERVAL_LENGTH = 2;
 
 let timerInterval;
+
+const startTimer = (dispatch, getState) => {
+  timerInterval = BackgroundTimer.setInterval(
+    () => timerTick(dispatch, getState),
+    INTERVAL_LENGTH
+  );
+};
+
+const stopTimer = () => {
+  BackgroundTimer.clearInterval(timerInterval);
+};
 
 const timerTick = (dispatch, getState) => {
   const { endTime, seconds } = getState().timer;
   const time = endTime - Date.now();
   if (time < 1000) {
     // end of session
-    const { pauseAtSessionEnd } = getState().settings;
+    const { pauseAtSessionEnd, alarmIsEnabled } = getState().settings;
     if (pauseAtSessionEnd) BackgroundTimer.clearInterval(timerInterval);
     return dispatch({
       type: 'FINISH_SESSION',
       isPaused: pauseAtSessionEnd,
       currentTime: Date.now(),
-      sessionEnded: true
+      alarmIsPlaying: alarmIsEnabled && time > 0 // timer was not in background
     });
   } else {
     // check to see if a full second has passed
@@ -32,72 +43,58 @@ const timerTick = (dispatch, getState) => {
 };
 
 export const togglePaused = () => (dispatch, getState) => {
-  BackgroundTimer.clearInterval(timerInterval);
-
+  stopTimer();
   if (getState().timer.isPaused) {
-    timerInterval = BackgroundTimer.setInterval(
-      () => timerTick(dispatch, getState),
-      INTERVAL_LENGTH
-    );
+    startTimer(dispatch, getState);
   }
-
   return dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
 };
 
 export const nextSession = () => {
-  BackgroundTimer.clearInterval(timerInterval);
+  stopTimer();
   return { type: 'FINISH_SESSION', isPaused: true, currentTime: Date.now() };
 };
 
 export const backOneSession = () => {
-  BackgroundTimer.clearInterval(timerInterval);
+  stopTimer();
   return { type: 'BACK_ONE_SESSION', currentTime: Date.now() };
 };
 
 export const resetTime = () => {
-  BackgroundTimer.clearInterval(timerInterval);
+  stopTimer();
   return { type: 'RESET_TIME' };
 };
 
-export const toggleSessionEnded = () => ({ type: 'TOGGLE_SESSION_ENDED' });
+export const toggleAlarmIsPlaying = () => ({ type: 'TOGGLE_ALARM_PLAYING' });
 
 export const setAppState = nextAppState => (dispatch, getState) => {
   const { timer, settings } = getState();
+
   if (nextAppState !== 'active') {
-    if (!timer.isPaused) {
-      if (!settings.runInBackground && !settings.notificationIsEnabled) {
-        // both background options are disabled, so pause
-        dispatch(togglePaused());
+    if (!settings.runInBackground) {
+      stopTimer();
+
+      if (!settings.notificationIsEnabled) {
+        if (!timer.isPaused) dispatch(togglePaused());
       }
     }
-  } else {
-    if (!timerInterval && !timer.isPaused) {
-      if (settings.runInBackground || settings.notificationIsEnabled) {
-        // check endTime and restart timer
-        const { minutes, seconds } = getMinSecs(timer.endTime - Date.now());
-        if (minutes < 0 || seconds < 0) {
-          // finished while in background
-          dispatch({
-            type: 'FINISH_SESSION',
-            isPaused: settings.pauseAtSessionEnd,
-            sessionEnded: false
-          });
-          if (!settings.pauseAtSessionEnd) {
-            timerInterval = BackgroundTimer.setInterval(
-              () => timerTick(dispatch, getState),
-              INTERVAL_LENGTH
-            );
-          }
-        } else {
-          dispatch({ type: 'UPDATE_TIME', minutes, seconds });
-          timerInterval = BackgroundTimer.setInterval(
-            () => timerTick(dispatch, getState),
-            INTERVAL_LENGTH
-          );
-        }
+  } else if (timer.appState !== 'active') {
+    // came back to active
+    if (!timer.isPaused && !settings.runInBackground) {
+      const currentTime = Date.now();
+
+      if (timer.endTime - currentTime < 0) {
+        // timer finished in background
+
+        dispatch({
+          type: 'FINISH_SESSION',
+          isPaused: settings.pauseAtSessionEnd,
+          currentTime
+        });
+
+        if (!settings.pauseAtSessionEnd) startTimer(dispatch, getState);
       } else {
-        // should be paused, so pause it
-        dispatch({ type: 'TOGGLE_PAUSED' });
+        startTimer(dispatch, getState);
       }
     }
   }

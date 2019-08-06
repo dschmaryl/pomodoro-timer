@@ -8,7 +8,7 @@ export const MainButton = ({
   isPaused,
   togglePaused,
   alarmIsPlaying,
-  toggleSessionEnded,
+  toggleAlarmIsPlaying,
   showPauseButton,
   colors
 }) =>
@@ -21,7 +21,7 @@ export const MainButton = ({
     </TouchableOpacity>
   ) : alarmIsPlaying ? (
     <TouchableOpacity
-      onPress={toggleSessionEnded}
+      onPress={toggleAlarmIsPlaying}
       style={styles.mainButtonTouchable}
     >
       <Icon
