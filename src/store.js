@@ -24,7 +24,7 @@ export const store = createStore(
               runInBackground: false,
               notificationIsEnabled: true
             },
-            picker: { ...state.picker }
+            picker: { pickerVisible: false, timePickerVisible: false }
           })
         },
         { debug: true }
