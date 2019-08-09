@@ -1,7 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.dschmaryl.pomodoro">
 
-  <!-- <uses-permission android:name="android.permission.INTERNET"/>
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/> -->
+  <uses-permission android:name="android.permission.INTERNET" />
 
   <!-- added for notifications -->
   <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -55,7 +54,6 @@
       </intent-filter>
     </service>
     <!-- added for notifications -->
-
   </application>
 
 </manifest>

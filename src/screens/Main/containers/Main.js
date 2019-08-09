@@ -5,6 +5,7 @@ import { Main } from '../components/Main';
 
 const mapStateToProps = state => ({
   colors: state.settings.colors,
+  darkMode: state.settings.darkMode,
   isPaused: state.timer.isPaused,
   runInBackground: state.settings.runInBackground
 });

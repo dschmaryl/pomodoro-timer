@@ -9,6 +9,7 @@ const mapStateToProps = state => ({
     state.settings.tickIsEnabled &&
     !state.timer.isPaused &&
     (state.settings.runInBackground || state.timer.appState === 'active'),
+  appState: state.timer.appState,
   seconds: state.timer.seconds
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from 'react-navigation';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -11,16 +11,18 @@ import Main from './screens/Main';
 
 // persistor.purge();
 
-const Navigator = createStackNavigator(
-  {
-    Main: { screen: Main },
-    Menu: { screen: Menu }
-  },
-  {
-    initialRouteName: 'Main',
-    headerMode: 'none',
-    transparentCard: true
-  }
+const Navigator = createAppContainer(
+  createStackNavigator(
+    {
+      Main: { screen: Main },
+      Menu: { screen: Menu }
+    },
+    {
+      initialRouteName: 'Main',
+      headerMode: 'none',
+      transparentCard: true
+    }
+  )
 );
 
 export const App = () => (

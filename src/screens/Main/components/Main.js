@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppState, View, BackHandler, Alert } from 'react-native';
+import { AppState, View, BackHandler, Alert, StatusBar } from 'react-native';
 
 import { withNavigationFocus } from 'react-navigation';
 
@@ -64,6 +64,10 @@ class MainComponent extends React.Component {
 
   render = () => (
     <View style={[styles.mainContainer, this.props.colors.backgroundColor]}>
+      <StatusBar
+        backgroundColor={this.props.colors.backgroundColor.backgroundColor}
+        barStyle={this.props.darkMode ? 'light-content' : 'dark-content'}
+      />
       <MenuButton />
       <Session />
       <Time textStyle={styles.timeText} />
