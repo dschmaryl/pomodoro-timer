@@ -30,12 +30,6 @@ build/
 local.properties
 *.iml
 
-# Eclipse
-#
-.project
-org.eclipse*
-.classpath
-
 # node.js
 #
 node_modules/
@@ -60,3 +54,6 @@ buck-out/
 
 # Bundle artifact
 *.jsbundle
+
+# CocoaPods
+/ios/Pods/

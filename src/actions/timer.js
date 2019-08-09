@@ -1,19 +1,36 @@
 import BackgroundTimer from 'react-native-background-timer';
 import { getMin, getSec } from '../utils';
 
-const INTERVAL_LENGTH = 2;
+const INTERVAL_LENGTH = 10;
 
 let timerInterval;
 
 const startTimer = (dispatch, getState) => {
-  timerInterval = BackgroundTimer.setInterval(
-    () => timerTick(dispatch, getState),
-    INTERVAL_LENGTH
-  );
+  const { runInBackground } = getState().settings;
+
+  if (runInBackground) {
+    timerInterval = BackgroundTimer.setInterval(
+      () => timerTick(dispatch, getState),
+      INTERVAL_LENGTH
+    );
+  } else {
+    timerInterval = setInterval(
+      () => timerTick(dispatch, getState),
+      INTERVAL_LENGTH
+    );
+  }
 };
 
 const stopTimer = () => {
+  clearInterval(timerInterval);
   BackgroundTimer.clearInterval(timerInterval);
+};
+
+export const changeIntervalType = () => (dispatch, getState) => {
+  if (!getState().timer.isPaused) {
+    stopTimer();
+    startTimer(dispatch, getState);
+  }
 };
 
 const timerTick = (dispatch, getState) => {
@@ -22,7 +39,7 @@ const timerTick = (dispatch, getState) => {
   if (time < 1000) {
     // end of session
     const { pauseAtSessionEnd, alarmIsEnabled } = getState().settings;
-    if (pauseAtSessionEnd) BackgroundTimer.clearInterval(timerInterval);
+    if (pauseAtSessionEnd) stopTimer();
     return dispatch({
       type: 'FINISH_SESSION',
       isPaused: pauseAtSessionEnd,

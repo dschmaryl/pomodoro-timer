@@ -1,3 +1,5 @@
+import { changeIntervalType } from './timer';
+
 export const togglePauseAtSessionEnd = () => ({
   type: 'TOGGLE_PAUSE_AT_SESSION_END'
 });
@@ -6,13 +8,19 @@ export const toggleShowPauseButton = () => ({
   type: 'TOGGLE_SHOW_PAUSE_BUTTON'
 });
 
-export const toggleRunInBackground = () => ({
-  type: 'TOGGLE_RUN_IN_BACKGROUND'
-});
+export const toggleRunInBackground = () => dispatch => {
+  dispatch({
+    type: 'TOGGLE_RUN_IN_BACKGROUND'
+  });
+  return dispatch(changeIntervalType());
+};
 
-export const toggleNotificationEnabled = () => ({
-  type: 'TOGGLE_NOTIFICATION_ENABLED'
-});
+export const toggleNotificationEnabled = () => dispatch => {
+  dispatch({
+    type: 'TOGGLE_NOTIFICATION_ENABLED'
+  });
+  return dispatch(changeIntervalType());
+};
 
 export const toggleAlarmEnabled = () => ({ type: 'TOGGLE_ALARM_ENABLED' });
 
