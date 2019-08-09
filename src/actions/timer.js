@@ -85,34 +85,21 @@ export const resetTime = () => {
 export const toggleAlarmIsPlaying = () => ({ type: 'TOGGLE_ALARM_PLAYING' });
 
 export const setAppState = nextAppState => (dispatch, getState) => {
+  stopTimer();
   const { timer, settings } = getState();
 
-  if (nextAppState !== 'active') {
-    if (!settings.runInBackground) {
-      stopTimer();
-
-      if (!settings.notificationIsEnabled) {
-        if (!timer.isPaused) dispatch(togglePaused());
-      }
-    }
-  } else if (timer.appState !== 'active') {
-    // came back to active
-    if (!timer.isPaused && !settings.runInBackground) {
-      const currentTime = Date.now();
-
-      if (timer.endTime - currentTime < 0) {
-        // timer finished in background
-
-        dispatch({
-          type: 'FINISH_SESSION',
-          isPaused: settings.pauseAtSessionEnd,
-          currentTime
-        });
-
-        if (!settings.pauseAtSessionEnd) startTimer(dispatch, getState);
-      } else {
-        startTimer(dispatch, getState);
-      }
+  if (settings.runInBackground && !timer.isPaused) {
+    startTimer(dispatch, getState);
+  } else {
+    if (nextAppState === 'active') {
+      if (!timer.isPaused) startTimer(dispatch, getState);
+    } else {
+      if (
+        !settings.runInBackground &&
+        !settings.notificationIsEnabled &&
+        !timer.isPaused
+      )
+        dispatch(togglePaused());
     }
   }
 
