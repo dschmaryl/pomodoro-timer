@@ -5,6 +5,8 @@ const INTERVAL_LENGTH = 10;
 
 let timerInterval;
 
+let tickIsMuted = true;
+
 const startTimer = (dispatch, getState) => {
   const { runInBackground } = getState().settings;
 
@@ -22,6 +24,7 @@ const startTimer = (dispatch, getState) => {
 };
 
 const stopTimer = () => {
+  tickIsMuted = true;
   clearInterval(timerInterval);
   BackgroundTimer.clearInterval(timerInterval);
 };
@@ -29,16 +32,26 @@ const stopTimer = () => {
 export const changeIntervalType = () => (dispatch, getState) => {
   if (!getState().timer.isPaused) {
     stopTimer();
-    startTimer(dispatch, getState);
+    tickIsMuted = false;
+    setTimeout(() => startTimer(dispatch, getState), 20);
   }
 };
 
 const timerTick = (dispatch, getState) => {
-  const { endTime, seconds } = getState().timer;
+  const state = getState();
+  const { endTime, seconds, alarmIsPlaying } = state.timer;
+
+  if (alarmIsPlaying) {
+    tickIsMuted = true;
+    setTimeout(() => {
+      tickIsMuted = false;
+    }, 800);
+  }
+
   const time = endTime - Date.now();
   if (time < 1000) {
     // end of session
-    const { pauseAtSessionEnd, alarmIsEnabled } = getState().settings;
+    const { pauseAtSessionEnd, alarmIsEnabled } = state.settings;
     if (pauseAtSessionEnd) stopTimer();
     return dispatch({
       type: 'FINISH_SESSION',
@@ -53,7 +66,8 @@ const timerTick = (dispatch, getState) => {
       return dispatch({
         type: 'UPDATE_TIME',
         minutes: getMin(time),
-        seconds: newSeconds
+        seconds: newSeconds,
+        tickIsMuted: tickIsMuted
       });
     }
   }
@@ -62,8 +76,10 @@ const timerTick = (dispatch, getState) => {
 export const togglePaused = () => (dispatch, getState) => {
   stopTimer();
   if (getState().timer.isPaused) {
+    tickIsMuted = false;
     startTimer(dispatch, getState);
   }
+
   return dispatch({ type: 'TOGGLE_PAUSED', currentTime: Date.now() });
 };
 
@@ -88,18 +104,25 @@ export const setAppState = nextAppState => (dispatch, getState) => {
   stopTimer();
   const { timer, settings } = getState();
 
-  if (settings.runInBackground && !timer.isPaused) {
-    startTimer(dispatch, getState);
+  if (nextAppState !== 'active') {
+    if (settings.runInBackground && !timer.isPaused) {
+      tickIsMuted = false;
+      startTimer(dispatch, getState);
+    } else if (
+      !settings.runInBackground &&
+      !settings.notificationIsEnabled &&
+      !timer.isPaused
+    ) {
+      dispatch(togglePaused());
+    }
   } else {
-    if (nextAppState === 'active') {
-      if (!timer.isPaused) startTimer(dispatch, getState);
-    } else {
-      if (
-        !settings.runInBackground &&
-        !settings.notificationIsEnabled &&
-        !timer.isPaused
-      )
-        dispatch(togglePaused());
+    // came back from background
+    tickIsMuted = true;
+    if (!timer.isPaused) {
+      setTimeout(() => {
+        tickIsMuted = false;
+      }, 600);
+      startTimer(dispatch, getState);
     }
   }
 

@@ -5,7 +5,7 @@ import { MainButton } from '../components/MainButton';
 
 const mapStateToProps = state => ({
   isPaused: state.timer.isPaused,
-  alarmIsPlaying: state.timer.sessionEnded,
+  alarmIsPlaying: state.timer.alarmIsPlaying,
   showPauseButton: state.settings.showPauseButton,
   colors: state.settings.colors
 });

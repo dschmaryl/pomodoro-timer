@@ -16,8 +16,8 @@ const initialState = {
   minutes: 25,
   seconds: 0,
   isPaused: true,
-  // sessionEnded: false,
   alarmIsPlaying: false,
+  tickIsMuted: true,
   appState: 'active'
 };
 
@@ -59,16 +59,24 @@ export const timer = (state = initialState, action) => {
           ? state.shortBreakTime
           : state.longBreakTime;
 
-      return { ...state, ...getMinSecs(time), timeLeft: time, isPaused: true };
+      return {
+        ...state,
+        ...getMinSecs(time),
+        timeLeft: time,
+        isPaused: true,
+        tickIsMuted: true
+      };
 
-    case 'FINISH_SESSION':
+    case 'FINISH_SESSION': {
+      const { currentTime, isPaused, alarmIsPlaying } = action;
+      const commonState = { isPaused, tickIsMuted: true, alarmIsPlaying };
+
       if (state.session !== 'focus') {
         return {
           ...state,
           ...focusState,
-          ...newSession(state.focusTime, action.currentTime, action.isPaused),
-          isPaused: action.isPaused,
-          alarmIsPlaying: action.alarmIsPlaying,
+          ...newSession(state.focusTime, currentTime, isPaused),
+          ...commonState,
           pomodoro:
             state.pomodoro >= state.numPomodoros ? 1 : state.pomodoro + 1
         };
@@ -77,37 +85,33 @@ export const timer = (state = initialState, action) => {
           return {
             ...state,
             ...longBreakState,
-            ...newSession(
-              state.longBreakTime,
-              action.currentTime,
-              action.isPaused
-            ),
-            isPaused: action.isPaused,
-            alarmIsPlaying: action.alarmIsPlaying
+            ...newSession(state.longBreakTime, currentTime, isPaused),
+            ...commonState
           };
         } else {
           return {
             ...state,
             ...shortBreakState,
-            ...newSession(
-              state.shortBreakTime,
-              action.currentTime,
-              action.isPaused
-            ),
-            isPaused: action.isPaused,
-            alarmIsPlaying: action.alarmIsPlaying
+            ...newSession(state.shortBreakTime, currentTime, isPaused),
+            ...commonState
           };
         }
       }
+    }
 
-    case 'BACK_ONE_SESSION':
+    case 'BACK_ONE_SESSION': {
+      const commonState = {
+        isPaused: true,
+        alarmIsPlaying: false,
+        tickIsMuted: true
+      };
+
       if (state.session !== 'focus') {
         return {
           ...state,
           ...focusState,
           ...newSession(state.focusTime, action.currentTime, true),
-          isPaused: true,
-          alarmIsPlaying: false
+          ...commonState
         };
       } else {
         if (state.pomodoro === 1) {
@@ -115,21 +119,20 @@ export const timer = (state = initialState, action) => {
             ...state,
             ...longBreakState,
             ...newSession(state.longBreakTime, action.currentTime, true),
-            isPaused: true,
-            pomodoro: 4,
-            alarmIsPlaying: false
+            ...commonState,
+            pomodoro: 4
           };
         } else {
           return {
             ...state,
             ...shortBreakState,
             ...newSession(state.shortBreakTime, action.currentTime, true),
-            isPaused: true,
-            pomodoro: state.pomodoro - 1,
-            alarmIsPlaying: false
+            ...commonState,
+            pomodoro: state.pomodoro - 1
           };
         }
       }
+    }
 
     case 'TOGGLE_PAUSED':
       if (state.isPaused) {
@@ -145,12 +148,18 @@ export const timer = (state = initialState, action) => {
         return {
           ...state,
           isPaused: true,
-          timeLeft: state.endTime - action.currentTime
+          timeLeft: state.endTime - action.currentTime,
+          tickIsMuted: true
         };
       }
 
     case 'UPDATE_TIME':
-      return { ...state, minutes: action.minutes, seconds: action.seconds };
+      return {
+        ...state,
+        minutes: action.minutes,
+        seconds: action.seconds,
+        tickIsMuted: action.tickIsMuted
+      };
 
     case 'TOGGLE_ALARM_PLAYING':
       return { ...state, alarmIsPlaying: !state.alarmIsPlaying };

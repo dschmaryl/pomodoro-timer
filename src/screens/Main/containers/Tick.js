@@ -7,9 +7,9 @@ const mapStateToProps = state => ({
   tickSoundIndex: state.settings.tickSoundIndex,
   playTicks:
     state.settings.tickIsEnabled &&
-    !state.timer.isPaused &&
-    (state.settings.runInBackground || state.timer.appState === 'active'),
-  appState: state.timer.appState,
+    !state.timer.tickIsMuted &&
+    !state.timer.alarmIsPlaying &&
+    !state.timer.isPaused,
   seconds: state.timer.seconds
 });
 
