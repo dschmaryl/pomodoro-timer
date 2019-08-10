@@ -6,6 +6,7 @@ const INTERVAL_LENGTH = 10;
 let timerInterval;
 
 let tickIsMuted = true;
+let pauseForAlarm = false;
 
 const startTimer = (dispatch, getState) => {
   const { runInBackground } = getState().settings;
@@ -42,7 +43,10 @@ const timerTick = (dispatch, getState) => {
   const { endTime, seconds, alarmIsPlaying } = state.timer;
 
   if (alarmIsPlaying) {
+    pauseForAlarm = true;
     tickIsMuted = true;
+  } else if (pauseForAlarm) {
+    pauseForAlarm = false;
     setTimeout(() => {
       tickIsMuted = false;
     }, 800);
