@@ -47,9 +47,7 @@ const timerTick = (dispatch, getState) => {
     tickIsMuted = true;
   } else if (pauseForAlarm) {
     pauseForAlarm = false;
-    setTimeout(() => {
-      tickIsMuted = false;
-    }, 800);
+    tickIsMuted = false;
   }
 
   const time = endTime - Date.now();
