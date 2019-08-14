@@ -10,7 +10,7 @@ export const store = createStore(
       key: 'root',
       storage,
       blacklist: ['picker'],
-      timout: 0,
+      timeout: 0,
       version: 0,
       migrate: createMigrate(
         {
